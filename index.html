@@ -1,0 +1,133 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Премиальная студия дизайна интерьера в Бишкеке. ИМХОТЕП создаёт выразительные, современные пространства для жизни и бизнеса." />
+  <title>ИМХОТЕП — студия дизайна интерьера | Бишкек</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #2d2d2d;
+      color: white;
+      scroll-behavior: smooth;
+    }
+    header {
+      padding: 2rem;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: bold;
+    }
+    nav {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+    nav a {
+      margin: 0 1rem;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    section {
+      padding: 3rem 2rem;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    section.visible {
+      opacity: 1;
+      transform: none;
+    }
+    .projects, .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      padding-top: 2rem;
+    }
+    .project {
+      background-color: #1c1c1c;
+      padding: 1rem;
+      border-radius: 12px;
+      text-align: center;
+      transition: transform 0.3s;
+    }
+    .project img {
+      max-width: 100%;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+    .project:hover {
+      transform: scale(1.03);
+      cursor: pointer;
+    }
+    .about {
+      text-align: center;
+      line-height: 1.6;
+    }
+    .about a {
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+    }
+    .about img {
+      height: 80px;
+      vertical-align: middle;
+      margin-left: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>ИМХОТЕП — студия дизайна интерьера</header>
+  <nav>
+    <a href="#about">О студии</a>
+    <a href="#projects">Проекты</a>
+    <a href="#gallery">Галерея</a>
+  </nav>
+
+  <section id="about" class="about">
+    <h2>О студии</h2>
+    <p>Создаём выразительные, современные пространства для жизни и бизнеса. Работаем с жилыми и коммерческими интерьерами, фокусируясь на смысле, атмосфере и деталях.</p>
+    <a href="https://www.instagram.com/imhotep_studiokg" target="_blank">@imhotep_studiokg</a>
+    <img src="qr.png" alt="QR код">
+  </section>
+
+  <section id="projects">
+    <h2 style="text-align:center;">Проекты</h2>
+    <div class="projects">
+      <div class="project"><img src="project1.jpg" alt=""><div>Квартира в ЖК «Лучи» для молодой пары</div></div>
+      <div class="project"><img src="project2.jpg" alt=""><div>Современная квартира в ЖК «Тихий уголок»</div></div>
+      <div class="project"><img src="project3.jpg" alt=""><div>Современный дом с зоной SPA</div></div>
+      <div class="project"><img src="project4.jpg" alt=""><div>ЖК «Дом на Пискунова», Иркутск</div></div>
+      <div class="project"><img src="project5.jpg" alt=""><div>ЖК «Мещера»</div></div>
+      <div class="project"><img src="project6.jpg" alt=""><div>ЖК «Октава»</div></div>
+    </div>
+  </section>
+
+  <section id="gallery">
+    <h2 style="text-align:center;">Галерея</h2>
+    <div class="gallery">
+      <img src="project1.jpg" alt="">
+      <img src="project2.jpg" alt="">
+      <img src="project3.jpg" alt="">
+      <img src="project4.jpg" alt="">
+      <img src="project5.jpg" alt="">
+      <img src="project6.jpg" alt="">
+    </div>
+  </section>
+
+  <script>
+    const sections = document.querySelectorAll("section");
+    const showOnScroll = () => {
+      const trigger = window.innerHeight * 0.9;
+      sections.forEach(sec => {
+        const rect = sec.getBoundingClientRect();
+        if (rect.top < trigger) sec.classList.add("visible");
+      });
+    };
+    window.addEventListener("scroll", showOnScroll);
+    window.addEventListener("load", showOnScroll);
+  </script>
+</body>
+</html>
