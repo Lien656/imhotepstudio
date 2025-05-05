@@ -2,269 +2,150 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <title>IMHOTEP STUDIO</title>
-    <style>
-        body {
-            margin: 0;
-            background-color: #2D2D2D;
-            color: #F4EDE5;
-            font-family: 'Arial', sans-serif;
-            scroll-behavior: smooth;
-            background: url('site-bg.jpg') center top repeat-y;
-            background-size: cover;
-        }
-        a {
-            color: #F4EDE5;
-            text-decoration: none;
-        }
-        nav {
-            background-color: rgba(40, 40, 40, 0.9);
-            padding: 20px 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            backdrop-filter: blur(6px);
-        }
-        nav .logo {
-            font-size: 1.5em;
-            color: #CCAE68;
-            font-weight: bold;
-            letter-spacing: 2px;
-        }
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 30px;
-            position: relative;
-        }
-        nav ul li {
-            position: relative;
-        }
-        nav ul li a:hover {
-            color: #CCAE68;
-        }
-        .dropdown {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: #182E30;
-            border: 1px solid #CCAE68;
-            padding: 10px;
-            z-index: 1001;
-            border-radius: 8px;
-        }
-        nav ul li:hover .dropdown {
-            display: block;
-        }
-        .dropdown a {
-            display: block;
-            color: #F4EDE5;
-            padding: 5px 10px;
-            border-radius: 6px;
-        }
-        .dropdown a:hover {
-            background-color: #CCAE68;
-            color: #2D2D2D;
-        }
-        header {
-            height: 100vh;
-            background: url('site-bg.jpg') center/cover no-repeat;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-        }
-        header h1 {
-            font-family: 'Georgia', serif;
-            font-size: 4em;
-            margin: 0;
-            color: #F4EDE5;
-        }
-        header p {
-            font-size: 1.5em;
-            margin: 10px 0;
-        }
-        header a.btn {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 10px 25px;
-            border: 1px solid #CCAE68;
-            color: #CCAE68;
-            text-decoration: none;
-            transition: 0.3s;
-            border-radius: 50px;
-        }
-        header a.btn:hover {
-            background-color: #CCAE68;
-            color: #2D2D2D;
-        }
-        section {
-            padding: 80px 40px;
-            max-width: 1200px;
-            margin: auto;
-            border-radius: 16px;
-        }
-        .about, .contacts {
-            background-color: rgba(24, 46, 48, 0.9);
-            padding: 60px;
-        }
-        .about-text {
-            flex: 1;
-            font-size: 1.1em;
-            line-height: 1.8;
-        }
-        .about-image {
-            flex: 1;
-            background: url('about.jpg') center/cover no-repeat;
-            height: 400px;
-            border-radius: 12px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.3);
-        }
-        .about {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 40px;
-            align-items: center;
-        }
-        .projects {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        .project-card {
-            background-color: rgba(24, 46, 48, 0.9);
-            padding: 10px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease;
-            border-radius: 12px;
-            overflow: hidden;
-        }
-        .project-card.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .project-card img {
-            width: 100%;
-            height: auto;
-            border-radius: 8px;
-        }
-        .project-card p {
-            margin-top: 10px;
-            font-size: 1em;
-        }
-        .contacts h2 {
-            color: #CCAE68;
-        }
-        .form {
-            display: flex;
-            flex-direction: column;
-            max-width: 400px;
-            margin-top: 20px;
-        }
-        .form input, .form textarea {
-            margin-bottom: 15px;
-            padding: 10px;
-            border: none;
-            background-color: #2D2D2D;
-            color: #F4EDE5;
-            border-bottom: 1px solid #F4EDE5;
-            border-radius: 4px;
-        }
-        .form button {
-            padding: 10px;
-            border: none;
-            background-color: #CCAE68;
-            color: #2D2D2D;
-            cursor: pointer;
-            transition: 0.3s;
-            border-radius: 8px;
-        }
-        .form button:hover {
-            opacity: 0.8;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Премиальная студия дизайна интерьера в Бишкеке. IMHOTEP создаёт выразительные, современные пространства для жизни и бизнеса." />
+  <title>IMHOTEP — студия дизайна интерьера | Бишкек</title>
+  <link rel="icon" href="/favicon.png" type="image/png">
+  <style>
+    body {
+      margin: 0;
+      font-family: sans-serif;
+      background-color: #2d2d2d;
+      color: white;
+      scroll-behavior: smooth;
+    }
+    header {
+      padding: 2rem;
+      text-align: center;
+      font-size: 2rem;
+    }
+    section {
+      padding: 4rem 2rem;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .project {
+      background-color: #1f1f1f;
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .project:hover {
+      transform: scale(1.02);
+    }
+    .project img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+    }
+    .project-title {
+      padding: 1rem;
+      font-size: 1.1rem;
+    }
+    .instagram {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 4rem;
+    }
+    .instagram img {
+      height: 40px;
+    }
+    .instagram a {
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 1rem;
+      margin-top: 4rem;
+    }
+    .gallery img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+    }
+  </style>
 </head>
 <body>
-    <nav>
-        <div class="logo">IMHOTEP</div>
-        <ul>
-            <li><a href="#about">О студии</a></li>
-            <li><a href="#projects">Проекты</a></li>
-            <li>
-                <a href="#contacts">Контакты</a>
-                <div class="dropdown">
-                    <a href="tel:+996220050333">Позвонить</a>
-                    <a href="https://wa.me/996220050333" target="_blank">WhatsApp</a>
-                    <a href="https://t.me/imhotepstudio" target="_blank">Telegram</a>
-                </div>
-            </li>
-        </ul>
-    </nav>
+  <header>IMHOTEP — студия дизайна интерьера</header>
 
-    <header>
-        <h1>IMHOTEP STUDIO</h1>
-        <p>Премиальный дизайн, где форма — живое пространство</p>
-        <a class="btn" href="#projects">Смотреть проекты</a>
-    </header>
+  <section class="about">
+    <h2>О студии</h2>
+    <p>Создаём выразительные, современные пространства для жизни и бизнеса. Работаем с жилыми и коммерческими интерьерами, фокусируясь на смысле, атмосфере и деталях.</p>
+  </section>
 
-    <section id="about" class="about">
-        <div class="about-text">
-            <p>Мы создаём не просто интерьеры.<br>
-            Мы создаём ритм жизни, в котором хочется остаться.</p>
-            <p>От первого эскиза до аромата в пространстве — всё мыслится как часть единого чувства.</p>
-            <p><strong>IMHOTEP</strong> — имя архитектора, признанного богом.<br>
-            И мы продолжаем эту линию.</p>
-        </div>
-        <div class="about-image"></div>
-    </section>
+  <section class="projects">
+    <div class="project" onclick="location.href='project1.html';">
+      <img src="project1.jpg" alt="Лучи" />
+      <div class="project-title">Квартира в ЖК «Лучи» для молодой пары</div>
+    </div>
+    <div class="project" onclick="location.href='project2.html';">
+      <img src="project2.jpg" alt="Тихий уголок" />
+      <div class="project-title">Современная квартира в ЖК «Тихий уголок»</div>
+    </div>
+    <div class="project" onclick="location.href='project3.html';">
+      <img src="project3.jpg" alt="SPA" />
+      <div class="project-title">Современный дом с зоной SPA</div>
+    </div>
+    <div class="project" onclick="location.href='project4.html';">
+      <img src="project4.jpg" alt="Пискунова" />
+      <div class="project-title">ЖК «Дом на Пискунова», Иркутск</div>
+    </div>
+    <div class="project" onclick="location.href='project5.html';">
+      <img src="project5.jpg" alt="Мещера" />
+      <div class="project-title">ЖК «Мещера»</div>
+    </div>
+    <div class="project" onclick="location.href='project6.html';">
+      <img src="project6.jpg" alt="Октава" />
+      <div class="project-title">ЖК «Октава»</div>
+    </div>
+  </section>
 
-    <section id="projects">
-        <h2>Проекты</h2>
-        <div class="projects">
-            <div class="project-card"><img src="project1.jpg"><p>Свет и геометрия в пространстве</p></div>
-            <div class="project-card"><img src="project2.jpg"><p>Тишина. Камень. Воздух.</p></div>
-            <div class="project-card"><img src="project3.jpg"><p>Баланс форм и материала</p></div>
-            <div class="project-card"><img src="project4.jpg"><p>Жёсткость линий, мягкость света</p></div>
-            <div class="project-card"><img src="project5.jpg"><p>Интерьер с дыханием</p></div>
-            <div class="project-card"><img src="project6.jpg"><p>Функция, растворённая в эстетике</p></div>
-        </div>
-    </section>
+  <section class="gallery">
+    <img src="project1.jpg" alt="Gallery 1" />
+    <img src="project2.jpg" alt="Gallery 2" />
+    <img src="project3.jpg" alt="Gallery 3" />
+    <img src="project4.jpg" alt="Gallery 4" />
+    <img src="project5.jpg" alt="Gallery 5" />
+    <img src="project6.jpg" alt="Gallery 6" />
+  </section>
 
-    <section id="contacts" class="contacts">
-        <h2>Свяжитесь с нами</h2>
-        <p>Email: imhotep.studio.design@gmail.com</p>
-        <p>Телефон: +996220050333</p>
-        <p>Instagram: @imhotep_studiokg</p>
+  <div class="instagram">
+    <a href="https://www.instagram.com/imhotep_studiokg" target="_blank">@imhotep_studiokg</a>
+    <img src="qr.png" alt="QR Code" />
+  </div>
 
-        <form class="form">
-            <input type="text" placeholder="Имя">
-            <input type="email" placeholder="Email">
-            <textarea rows="5" placeholder="Сообщение"></textarea>
-            <button type="submit">Отправить</button>
-        </form>
-    </section>
+  <script>
+    const sections = document.querySelectorAll('section');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
 
-    <script>
-        const cards = document.querySelectorAll('.project-card');
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                } else {
-                    entry.target.classList.remove('visible');
-                }
-            });
-        }, {
-            threshold: 0.1
-        });
-        cards.forEach(card => observer.observe(card));
-    </script>
+    sections.forEach(section => {
+      observer.observe(section);
+    });
+  </script>
 </body>
 </html>
