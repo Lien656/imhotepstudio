@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -39,7 +38,6 @@
       background-color: #1f1f1f;
       border-radius: 12px;
       overflow: hidden;
-      cursor: pointer;
       transition: transform 0.3s ease;
     }
     .project:hover {
@@ -55,22 +53,6 @@
       padding: 1rem;
       font-size: 1.1rem;
     }
-    .instagram {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 1rem;
-      margin-top: 4rem;
-    }
-    .instagram img {
-      height: 40px;
-    }
-    .instagram a {
-      color: white;
-      font-weight: bold;
-      text-decoration: none;
-      font-size: 1rem;
-    }
     .gallery {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -82,6 +64,22 @@
       height: auto;
       border-radius: 8px;
     }
+    .instagram {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .instagram img {
+      height: 40px;
+    }
+    .instagram a {
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      font-size: 1rem;
+    }
   </style>
 </head>
 <body>
@@ -90,30 +88,34 @@
   <section class="about">
     <h2>О студии</h2>
     <p>Создаём выразительные, современные пространства для жизни и бизнеса. Работаем с жилыми и коммерческими интерьерами, фокусируясь на смысле, атмосфере и деталях.</p>
+    <div class="instagram">
+      <a href="https://www.instagram.com/imhotep_studiokg" target="_blank">@imhotep_studiokg</a>
+      <img src="qr.png" alt="QR Code" />
+    </div>
   </section>
 
   <section class="projects">
-    <div class="project" onclick="location.href='project1.html';">
+    <div class="project">
       <img src="project1.jpg" alt="Лучи" />
       <div class="project-title">Квартира в ЖК «Лучи» для молодой пары</div>
     </div>
-    <div class="project" onclick="location.href='project2.html';">
+    <div class="project">
       <img src="project2.jpg" alt="Тихий уголок" />
       <div class="project-title">Современная квартира в ЖК «Тихий уголок»</div>
     </div>
-    <div class="project" onclick="location.href='project3.html';">
+    <div class="project">
       <img src="project3.jpg" alt="SPA" />
       <div class="project-title">Современный дом с зоной SPA</div>
     </div>
-    <div class="project" onclick="location.href='project4.html';">
+    <div class="project">
       <img src="project4.jpg" alt="Пискунова" />
       <div class="project-title">ЖК «Дом на Пискунова», Иркутск</div>
     </div>
-    <div class="project" onclick="location.href='project5.html';">
+    <div class="project">
       <img src="project5.jpg" alt="Мещера" />
       <div class="project-title">ЖК «Мещера»</div>
     </div>
-    <div class="project" onclick="location.href='project6.html';">
+    <div class="project">
       <img src="project6.jpg" alt="Октава" />
       <div class="project-title">ЖК «Октава»</div>
     </div>
@@ -127,11 +129,6 @@
     <img src="project5.jpg" alt="Gallery 5" />
     <img src="project6.jpg" alt="Gallery 6" />
   </section>
-
-  <div class="instagram">
-    <a href="https://www.instagram.com/imhotep_studiokg" target="_blank">@imhotep_studiokg</a>
-    <img src="qr.png" alt="QR Code" />
-  </div>
 
   <script>
     const sections = document.querySelectorAll('section');
