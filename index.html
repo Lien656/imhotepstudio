@@ -1,0 +1,181 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IMHOTEP STUDIO</title>
+  <style>
+    @font-face {
+      font-family: 'Magistral';
+      src: url('https://fonts.cdnfonts.com/s/62309/Magistral-Regular.woff') format('woff');
+    }
+    body {
+      margin: 0;
+      background-color: #2D2D2D;
+      color: #F4EDE5;
+      font-family: 'Magistral', sans-serif;
+    }
+    header {
+      text-align: center;
+      padding: 2rem 1rem;
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+    }
+    .hero {
+      text-align: center;
+      padding: 4rem 1rem;
+      background: url('site-bg.jpg') center/cover no-repeat;
+    }
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.2rem;
+      margin-bottom: 2rem;
+    }
+    .btn {
+      border: 1px solid #F4EDE5;
+      padding: 0.75rem 2rem;
+      background: transparent;
+      color: #F4EDE5;
+      font-size: 1rem;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    nav {
+      text-align: center;
+      margin-top: 1rem;
+    }
+    nav a {
+      color: #F4EDE5;
+      text-decoration: none;
+      margin: 0 1rem;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .popup {
+      display: none;
+      position: fixed;
+      top: 10%;
+      left: 50%;
+      transform: translateX(-50%);
+      background: #2D2D2D;
+      padding: 2rem;
+      border: 1px solid #F4EDE5;
+      z-index: 1000;
+      width: 90%;
+      max-width: 400px;
+    }
+    .popup p {
+      margin-bottom: 1rem;
+    }
+    .popup img {
+      width: 80px;
+      margin-top: 1rem;
+    }
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+      padding: 2rem;
+    }
+    .project {
+      background: #3b3b3b;
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .project img {
+      width: 100%;
+      border-radius: 6px;
+    }
+    .project p {
+      margin-top: 0.5rem;
+    }
+    footer {
+      text-align: center;
+      padding: 2rem;
+      background: #1a1a1a;
+      margin-top: 2rem;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 2rem;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    input, textarea {
+      padding: 0.5rem;
+      background: #2D2D2D;
+      border: 1px solid #F4EDE5;
+      color: #F4EDE5;
+      font-family: 'Magistral', sans-serif;
+    }
+    .close-btn {
+      margin-top: 1rem;
+      cursor: pointer;
+      color: #F4EDE5;
+      text-decoration: underline;
+      background: none;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    IMHOTEP STUDIO
+    <nav>
+      <a onclick="openPopup()">О студии</a>
+      <a href="#projects">Проекты</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h1>IMHOTEP STUDIO</h1>
+    <p>Премиальный дизайн, где форма — живое пространство</p>
+    <a href="#projects" class="btn">Смотреть проекты</a>
+  </div>
+
+  <div class="popup" id="popup">
+    <p>Мы создаём не просто интерьеры. Мы создаём ритм жизни, в котором хочется остаться. От первого эскиза до аромата в пространстве — всё мыслится как часть единого чувства.</p>
+    <p>IMHOTEP — имя архитектора, признанного богом. И мы продолжаем эту линию.</p>
+    <p><a href="https://instagram.com/imhotep_studiokg" target="_blank">@imhotep_studiokg</a></p>
+    <img src="qr.png" alt="QR">
+    <button class="close-btn" onclick="closePopup()">Закрыть</button>
+  </div>
+
+  <section id="projects" class="projects">
+    <a href="project1.html" class="project"><img src="project1.jpg" alt=""><p>Квартира в ЖК «Лучи» для молодой пары</p></a>
+    <a href="project2.html" class="project"><img src="project2.jpg" alt=""><p>Современная квартира в ЖК «Тихий уголок»</p></a>
+    <a href="project3.html" class="project"><img src="project3.jpg" alt=""><p>Современный дом с зоной SPA</p></a>
+    <a href="project4.html" class="project"><img src="project4.jpg" alt=""><p>ЖК «Дом на Пискунова» г. Иркутск</p></a>
+    <a href="project5.html" class="project"><img src="project5.jpg" alt=""><p>ЖК «Мещера»</p></a>
+    <a href="project6.html" class="project"><img src="project6.jpg" alt=""><p>ЖК «Октава»</p></a>
+  </section>
+
+  <form id="contact">
+    <input type="text" placeholder="Ваше имя">
+    <input type="email" placeholder="Email">
+    <textarea rows="4" placeholder="Сообщение"></textarea>
+    <button class="btn" type="submit">Отправить</button>
+  </form>
+
+  <footer>
+    <p>© 2025 IMHOTEP STUDIO. Все права защищены.</p>
+  </footer>
+
+  <script>
+    function openPopup() {
+      document.getElementById('popup').style.display = 'block';
+    }
+    function closePopup() {
+      document.getElementById('popup').style.display = 'none';
+    }
+  </script>
+</body>
+</html>
