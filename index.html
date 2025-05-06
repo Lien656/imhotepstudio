@@ -1,1 +1,193 @@
-// Содержимое файла index.html
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IMHOTEP STUDIO</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Magistral&display=swap" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Magistral', sans-serif;
+      background-color: #2D2D2D;
+      color: #F4EDE5;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background-color: transparent;
+      position: absolute;
+      top: 0;
+      width: 100%;
+    }
+
+    header a {
+      color: #F4EDE5;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 14px;
+    }
+
+    .hero {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      text-align: center;
+      background: url('site-bg.jpg') no-repeat center center/cover;
+      height: 100vh;
+      padding-top: 100px;
+    }
+
+    .hero h1 {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      margin-bottom: 30px;
+    }
+
+    .hero button {
+      background: none;
+      border: 1px solid #F4EDE5;
+      color: #F4EDE5;
+      padding: 10px 20px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+
+    .gallery {
+      display: flex;
+      overflow-x: auto;
+      gap: 10px;
+      padding: 40px 20px;
+    }
+
+    .gallery img {
+      height: 200px;
+      border-radius: 8px;
+    }
+
+    .projects {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+      padding: 40px 20px;
+    }
+
+    .project {
+      width: 280px;
+      text-align: center;
+    }
+
+    .project img {
+      width: 100%;
+      border-radius: 12px;
+    }
+
+    .project p {
+      margin-top: 8px;
+    }
+
+    .footer {
+      padding: 40px 20px;
+      text-align: left;
+      background-color: #1a1a1a;
+    }
+
+    .footer a {
+      color: #F4EDE5;
+      text-decoration: underline;
+    }
+
+    .form {
+      margin-top: 20px;
+    }
+
+    .form input, .form textarea {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 8px;
+      font-family: 'Magistral', sans-serif;
+    }
+
+    .form button {
+      background-color: #F4EDE5;
+      border: none;
+      padding: 10px;
+      color: #2D2D2D;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div></div>
+    <div>
+      <a href="#" onclick="alert('О студии: IMHOTEP — имя архитектора, признанного богом.')">О студии</a>
+      <a href="#contacts">Контакты</a>
+    </div>
+  </header>
+
+  <section class="hero">
+    <h1>IMHOTEP STUDIO</h1>
+    <p>Премиальный дизайн, где форма — живое пространство</p>
+    <button onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})">Смотреть проекты</button>
+  </section>
+
+  <section class="gallery">
+    <img src="strange/photo1.jpg" alt="photo1" />
+    <img src="strange/photo2.jpg" alt="photo2" />
+    <img src="strange/photo3.jpg" alt="photo3" />
+  </section>
+
+  <section class="projects" id="projects">
+    <div class="project">
+      <a href="project1.html"><img src="icons/luchi.jpg" alt="Лучи" /></a>
+      <p>ЖК «Лучи»</p>
+    </div>
+    <div class="project">
+      <a href="project2.html"><img src="icons/tikhiy.jpg" alt="Тихий уголок" /></a>
+      <p>ЖК «Тихий уголок»</p>
+    </div>
+    <div class="project">
+      <a href="project3.html"><img src="icons/spa.jpg" alt="SPA" /></a>
+      <p>Современный дом с SPA</p>
+    </div>
+    <div class="project">
+      <a href="project4.html"><img src="icons/piskunova.jpg" alt="Пискунова" /></a>
+      <p>«Дом на Пискунова»</p>
+    </div>
+    <div class="project">
+      <a href="project5.html"><img src="icons/meschera.jpg" alt="Мещера" /></a>
+      <p>ЖК «Мещера»</p>
+    </div>
+    <div class="project">
+      <a href="project6.html"><img src="icons/oktava.jpg" alt="Октава" /></a>
+      <p>ЖК «Октава»</p>
+    </div>
+  </section>
+
+  <section class="footer" id="contacts">
+    <h3>Свяжитесь с нами</h3>
+    <p>Email: imhotep.studio.design@gmail.com</p>
+    <p>Телефон: +996220050333</p>
+    <p>Instagram: <a href="https://instagram.com/imhotep_studiokg" target="_blank">@imhotep_studiokg</a></p>
+
+    <div class="form">
+      <input type="text" placeholder="Имя" />
+      <input type="email" placeholder="Email" />
+      <textarea rows="4" placeholder="Сообщение"></textarea>
+      <button>Отправить</button>
+    </div>
+  </section>
+
+</body>
+</html>
