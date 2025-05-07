@@ -5,100 +5,75 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IMHOTEP STUDIO</title>
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
 <body>
-  <!-- Прелоадер с логотипом -->
-  <div id="preloader">
-    <img src="logo.png" alt="Логотип">
-  </div>
-
-  <!-- Меню -->
-  <nav class="main-nav">
-    <a href="#form">Заявка</a>
-    <a href="#projects">Проекты</a>
-    <a href="#contacts">Контакты</a>
-  </nav>
-
-  <!-- Заголовок -->
-  <header class="hero-section">
-    <h1 class="typewriter">IMHOTEP STUDIO</h1>
-    <p class="subtitle">архитектура & дизайн</p>
-    <button onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });">
-      Смотреть проекты
-    </button>
+  <header>
+    <div class="top-right">
+      <button class="about-button">О нас</button>
+      <a href="#contacts">Контакты</a>
+    </div>
+    <div class="logo-block">
+      <h1>IMHOTEP STUDIO</h1>
+      <p class="subtitle">архитектура & дизайн</p>
+      <button class="view-projects-btn" onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });">
+        Смотреть проекты
+      </button>
+    </div>
   </header>
+
+  <!-- Всплывающее окно о студии -->
+  <div class="about-popup">
+    <p>IMHOTEP — имя архитектора, признанного богом.<br>
+      Мы продолжаем эту линию.<br><br>
+      Познакомьтесь с нами ближе —
+      <a href="https://instagram.com/imhotep_studiokg" target="_blank">@imhotep_studiokg</a>
+    </p>
+    <img src="assets/images/qr.png" alt="QR Instagram">
+  </div>
 
   <!-- Проекты -->
   <section id="projects">
-    <h2 class="section-title">Наши проекты</h2>
-
-    <!-- Пример проекта: luchi -->
-    <div class="project">
-      <div class="project-title">ЖК "Лучи"</div>
-      <div class="carousel">
-        <img src="luchi/1.jpg" alt="">
-        <img src="luchi/2.jpg" alt="">
-        <img src="luchi/3.jpg" alt="">
-        <img src="luchi/4.jpg" alt="">
-        <img src="luchi/5.jpg" alt="">
-        <img src="luchi/6.jpg" alt="">
+    <div class="projects-title">Наши проекты</div>
+    <div class="projects-container">
+      <div class="project-card">
+        <img src="assets/images/projects/luchi/1.jpg" alt="Лучи">
+        <h3>ЖК "Лучи"</h3>
       </div>
+      <div class="project-card">
+        <img src="assets/images/projects/tihiy/1.jpg" alt="Тихий уголок">
+        <h3>ЖК "Тихий уголок"</h3>
+      </div>
+      <!-- Добавь остальные проекты так же -->
     </div>
-
-    <!-- Повтори аналогично для других проектов -->
-    <!-- tihiy, meshchera, spa, piskunova, oktava -->
   </section>
 
-  <!-- Счётчики -->
+  <!-- Счётчики (лет, проектов, гарантия) -->
   <section class="counters">
-    <div><span class="counter" data-target="6">0</span><br>лет опыта</div>
-    <div><span class="counter" data-target="155">0</span><br>проектов</div>
-    <div><span class="counter" data-target="100" data-suffix="%">0</span><br>гарантия</div>
+    <div><span id="years">0</span> лет опыта</div>
+    <div><span id="projects">0</span> проектов</div>
+    <div><span id="guarantee">0%</span> гарантия</div>
   </section>
 
-  <!-- Галерея -->
+  <!-- Галерея-коллаж -->
   <section class="collage">
-    <img src="collage/1.jpg" alt="">
-    <img src="collage/2.jpg" alt="">
-    <img src="collage/3.jpg" alt="">
-    <img src="collage/4.jpg" alt="">
-    <img src="collage/5.jpg" alt="">
-    <img src="collage/6.jpg" alt="">
-    <img src="collage/7.jpg" alt="">
-    <img src="collage/8.jpg" alt="">
-    <img src="collage/9.jpg" alt="">
-    <img src="collage/10.jpg" alt="">
-    <img src="collage/11.jpg" alt="">
+    <img src="assets/images/collage/1.jpg" alt="Фото 1">
+    <img src="assets/images/collage/2.jpg" alt="Фото 2">
+    <img src="assets/images/collage/3.jpg" alt="Фото 3">
   </section>
 
-  <!-- Форма заявки -->
-  <section id="form" class="contact-form">
-    <h2>Оставьте заявку</h2>
-    <form>
-      <input type="text" placeholder="Имя" required>
-      <input type="email" placeholder="Email" required>
-      <textarea placeholder="Сообщение" required></textarea>
-      <button type="submit">Отправить</button>
-    </form>
-  </section>
-
-  <!-- Контакты -->
+  <!-- Контактная информация -->
   <footer id="contacts">
-    <p>Email: <a href="mailto:imhotep.studio.design@gmail.com">imhotep.studio.design@gmail.com</a></p>
-    <p>Телефон: <a href="tel:+996220050333">+996 220 050 333</a></p>
-    <p>Instagram: <a href="https://instagram.com/imhotep_studiokg" target="_blank">@imhotep_studiokg</a></p>
-    <p>
-      <a href="https://wa.me/996220050333">WhatsApp</a> |
-      <a href="https://t.me/imhotep_studiokg">Telegram</a>
+    <p>Связаться: 
+      <a href="https://t.me/yourtelegram">Telegram</a>, 
+      <a href="https://wa.me/yourwhatsapp">WhatsApp</a>, 
+      <a href="mailto:your@mail.com">Email</a>, 
+      <a href="https://instagram.com/imhotep_studiokg">@instagram</a>
     </p>
-    <div class="qr-code">
-      <img src="qr.png" alt="QR для Instagram">
-    </div>
   </footer>
 
-  <script src="js/main.js"></script>
+  <script src="assets/js/main.js"></script>
 </body>
 
 </html>
