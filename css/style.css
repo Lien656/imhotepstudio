@@ -1,197 +1,248 @@
-/* Шрифт Magistral */
 @font-face {
   font-family: 'Magistral';
-  src: url('../fonts/MagistralC\ Bold.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
+  src: url('../fonts/Magistral.ttf') format('truetype');
 }
 
 body {
   margin: 0;
-  padding: 0;
   font-family: 'Magistral', sans-serif;
   background-color: #2D2D2D;
   color: #F4EDE5;
-  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+a {
+  color: #F4EDE5;
+  text-decoration: none;
 }
 
 header {
-  position: relative;
-  text-align: center;
-  padding: 60px 20px 40px;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 100;
+  padding: 20px;
 }
 
-.top-right {
-  position: absolute;
-  top: 20px;
-  right: 30px;
+.nav-right {
+  display: flex;
+  gap: 20px;
 }
 
-.top-right button,
-.top-right a {
+.nav-right button {
   background: none;
   border: none;
   color: #F4EDE5;
   font-size: 16px;
-  margin-left: 20px;
   cursor: pointer;
-  text-decoration: none;
   transition: opacity 0.3s ease;
 }
-
-.top-right button:hover,
-.top-right a:hover {
-  opacity: 0.6;
+.nav-right button:hover {
+  opacity: 0.7;
 }
 
-.logo-block h1 {
-  font-size: 48px;
-  margin: 0;
-  animation: fadeInDown 1s ease;
+.preloader {
+  position: fixed;
+  z-index: 999;
+  background: #2D2D2D;
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.subtitle {
-  font-size: 20px;
-  margin-top: 10px;
-  animation: fadeIn 2s ease;
+.preloader-logo {
+  width: 150px;
+  animation: fadeOut 2s ease forwards;
+  animation-delay: 1.5s;
 }
 
-.view-projects-btn {
-  margin-top: 20px;
-  padding: 10px 20px;
-  border-radius: 20px;
-  background-color: #F4EDE5;
-  color: #2D2D2D;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+@keyframes fadeOut {
+  to {
+    opacity: 0;
+    transform: scale(1.2);
+    visibility: hidden;
+  }
 }
 
-.view-projects-btn:hover {
-  background-color: #e0d8ce;
+.hero {
+  height: 100vh;
+  position: relative;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: 1;
 }
 
-.about-popup {
-  display: none;
-  background-color: rgba(45,45,45,0.95);
-  padding: 30px;
-  border-radius: 20px;
+.background {
   position: absolute;
-  top: 100px;
-  right: 30px;
-  width: 300px;
-  z-index: 1000;
-  box-shadow: 0 0 15px rgba(0,0,0,0.5);
+  top: 0; left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+  filter: brightness(0.3);
 }
 
-.about-popup.visible {
-  display: block;
-  animation: fadeIn 0.5s ease forwards;
+.studio-title {
+  font-size: 56px;
+  margin: 0;
+  animation: fadeInUp 1.5s ease forwards;
 }
-
-.about-popup img {
-  width: 100px;
+.subtitle {
   margin-top: 10px;
-}
-
-.projects-title {
-  font-size: 32px;
-  text-align: center;
-  margin: 60px 0 20px;
-  animation: fadeInUp 1s ease;
-}
-
-.project-section {
-  margin-bottom: 80px;
-  animation: fadeInUp 1s ease;
-}
-
-.project-section h2 {
   font-size: 24px;
-  text-align: center;
-  color: #ccae68;
-  border: 1px solid #ccae68;
-  border-radius: 30px;
-  display: inline-block;
-  padding: 10px 30px;
-  margin-bottom: 20px;
+  animation: fadeInUp 2s ease forwards;
 }
 
-.project-gallery {
+.scroll-btn {
+  margin-top: 30px;
+  padding: 12px 28px;
+  border: 1px solid #F4EDE5;
+  background: none;
+  font-size: 16px;
+  cursor: pointer;
+  animation: fadeInUp 2.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.gallery-old {
+  padding: 60px 0;
+  overflow-x: auto;
+}
+.gallery-scroll {
+  display: flex;
+  gap: 10px;
+  padding: 0 20px;
+}
+.gallery-scroll img {
+  height: 180px;
+  border-radius: 6px;
+}
+
+.projects-section {
+  padding: 80px 20px;
+}
+.section-title {
+  text-align: center;
+  font-size: 32px;
+  margin-bottom: 40px;
+}
+
+.projects-line .project {
+  margin-bottom: 60px;
+}
+.project h3 {
+  margin-left: 20px;
+}
+.project-scroll {
   display: flex;
   overflow-x: auto;
   gap: 10px;
   padding: 0 20px;
 }
-
-.project-gallery img {
+.project-scroll img {
   height: 280px;
-  border-radius: 20px;
-  object-fit: cover;
-  flex-shrink: 0;
-  transition: transform 0.3s ease;
+  border-radius: 8px;
+  transition: transform 0.3s;
 }
-
-.project-gallery img:hover {
+.project-scroll img:hover {
   transform: scale(1.03);
 }
 
-.counters {
+.stats {
   display: flex;
   justify-content: center;
   gap: 60px;
-  margin: 60px 0;
-  font-size: 24px;
-  font-weight: bold;
+  padding: 60px 0;
+  font-size: 20px;
+}
+.stat {
   text-align: center;
 }
+.counter {
+  font-size: 36px;
+  display: block;
+  font-weight: bold;
+}
 
-.counters div {
+.form-section {
+  padding: 80px 20px;
+  text-align: center;
+}
+.form-section form {
+  max-width: 400px;
+  margin: auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  gap: 15px;
 }
-
-.collage {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 10px;
-  padding: 40px 20px;
+form input, form textarea {
+  padding: 12px;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
 }
-
-.collage img {
-  height: 200px;
-  object-fit: cover;
-  border-radius: 16px;
+form button {
+  background-color: #F4EDE5;
+  color: #2D2D2D;
+  border: none;
+  padding: 14px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 footer {
   text-align: center;
   padding: 40px 20px;
-  font-size: 14px;
+  background: #1E1E1E;
   color: #F4EDE5;
-  background-color: #2D2D2D;
 }
 
-footer a {
-  color: #F4EDE5;
-  text-decoration: underline;
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.7);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 200;
+}
+.modal-content {
+  background: #2D2D2D;
+  padding: 30px;
+  border-radius: 10px;
+  max-width: 400px;
+  text-align: center;
+}
+.modal-content img {
+  margin-top: 20px;
+  height: 100px;
 }
 
-/* Анимации */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-@keyframes fadeInUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeInDown {
-  from { opacity: 0; transform: translateY(-30px); }
-  to { opacity: 1; transform: translateY(0); }
+/* Responsive */
+@media (max-width: 768px) {
+  .studio-title {
+    font-size: 36px;
+  }
+  .subtitle {
+    font-size: 18px;
+  }
+  .stats {
+    flex-direction: column;
+    gap: 30px;
+  }
 }
