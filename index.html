@@ -5,140 +5,100 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>IMHOTEP STUDIO</title>
-  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
-  <!-- Логотип и анимация -->
-  <div class="intro-screen">
-    <img src="assets/images/logo.png" alt="IMHOTEP STUDIO" class="logo">
-    <div class="text-animation">
-      <h1>IMHOTEP STUDIO</h1>
-      <p>архитектура & дизайн</p>
-    </div>
+  <!-- Прелоадер с логотипом -->
+  <div id="preloader">
+    <img src="logo.png" alt="Логотип">
   </div>
+
+  <!-- Меню -->
+  <nav class="main-nav">
+    <a href="#form">Заявка</a>
+    <a href="#projects">Проекты</a>
+    <a href="#contacts">Контакты</a>
+  </nav>
+
+  <!-- Заголовок -->
+  <header class="hero-section">
+    <h1 class="typewriter">IMHOTEP STUDIO</h1>
+    <p class="subtitle">архитектура & дизайн</p>
+    <button onclick="document.getElementById('projects').scrollIntoView({ behavior: 'smooth' });">
+      Смотреть проекты
+    </button>
+  </header>
 
   <!-- Проекты -->
   <section id="projects">
-    <div class="projects-title">Наши проекты</div>
-    
-    <!-- Проект 1 - ЖК "Лучи" -->
-    <div class="project-card">
-      <h3 class="project-title">ЖК "Лучи"</h3>
+    <h2 class="section-title">Наши проекты</h2>
+
+    <!-- Пример проекта: luchi -->
+    <div class="project">
+      <div class="project-title">ЖК "Лучи"</div>
       <div class="carousel">
-        <img src="assets/images/projects/luchi/1.jpg" alt="Лучи 1">
-        <img src="assets/images/projects/luchi/2.jpg" alt="Лучи 2">
-        <img src="assets/images/projects/luchi/3.jpg" alt="Лучи 3">
-        <img src="assets/images/projects/luchi/4.jpg" alt="Лучи 4">
-        <img src="assets/images/projects/luchi/5.jpg" alt="Лучи 5">
-        <img src="assets/images/projects/luchi/6.jpg" alt="Лучи 6">
+        <img src="luchi/1.jpg" alt="">
+        <img src="luchi/2.jpg" alt="">
+        <img src="luchi/3.jpg" alt="">
+        <img src="luchi/4.jpg" alt="">
+        <img src="luchi/5.jpg" alt="">
+        <img src="luchi/6.jpg" alt="">
       </div>
     </div>
 
-    <!-- Проект 2 - ЖК "Тихий уголок" -->
-    <div class="project-card">
-      <h3 class="project-title">ЖК "Тихий уголок"</h3>
-      <div class="carousel">
-        <img src="assets/images/projects/tihiy/1.jpg" alt="Тихий уголок 1">
-        <img src="assets/images/projects/tihiy/2.jpg" alt="Тихий уголок 2">
-        <img src="assets/images/projects/tihiy/3.jpg" alt="Тихий уголок 3">
-        <img src="assets/images/projects/tihiy/4.jpg" alt="Тихий уголок 4">
-        <img src="assets/images/projects/tihiy/5.jpg" alt="Тихий уголок 5">
-        <img src="assets/images/projects/tihiy/6.jpg" alt="Тихий уголок 6">
-      </div>
-    </div>
-
-    <!-- Проект 3 - ЖК "Октава" -->
-    <div class="project-card">
-      <h3 class="project-title">ЖК "Октава"</h3>
-      <div class="carousel">
-        <img src="assets/images/projects/oktava/1.jpg" alt="Октава 1">
-        <img src="assets/images/projects/oktava/2.jpg" alt="Октава 2">
-        <img src="assets/images/projects/oktava/3.jpg" alt="Октава 3">
-        <img src="assets/images/projects/oktava/4.jpg" alt="Октава 4">
-        <img src="assets/images/projects/oktava/5.jpg" alt="Октава 5">
-        <img src="assets/images/projects/oktava/6.jpg" alt="Октава 6">
-      </div>
-    </div>
-
-    <!-- Проект 4 - ЖК "Мещера" -->
-    <div class="project-card">
-      <h3 class="project-title">ЖК "Мещера"</h3>
-      <div class="carousel">
-        <img src="assets/images/projects/meshchera/1.jpg" alt="Мещера 1">
-        <img src="assets/images/projects/meshchera/2.jpg" alt="Мещера 2">
-        <img src="assets/images/projects/meshchera/3.jpg" alt="Мещера 3">
-        <img src="assets/images/projects/meshchera/4.jpg" alt="Мещера 4">
-        <img src="assets/images/projects/meshchera/5.jpg" alt="Мещера 5">
-        <img src="assets/images/projects/meshchera/6.jpg" alt="Мещера 6">
-      </div>
-    </div>
-
-    <!-- Проект 5 - ЖК "Пискунова" -->
-    <div class="project-card">
-      <h3 class="project-title">ЖК "Пискунова"</h3>
-      <div class="carousel">
-        <img src="assets/images/projects/piskunova/1.jpg" alt="Пискунова 1">
-        <img src="assets/images/projects/piskunova/2.jpg" alt="Пискунова 2">
-        <img src="assets/images/projects/piskunova/3.jpg" alt="Пискунова 3">
-        <img src="assets/images/projects/piskunova/4.jpg" alt="Пискунова 4">
-        <img src="assets/images/projects/piskunova/5.jpg" alt="Пискунова 5">
-        <img src="assets/images/projects/piskunova/6.jpg" alt="Пискунова 6">
-      </div>
-    </div>
-
-    <!-- Проект 6 - ЖК "SPA" -->
-    <div class="project-card">
-      <h3 class="project-title">ЖК "SPA"</h3>
-      <div class="carousel">
-        <img src="assets/images/projects/spa/1.jpg" alt="SPA 1">
-        <img src="assets/images/projects/spa/2.jpg" alt="SPA 2">
-        <img src="assets/images/projects/spa/3.jpg" alt="SPA 3">
-        <img src="assets/images/projects/spa/4.jpg" alt="SPA 4">
-        <img src="assets/images/projects/spa/5.jpg" alt="SPA 5">
-        <img src="assets/images/projects/spa/6.jpg" alt="SPA 6">
-      </div>
-    </div>
+    <!-- Повтори аналогично для других проектов -->
+    <!-- tihiy, meshchera, spa, piskunova, oktava -->
   </section>
 
-  <!-- Счётчики (лет, проектов, гарантия) -->
+  <!-- Счётчики -->
   <section class="counters">
-    <div><span id="years">0</span> лет опыта</div>
-    <div><span id="projects">0</span> проектов</div>
-    <div><span id="guarantee">0%</span> гарантия</div>
+    <div><span class="counter" data-target="6">0</span><br>лет опыта</div>
+    <div><span class="counter" data-target="155">0</span><br>проектов</div>
+    <div><span class="counter" data-target="100" data-suffix="%">0</span><br>гарантия</div>
   </section>
 
-  <!-- Галерея-коллаж -->
+  <!-- Галерея -->
   <section class="collage">
-    <img src="assets/images/collage/1.jpg" alt="Фото 1">
-    <img src="assets/images/collage/2.jpg" alt="Фото 2">
-    <img src="assets/images/collage/3.jpg" alt="Фото 3">
-    <img src="assets/images/collage/4.jpg" alt="Фото 4">
-    <img src="assets/images/collage/5.jpg" alt="Фото 5">
-    <img src="assets/images/collage/6.jpg" alt="Фото 6">
-    <img src="assets/images/collage/7.jpg" alt="Фото 7">
-    <img src="assets/images/collage/8.jpg" alt="Фото 8">
-    <img src="assets/images/collage/9.jpg" alt="Фото 9">
-    <img src="assets/images/collage/10.jpg" alt="Фото 10">
-    <img src="assets/images/collage/11.jpg" alt="Фото 11">
+    <img src="collage/1.jpg" alt="">
+    <img src="collage/2.jpg" alt="">
+    <img src="collage/3.jpg" alt="">
+    <img src="collage/4.jpg" alt="">
+    <img src="collage/5.jpg" alt="">
+    <img src="collage/6.jpg" alt="">
+    <img src="collage/7.jpg" alt="">
+    <img src="collage/8.jpg" alt="">
+    <img src="collage/9.jpg" alt="">
+    <img src="collage/10.jpg" alt="">
+    <img src="collage/11.jpg" alt="">
   </section>
 
-  <!-- Контактная информация -->
-  <footer id="contacts">
-    <p>Связаться:
-      <a href="https://t.me/imhotep_studiokg">Telegram</a>,
-      <a href="https://wa.me/996220050333">WhatsApp</a>,
-      <a href="mailto:imhotep.studio.design@gmail.com">Email</a>,
-      <a href="https://instagram.com/imhotep_studiokg">@instagram</a>
-    </p>
+  <!-- Форма заявки -->
+  <section id="form" class="contact-form">
+    <h2>Оставьте заявку</h2>
+    <form>
+      <input type="text" placeholder="Имя" required>
+      <input type="email" placeholder="Email" required>
+      <textarea placeholder="Сообщение" required></textarea>
+      <button type="submit">Отправить</button>
+    </form>
+  </section>
 
-    <!-- QR-код -->
+  <!-- Контакты -->
+  <footer id="contacts">
+    <p>Email: <a href="mailto:imhotep.studio.design@gmail.com">imhotep.studio.design@gmail.com</a></p>
+    <p>Телефон: <a href="tel:+996220050333">+996 220 050 333</a></p>
+    <p>Instagram: <a href="https://instagram.com/imhotep_studiokg" target="_blank">@imhotep_studiokg</a></p>
+    <p>
+      <a href="https://wa.me/996220050333">WhatsApp</a> |
+      <a href="https://t.me/imhotep_studiokg">Telegram</a>
+    </p>
     <div class="qr-code">
-      <img src="assets/images/qr.png" alt="QR Instagram">
+      <img src="qr.png" alt="QR для Instagram">
     </div>
   </footer>
 
-  <script src="assets/js/main.js"></script>
+  <script src="js/main.js"></script>
 </body>
 
 </html>
