@@ -1,21 +1,41 @@
-// Анимация счётчиков
-function animateCounter(id, target) {
-  const el = document.getElementById(id);
+// Анимация счётчиков с опциональным суффиксом
+function animateCounter(el) {
+  const target = +el.getAttribute('data-target');
+  const suffix = el.getAttribute('data-suffix') || '';
   let count = 0;
-  const step = Math.ceil(target / 100);
+  const step = Math.ceil(target / 60);
   const interval = setInterval(() => {
     count += step;
     if (count >= target) {
-      el.textContent = target;
+      el.textContent = target + suffix;
       clearInterval(interval);
     } else {
-      el.textContent = count;
+      el.textContent = count + suffix;
     }
-  }, 20);
+  }, 30);
 }
 
+// Запуск после полной загрузки
+window.addEventListener('DOMContentLoaded', () => {
+  // Счётчики
+  document.querySelectorAll('.counter').forEach(el => animateCounter(el));
+
+  // Прелоадер
+  const preloader = document.getElementById('preloader');
+  setTimeout(() => {
+    preloader.classList.add('hidden');
+  }, 4000);
+});
+
+// Автопрокрутка галерей
 window.addEventListener('load', () => {
-  animateCounter("years", 6);  // 6 лет опыта
-  animateCounter("projects", 155);  // 155 проектов
-  animateCounter("guarantee", 100);  // 100% гарантия
+  const carousels = document.querySelectorAll('.carousel');
+  carousels.forEach(carousel => {
+    let scroll = 0;
+    setInterval(() => {
+      scroll += 1;
+      carousel.scrollLeft = scroll;
+      if (scroll > carousel.scrollWidth - carousel.clientWidth) scroll = 0;
+    }, 30);
+  });
 });
