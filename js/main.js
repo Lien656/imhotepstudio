@@ -1,26 +1,24 @@
-// Анимация счётчиков (запускается каждый раз при скролле)
-function animateCounter(id, endValue) {
-  let current = 0;
+// Анимация счётчиков
+function animateCounter(id, target) {
   const el = document.getElementById(id);
+  let start = 0;
   const duration = 1500;
-  const increment = endValue / (duration / 16);
-
-  function update() {
-    current += increment;
-    if (current >= endValue) {
-      current = endValue;
+  const step = () => {
+    const increment = Math.ceil(target / (duration / 16));
+    start += increment;
+    if (start >= target) {
+      el.textContent = target;
     } else {
-      requestAnimationFrame(update);
+      el.textContent = start;
+      requestAnimationFrame(step);
     }
-    el.textContent = Math.floor(current);
-  }
-
-  update();
+  };
+  step();
 }
 
-// IntersectionObserver для запуска счётчиков
-const statsSection = document.querySelector('#stats');
-const observer = new IntersectionObserver(entries => {
+// Повторный запуск счётчиков
+const stats = document.querySelector('#stats');
+const statsObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       animateCounter('years', 6);
@@ -30,11 +28,11 @@ const observer = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.5 });
 
-if (statsSection) observer.observe(statsSection);
+if (stats) statsObserver.observe(stats);
 
-// Плавное появление секций
-const animatedSections = document.querySelectorAll('section');
-const appearObserver = new IntersectionObserver(entries => {
+// Анимация появления fade-блоков
+const fadeElements = document.querySelectorAll('.fade');
+const fadeObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
       entry.target.classList.add('visible');
@@ -42,4 +40,4 @@ const appearObserver = new IntersectionObserver(entries => {
   });
 }, { threshold: 0.1 });
 
-animatedSections.forEach(sec => appearObserver.observe(sec));
+fadeElements.forEach(el => fadeObserver.observe(el));
