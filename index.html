@@ -5,160 +5,81 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>IMHOTEP STUDIO</title>
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="preload" href="fonts/Magistral.ttf" as="font" type="font/ttf" crossorigin="anonymous">
-  <script defer src="js/main.js"></script>
+  <link rel="preload" href="fonts/Magistral.ttf" as="font" type="font/ttf" crossorigin />
 </head>
 <body>
-  <div class="preloader">
-    <img src="logo.png" alt="Логотип" class="preloader-logo" />
-  </div>
-
+  <div class="overlay"></div>
+  
   <header>
-    <div class="nav-right">
-      <button class="open-about">О нас</button>
-      <button class="open-contacts">Контакты</button>
+    <div class="header-links">
+      <a href="#about">О нас</a>
+      <a href="#projects">Проекты</a>
+      <a href="#contact">Контакты</a>
+    </div>
+    <div class="logo-container">
+      <img src="logo.png" alt="Logo" class="logo" />
     </div>
   </header>
 
   <main>
     <section class="hero">
-      <img src="background.jpg" class="background" alt="Фон" />
-      <h1 class="studio-title">IMHOTEP STUDIO</h1>
+      <h1 class="title">IMHOTEP STUDIO</h1>
       <p class="subtitle">архитектурное бюро</p>
-      <a href="#projects" class="scroll-btn">Смотреть проекты</a>
+      <a href="#projects" class="btn">Смотреть проекты</a>
     </section>
 
-    <section class="gallery-old">
-      <div class="gallery-scroll">
-        <img src="collage/1.jpg" />
-        <img src="collage/2.jpg" />
-        <img src="collage/3.jpg" />
-        <img src="collage/4.jpg" />
-        <img src="collage/5.jpg" />
-        <img src="collage/6.jpg" />
-        <img src="collage/7.jpg" />
-        <img src="collage/8.jpg" />
-        <img src="collage/9.jpg" />
-        <img src="collage/10.jpg" />
-        <img src="collage/11.jpg" />
+    <section id="about" class="about-section">
+      <h2 class="about-title">О студии</h2>
+      <div class="about-boxes">
+        <div class="about-box">
+          IMHOTEP — имя архитектора, признанного богом. И мы продолжаем эту линию.
+          Наша команда объединяет опыт и эстетику, следит за мировыми тенденциями,
+          но остаётся верной своей философии — минимализму, смыслу и точности.
+        </div>
+        <div class="about-box">
+          Каждый проект — это штучная работа, в которой нет случайных решений.
+          Мы ценим идею, глубину и форму. Познакомьтесь с нами ближе —
+          <a href="https://instagram.com/imhotep_studiokg" target="_blank">@imhotep_studiokg</a>
+        </div>
       </div>
     </section>
 
     <section id="projects" class="projects-section">
-      <h2 class="section-title">Наши проекты</h2>
-      <div class="projects-line">
-        <div class="project">
-          <h3>Квартира в ЖК «Лучи»</h3>
-          <div class="project-scroll">
-            <img src="проекты/luchi/1.jpg" />
-            <img src="проекты/luchi/2.jpg" />
-            <img src="проекты/luchi/3.jpg" />
-            <img src="проекты/luchi/4.jpg" />
-            <img src="проекты/luchi/5.jpg" />
-            <img src="проекты/luchi/6.jpg" />
-          </div>
-        </div>
-        <div class="project">
-          <h3>Квартира в ЖК «Тихий уголок»</h3>
-          <div class="project-scroll">
-            <img src="проекты/tihiy/1.jpg" />
-            <img src="проекты/tihiy/2.jpg" />
-            <img src="проекты/tihiy/3.jpg" />
-            <img src="проекты/tihiy/4.jpg" />
-            <img src="проекты/tihiy/5.jpg" />
-            <img src="проекты/tihiy/6.jpg" />
-          </div>
-        </div>
-        <div class="project">
-          <h3>Дом с зоной SPA</h3>
-          <div class="project-scroll">
-            <img src="проекты/spa/1.jpg" />
-            <img src="проекты/spa/2.jpg" />
-            <img src="проекты/spa/3.jpg" />
-            <img src="проекты/spa/4.jpg" />
-            <img src="проекты/spa/5.jpg" />
-            <img src="проекты/spa/6.jpg" />
-          </div>
-        </div>
-        <div class="project">
-          <h3>ЖК «Дом на Пискунова»</h3>
-          <div class="project-scroll">
-            <img src="проекты/piskunova/1.jpg" />
-            <img src="проекты/piskunova/2.jpg" />
-            <img src="проекты/piskunova/3.jpg" />
-            <img src="проекты/piskunova/4.jpg" />
-            <img src="проекты/piskunova/5.jpg" />
-            <img src="проекты/piskunova/6.jpg" />
-            <img src="проекты/piskunova/7.jpg" />
-          </div>
-        </div>
-        <div class="project">
-          <h3>ЖК «Мещера»</h3>
-          <div class="project-scroll">
-            <img src="проекты/meshchera/1.jpg" />
-            <img src="проекты/meshchera/2.jpg" />
-            <img src="проекты/meshchera/3.jpg" />
-            <img src="проекты/meshchera/4.jpg" />
-            <img src="проекты/meshchera/5.jpg" />
-            <img src="проекты/meshchera/6.jpg" />
-            <img src="проекты/meshchera/7.jpg" />
-          </div>
-        </div>
-        <div class="project">
-          <h3>ЖК «Октава»</h3>
-          <div class="project-scroll">
-            <img src="проекты/oktava/1.jpg" />
-            <img src="проекты/oktava/2.jpg" />
-            <img src="проекты/oktava/3.jpg" />
-            <img src="проекты/oktava/4.jpg" />
-            <img src="проекты/oktava/5.jpg" />
-            <img src="проекты/oktava/6.jpg" />
-          </div>
+      <h2 class="projects-title">Наши проекты</h2>
+      <div class="project-carousel">
+        <div class="project-track">
+          <img src="luchi/1.jpg" alt="Проект 1" />
+          <img src="luchi/2.jpg" alt="Проект 2" />
+          <img src="luchi/3.jpg" alt="Проект 3" />
+          <img src="luchi/4.jpg" alt="Проект 4" />
+          <img src="luchi/5.jpg" alt="Проект 5" />
         </div>
       </div>
     </section>
 
-    <section class="stats">
-      <div class="stat"><span class="counter" data-target="6">0</span><p>лет опыта</p></div>
-      <div class="stat"><span class="counter" data-target="155">0</span><p>проектов</p></div>
-      <div class="stat"><span class="counter" data-target="100">0</span><p>% гарантия</p></div>
+    <section class="stats" id="stats">
+      <div class="counter"><span id="years">0</span> лет опыта</div>
+      <div class="counter"><span id="projects">0</span> проектов</div>
+      <div class="counter"><span id="guarantee">0</span>% гарантия</div>
     </section>
 
-    <section class="form-section" id="form">
-      <h2>Оставьте заявку</h2>
-      <form>
-        <input type="text" placeholder="Ваше имя" required />
-        <input type="tel" placeholder="Телефон" required />
-        <textarea placeholder="Комментарий"></textarea>
-        <button type="submit">Отправить</button>
-      </form>
+    <section class="collage">
+      <img src="collage/1.jpg" alt="" />
+      <img src="collage/2.jpg" alt="" />
+      <img src="collage/3.jpg" alt="" />
+      <img src="collage/4.jpg" alt="" />
+      <img src="collage/5.jpg" alt="" />
+      <img src="collage/6.jpg" alt="" />
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>Связаться с нами</h2>
+      <p>Телефон: <a href="tel:+996700123456">+996 700 123 456</a></p>
+      <p>Email: <a href="mailto:studio@imhotep.kg">studio@imhotep.kg</a></p>
+      <p>Instagram: <a href="https://instagram.com/imhotep_studiokg" target="_blank">@imhotep_studiokg</a></p>
     </section>
   </main>
 
-  <footer>
-    <p>Email: <a href="mailto:studio@imhotep.com">studio@imhotep.com</a></p>
-    <p>Телефон: <a href="tel:+996700000000">+996 700 000 000</a></p>
-    <p>Instagram: <a href="https://instagram.com/imhotep_studiokg" target="_blank">@imhotep_studiokg</a></p>
-  </footer>
-
-  <div class="modal about-modal">
-    <div class="modal-content">
-      <p>IMHOTEP STUDIO — архитектурное бюро, создающее выразительные и продуманные пространства.<br>
-        Наша команда объединяет опыт и эстетику, следит за мировыми тенденциями, но остаётся верной философии — минимализму, смыслу и точности.<br>
-        Каждый проект — это штучная работа, в которой нет случайных решений.<br>
-        Познакомьтесь с нами ближе — <a href="https://instagram.com/imhotep_studiokg" target="_blank">@imhotep_studiokg</a></p>
-      <img src="qr.png" alt="QR" />
-    </div>
-  </div>
-
-  <div class="modal contacts-modal">
-    <div class="modal-content">
-      <p>Телефон: <a href="tel:+996700000000">+996 700 000 000</a></p>
-      <p>
-        <a href="https://wa.me/996700000000" target="_blank">WhatsApp</a> |
-        <a href="https://t.me/yourtelegram" target="_blank">Telegram</a>
-      </p>
-    </div>
-  </div>
+  <script src="js/main.js"></script>
 </body>
 </html>
