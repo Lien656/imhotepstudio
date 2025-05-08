@@ -1,4 +1,4 @@
-// Плавное появление блоков с fade-классом
+// Анимация появления блоков с классом .fade
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -9,12 +9,11 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.fade').forEach(el => observer.observe(el));
 
-// Счётчики
+// Анимация счётчиков при появлении блока
 function animateCounter(id, target, duration = 2000) {
   const el = document.getElementById(id);
   let start = 0;
   const step = Math.ceil(duration / target);
-
   const counter = setInterval(() => {
     start++;
     el.textContent = start;
@@ -43,4 +42,3 @@ const statObserver = new IntersectionObserver((entries) => {
 }, { threshold: 0.5 });
 
 statObserver.observe(stats);
-
