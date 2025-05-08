@@ -1,239 +1,85 @@
-/* Шрифты и базовые стили */
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Magistral', sans-serif;
-  background-color: #2D2D2D;
-  color: #F4EDE5;
-  background-image: url('../background.jpg');
-  background-size: cover;
-  background-attachment: fixed;
-  background-position: center;
-  overflow-x: hidden;
-}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IMHOTEP STUDIO</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preload" href="fonts/Magistral.ttf" as="font" type="font/ttf" crossorigin />
+</head>
+<body>
+  <div class="overlay"></div>
 
-a {
-  color: #F4EDE5;
-  text-decoration: none;
-}
+  <header>
+    <div class="header-links">
+      <a href="#about">О нас</a>
+      <a href="#projects">Проекты</a>
+      <a href="#contact">Контакты</a>
+    </div>
+    <div class="logo-container fade">
+      <img src="logo.png" alt="Logo" class="logo" />
+    </div>
+  </header>
 
-/* Шапка */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  position: relative;
-  z-index: 10;
-}
+  <main>
+    <section class="hero fade">
+      <h1 class="title">IMHOTEP STUDIO</h1>
+      <p class="subtitle">архитектурное бюро</p>
+      <a href="#projects" class="btn">Смотреть проекты</a>
+    </section>
 
-.header-links {
-  display: flex;
-  gap: 30px;
-}
+    <section id="about" class="about-section fade">
+      <h2 class="about-title typing">О студии</h2>
+      <div class="about-boxes">
+        <div class="about-box fade">
+          IMHOTEP — имя архитектора, признанного богом. И мы продолжаем эту линию.
+          Наша команда объединяет опыт и эстетику, следит за мировыми тенденциями,
+          но остаётся верной своей философии — минимализму, смыслу и точности.
+        </div>
+        <div class="about-box fade">
+          Каждый проект — это штучная работа, в которой нет случайных решений.
+          Мы ценим идею, глубину и форму. Познакомьтесь с нами ближе —
+          <a href="https://instagram.com/imhotep_studiokg" target="_blank">@imhotep_studiokg</a>
+        </div>
+      </div>
+    </section>
 
-.logo-container {
-  position: absolute;
-  top: 50px;
-  left: 50%;
-  transform: translateX(-50%);
-}
+    <section id="projects" class="projects-section fade">
+      <h2 class="projects-title">Наши проекты</h2>
+      <div class="project-carousel">
+        <div class="project-track">
+          <img src="luchi/1.jpg" alt="Проект 1" />
+          <img src="luchi/2.jpg" alt="Проект 2" />
+          <img src="luchi/3.jpg" alt="Проект 3" />
+          <img src="luchi/4.jpg" alt="Проект 4" />
+          <img src="luchi/5.jpg" alt="Проект 5" />
+        </div>
+      </div>
+    </section>
 
-.logo {
-  width: 140px;
-  height: auto;
-  animation: fadeIn 2s ease forwards;
-}
+    <section class="stats fade" id="stats">
+      <div class="counter"><span id="years">0</span> лет опыта</div>
+      <div class="counter"><span id="projects">0</span> проектов</div>
+      <div class="counter"><span id="guarantee">0</span>% гарантия</div>
+    </section>
 
-/* Главная секция */
-.hero {
-  text-align: center;
-  padding: 200px 20px 100px;
-}
+    <section class="collage fade">
+      <img src="collage/1.jpg" alt="" />
+      <img src="collage/2.jpg" alt="" />
+      <img src="collage/3.jpg" alt="" />
+      <img src="collage/4.jpg" alt="" />
+      <img src="collage/5.jpg" alt="" />
+      <img src="collage/6.jpg" alt="" />
+    </section>
 
-.title {
-  font-size: 48px;
-  animation: fadeInUp 1s ease forwards;
-}
+    <section id="contact" class="contact fade">
+      <h2>Связаться с нами</h2>
+      <p>Телефон: <a href="tel:+996700123456">+996 700 123 456</a></p>
+      <p>Email: <a href="mailto:studio@imhotep.kg">studio@imhotep.kg</a></p>
+      <p>Instagram: <a href="https://instagram.com/imhotep_studiokg" target="_blank">@imhotep_studiokg</a></p>
+    </section>
+  </main>
 
-.subtitle {
-  font-size: 20px;
-  margin-top: 10px;
-  animation: fadeInUp 1.5s ease forwards;
-}
-
-.btn {
-  display: inline-block;
-  margin-top: 30px;
-  padding: 12px 24px;
-  border: 1px solid #F4EDE5;
-  font-size: 16px;
-  cursor: pointer;
-  transition: background 0.3s ease;
-}
-
-.btn:hover {
-  background: rgba(255,255,255,0.1);
-}
-
-/* О нас */
-.about-section {
-  padding: 100px 20px;
-}
-
-.about-title {
-  font-size: 40px;
-  text-align: center;
-  margin-bottom: 50px;
-  animation: typing 3s steps(30, end);
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 3px solid #F4EDE5;
-  width: fit-content;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.about-boxes {
-  display: flex;
-  gap: 20px;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-.about-box {
-  flex: 1 1 300px;
-  background: rgba(255,255,255,0.05);
-  padding: 20px;
-  border-radius: 20px;
-  max-width: 400px;
-  animation: fadeIn 2s ease forwards;
-}
-
-/* Проекты */
-.projects-section {
-  padding: 100px 20px;
-}
-
-.projects-title {
-  font-size: 32px;
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.project-carousel {
-  overflow-x: auto;
-  scrollbar-width: none;
-}
-
-.project-carousel::-webkit-scrollbar {
-  display: none;
-}
-
-.project-track {
-  display: flex;
-  gap: 20px;
-  animation: scroll 40s linear infinite;
-  will-change: transform;
-}
-
-.project-track img {
-  width: 300px;
-  height: auto;
-  border-radius: 12px;
-  flex-shrink: 0;
-}
-
-/* Статистика */
-.stats {
-  padding: 80px 20px;
-  display: flex;
-  justify-content: center;
-  gap: 50px;
-  text-align: center;
-}
-
-.counter {
-  font-size: 24px;
-}
-
-/* Коллаж */
-.collage {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  padding: 40px;
-  justify-content: center;
-}
-
-.collage img {
-  width: 200px;
-  border-radius: 8px;
-  opacity: 0.95;
-  transition: transform 0.5s ease;
-}
-
-.collage img:hover {
-  transform: scale(1.05);
-}
-
-/* Контакты */
-.contact {
-  padding: 80px 20px;
-  text-align: center;
-}
-
-.contact a:hover {
-  text-decoration: underline;
-}
-
-/* Анимации */
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
-}
-
-@keyframes fadeInUp {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
-}
-
-@keyframes scroll {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-50%); }
-}
-
-/* Адаптивность */
-@media (max-width: 768px) {
-  .about-boxes {
-    flex-direction: row;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-
-  .about-boxes::-webkit-scrollbar {
-    display: none;
-  }
-
-  .logo {
-    width: 100px;
-  }
-
-  .title {
-    font-size: 32px;
-  }
-
-  .project-track img {
-    width: 220px;
-  }
-
-  .collage img {
-    width: 140px;
-  }
-}
+  <script src="js/main.js"></script>
+</body>
+</html>
