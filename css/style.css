@@ -1,85 +1,196 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IMHOTEP STUDIO</title>
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="preload" href="fonts/Magistral.ttf" as="font" type="font/ttf" crossorigin />
-</head>
-<body>
-  <div class="overlay"></div>
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Magistral', sans-serif;
+  background-color: #2D2D2D;
+  color: #F4EDE5;
+  line-height: 1.6;
+  overflow-x: hidden;
+}
 
-  <header>
-    <div class="header-links">
-      <a href="#about">О нас</a>
-      <a href="#projects">Проекты</a>
-      <a href="#contact">Контакты</a>
-    </div>
-    <div class="logo-container fade">
-      <img src="logo.png" alt="Logo" class="logo" />
-    </div>
-  </header>
+/* Overlay */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #2D2D2D;
+  z-index: 0;
+}
 
-  <main>
-    <section class="hero fade">
-      <h1 class="title">IMHOTEP STUDIO</h1>
-      <p class="subtitle">архитектурное бюро</p>
-      <a href="#projects" class="btn">Смотреть проекты</a>
-    </section>
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 5%;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 10;
+  background-color: transparent;
+}
+.header-links a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #F4EDE5;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+.header-links a:hover {
+  color: #ccc;
+}
+.logo-container {
+  display: flex;
+  align-items: center;
+}
+.logo {
+  width: 50px;
+  height: auto;
+}
 
-    <section id="about" class="about-section fade">
-      <h2 class="about-title typing">О студии</h2>
-      <div class="about-boxes">
-        <div class="about-box fade">
-          IMHOTEP — имя архитектора, признанного богом. И мы продолжаем эту линию.
-          Наша команда объединяет опыт и эстетику, следит за мировыми тенденциями,
-          но остаётся верной своей философии — минимализму, смыслу и точности.
-        </div>
-        <div class="about-box fade">
-          Каждый проект — это штучная работа, в которой нет случайных решений.
-          Мы ценим идею, глубину и форму. Познакомьтесь с нами ближе —
-          <a href="https://instagram.com/imhotep_studiokg" target="_blank">@imhotep_studiokg</a>
-        </div>
-      </div>
-    </section>
+/* Hero Section */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  text-align: center;
+}
+.title {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+.subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 30px;
+}
+.btn {
+  padding: 12px 24px;
+  border: 1px solid #F4EDE5;
+  text-decoration: none;
+  color: #F4EDE5;
+  transition: background-color 0.3s;
+}
+.btn:hover {
+  background-color: #444;
+}
 
-    <section id="projects" class="projects-section fade">
-      <h2 class="projects-title">Наши проекты</h2>
-      <div class="project-carousel">
-        <div class="project-track">
-          <img src="luchi/1.jpg" alt="Проект 1" />
-          <img src="luchi/2.jpg" alt="Проект 2" />
-          <img src="luchi/3.jpg" alt="Проект 3" />
-          <img src="luchi/4.jpg" alt="Проект 4" />
-          <img src="luchi/5.jpg" alt="Проект 5" />
-        </div>
-      </div>
-    </section>
+/* About Section */
+.about-section {
+  padding: 100px 5% 50px;
+}
+.about-title {
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+}
+.about-boxes {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.about-box {
+  background-color: #3A3A3A;
+  padding: 20px;
+  flex: 1;
+  min-width: 280px;
+  border-radius: 10px;
+}
 
-    <section class="stats fade" id="stats">
-      <div class="counter"><span id="years">0</span> лет опыта</div>
-      <div class="counter"><span id="projects">0</span> проектов</div>
-      <div class="counter"><span id="guarantee">0</span>% гарантия</div>
-    </section>
+/* Projects Section */
+.projects-section {
+  padding: 80px 5%;
+}
+.projects-title {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+.project-carousel {
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.project-track {
+  display: flex;
+  gap: 10px;
+}
+.project-track img {
+  height: 200px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
 
-    <section class="collage fade">
-      <img src="collage/1.jpg" alt="" />
-      <img src="collage/2.jpg" alt="" />
-      <img src="collage/3.jpg" alt="" />
-      <img src="collage/4.jpg" alt="" />
-      <img src="collage/5.jpg" alt="" />
-      <img src="collage/6.jpg" alt="" />
-    </section>
+/* Stats Section */
+.stats {
+  display: flex;
+  justify-content: space-around;
+  padding: 60px 5%;
+  background-color: #333;
+}
+.counter {
+  font-size: 1.5rem;
+  text-align: center;
+}
 
-    <section id="contact" class="contact fade">
-      <h2>Связаться с нами</h2>
-      <p>Телефон: <a href="tel:+996700123456">+996 700 123 456</a></p>
-      <p>Email: <a href="mailto:studio@imhotep.kg">studio@imhotep.kg</a></p>
-      <p>Instagram: <a href="https://instagram.com/imhotep_studiokg" target="_blank">@imhotep_studiokg</a></p>
-    </section>
-  </main>
+/* Collage Section */
+.collage {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  padding: 60px 5%;
+}
+.collage img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
 
-  <script src="js/main.js"></script>
-</body>
-</html>
+/* Contact Section */
+.contact {
+  padding: 80px 5%;
+}
+.contact h2 {
+  margin-bottom: 20px;
+}
+.contact p {
+  margin: 10px 0;
+}
+
+/* Fade Animation */
+.fade {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeIn 1s ease forwards;
+}
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Typing Effect */
+.typing::after {
+  content: '|';
+  animation: blink 0.8s infinite;
+}
+@keyframes blink {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .about-boxes {
+    flex-direction: column;
+  }
+  .stats {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
