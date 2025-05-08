@@ -44,12 +44,12 @@
     <section id="projects" class="projects-section fade">
       <h2 class="projects-title">Наши проекты</h2>
       <div class="project-gallery">
-        <a href="project1.html"><img src="luchi/1.jpg" alt="Проект 1"></a>
-        <a href="project2.html"><img src="meshchera/1.jpg" alt="Проект 2"></a>
-        <a href="project3.html"><img src="oktava/1.jpg" alt="Проект 3"></a>
-        <a href="project4.html"><img src="piskunova/1.jpg" alt="Проект 4"></a>
-        <a href="project5.html"><img src="spa/1.jpg" alt="Проект 5"></a>
-        <a href="project6.html"><img src="tihiy/1.jpg" alt="Проект 6"></a>
+        <a href="project1.html"><img src="projects/luchi/1.jpg" alt="Проект 1"></a>
+        <a href="project2.html"><img src="projects/meshchera/1.jpg" alt="Проект 2"></a>
+        <a href="project3.html"><img src="projects/oktava/1.jpg" alt="Проект 3"></a>
+        <a href="project4.html"><img src="projects/piskunova/1.jpg" alt="Проект 4"></a>
+        <a href="project5.html"><img src="projects/spa/1.jpg" alt="Проект 5"></a>
+        <a href="project6.html"><img src="projects/tihiy/1.jpg" alt="Проект 6"></a>
       </div>
     </section>
 
