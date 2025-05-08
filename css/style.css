@@ -1,13 +1,14 @@
-@font-face {
-  font-family: 'Magistral';
-  src: url('../fonts/Magistral.ttf') format('truetype');
-}
-
+/* Шрифты и базовые стили */
 body {
   margin: 0;
+  padding: 0;
   font-family: 'Magistral', sans-serif;
   background-color: #2D2D2D;
   color: #F4EDE5;
+  background-image: url('../background.jpg');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
   overflow-x: hidden;
 }
 
@@ -16,233 +17,223 @@ a {
   text-decoration: none;
 }
 
+/* Шапка */
 header {
-  position: fixed;
-  top: 0;
-  right: 0;
-  z-index: 100;
-  padding: 20px;
-}
-
-.nav-right {
   display: flex;
-  gap: 20px;
-}
-
-.nav-right button {
-  background: none;
-  border: none;
-  color: #F4EDE5;
-  font-size: 16px;
-  cursor: pointer;
-  transition: opacity 0.3s ease;
-}
-.nav-right button:hover {
-  opacity: 0.7;
-}
-
-.preloader {
-  position: fixed;
-  z-index: 999;
-  background: #2D2D2D;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-}
-
-.preloader-logo {
-  width: 150px;
-  animation: fadeOut 2s ease forwards;
-  animation-delay: 1.5s;
-}
-
-@keyframes fadeOut {
-  to {
-    opacity: 0;
-    transform: scale(1.2);
-    visibility: hidden;
-  }
-}
-
-.hero {
-  height: 100vh;
+  padding: 20px;
   position: relative;
-  text-align: center;
+  z-index: 10;
+}
+
+.header-links {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  z-index: 1;
+  gap: 30px;
 }
 
-.background {
+.logo-container {
   position: absolute;
-  top: 0; left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  z-index: -1;
-  filter: brightness(0.3);
+  top: 50px;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
-.studio-title {
-  font-size: 56px;
-  margin: 0;
+.logo {
+  width: 140px;
+  height: auto;
+  animation: fadeIn 2s ease forwards;
+}
+
+/* Главная секция */
+.hero {
+  text-align: center;
+  padding: 200px 20px 100px;
+}
+
+.title {
+  font-size: 48px;
+  animation: fadeInUp 1s ease forwards;
+}
+
+.subtitle {
+  font-size: 20px;
+  margin-top: 10px;
   animation: fadeInUp 1.5s ease forwards;
 }
-.subtitle {
-  margin-top: 10px;
-  font-size: 24px;
-  animation: fadeInUp 2s ease forwards;
-}
 
-.scroll-btn {
+.btn {
+  display: inline-block;
   margin-top: 30px;
-  padding: 12px 28px;
+  padding: 12px 24px;
   border: 1px solid #F4EDE5;
-  background: none;
   font-size: 16px;
   cursor: pointer;
-  animation: fadeInUp 2.5s ease forwards;
+  transition: background 0.3s ease;
 }
 
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.btn:hover {
+  background: rgba(255,255,255,0.1);
 }
 
-.gallery-old {
-  padding: 60px 0;
-  overflow-x: auto;
-}
-.gallery-scroll {
-  display: flex;
-  gap: 10px;
-  padding: 0 20px;
-}
-.gallery-scroll img {
-  height: 180px;
-  border-radius: 6px;
+/* О нас */
+.about-section {
+  padding: 100px 20px;
 }
 
-.projects-section {
-  padding: 80px 20px;
-}
-.section-title {
+.about-title {
+  font-size: 40px;
   text-align: center;
+  margin-bottom: 50px;
+  animation: typing 3s steps(30, end);
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 3px solid #F4EDE5;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.about-boxes {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.about-box {
+  flex: 1 1 300px;
+  background: rgba(255,255,255,0.05);
+  padding: 20px;
+  border-radius: 20px;
+  max-width: 400px;
+  animation: fadeIn 2s ease forwards;
+}
+
+/* Проекты */
+.projects-section {
+  padding: 100px 20px;
+}
+
+.projects-title {
   font-size: 32px;
+  text-align: center;
   margin-bottom: 40px;
 }
 
-.projects-line .project {
-  margin-bottom: 60px;
-}
-.project h3 {
-  margin-left: 20px;
-}
-.project-scroll {
-  display: flex;
+.project-carousel {
   overflow-x: auto;
-  gap: 10px;
-  padding: 0 20px;
-}
-.project-scroll img {
-  height: 280px;
-  border-radius: 8px;
-  transition: transform 0.3s;
-}
-.project-scroll img:hover {
-  transform: scale(1.03);
+  scrollbar-width: none;
 }
 
+.project-carousel::-webkit-scrollbar {
+  display: none;
+}
+
+.project-track {
+  display: flex;
+  gap: 20px;
+  animation: scroll 40s linear infinite;
+  will-change: transform;
+}
+
+.project-track img {
+  width: 300px;
+  height: auto;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+/* Статистика */
 .stats {
+  padding: 80px 20px;
   display: flex;
   justify-content: center;
-  gap: 60px;
-  padding: 60px 0;
-  font-size: 20px;
-}
-.stat {
+  gap: 50px;
   text-align: center;
 }
+
 .counter {
-  font-size: 36px;
-  display: block;
-  font-weight: bold;
+  font-size: 24px;
 }
 
-.form-section {
+/* Коллаж */
+.collage {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 40px;
+  justify-content: center;
+}
+
+.collage img {
+  width: 200px;
+  border-radius: 8px;
+  opacity: 0.95;
+  transition: transform 0.5s ease;
+}
+
+.collage img:hover {
+  transform: scale(1.05);
+}
+
+/* Контакты */
+.contact {
   padding: 80px 20px;
   text-align: center;
 }
-.form-section form {
-  max-width: 400px;
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-form input, form textarea {
-  padding: 12px;
-  border: none;
-  border-radius: 6px;
-  font-size: 16px;
-}
-form button {
-  background-color: #F4EDE5;
-  color: #2D2D2D;
-  border: none;
-  padding: 14px;
-  font-weight: bold;
-  cursor: pointer;
+
+.contact a:hover {
+  text-decoration: underline;
 }
 
-footer {
-  text-align: center;
-  padding: 40px 20px;
-  background: #1E1E1E;
-  color: #F4EDE5;
+/* Анимации */
+@keyframes fadeIn {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
 }
 
-.modal {
-  position: fixed;
-  inset: 0;
-  background: rgba(0,0,0,0.7);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 200;
-}
-.modal-content {
-  background: #2D2D2D;
-  padding: 30px;
-  border-radius: 10px;
-  max-width: 400px;
-  text-align: center;
-}
-.modal-content img {
-  margin-top: 20px;
-  height: 100px;
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
-/* Responsive */
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* Адаптивность */
 @media (max-width: 768px) {
-  .studio-title {
-    font-size: 36px;
+  .about-boxes {
+    flex-direction: row;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
   }
-  .subtitle {
-    font-size: 18px;
+
+  .about-boxes::-webkit-scrollbar {
+    display: none;
   }
-  .stats {
-    flex-direction: column;
-    gap: 30px;
+
+  .logo {
+    width: 100px;
+  }
+
+  .title {
+    font-size: 32px;
+  }
+
+  .project-track img {
+    width: 220px;
+  }
+
+  .collage img {
+    width: 140px;
   }
 }
