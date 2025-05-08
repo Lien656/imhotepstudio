@@ -1,0 +1,217 @@
+/* Общие стили */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Magistral', sans-serif;
+  background-color: #2D2D2D;
+  color: #F4EDE5;
+  overflow-x: hidden;
+}
+
+/* Затемнение при загрузке */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #2D2D2D;
+  z-index: 0;
+}
+
+/* Шапка */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30px;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: transparent;
+  z-index: 10;
+}
+.header-links a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #F4EDE5;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+.header-links a:hover {
+  color: #aaa;
+}
+.logo-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.logo {
+  width: 100px;
+  height: auto;
+}
+
+/* Hero */
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 200px 20px 100px;
+  text-align: center;
+}
+.title {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+.subtitle {
+  font-size: 20px;
+  margin-bottom: 30px;
+}
+.btn {
+  padding: 12px 24px;
+  border: 1px solid #F4EDE5;
+  background: transparent;
+  color: #F4EDE5;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+.btn:hover {
+  background-color: #444;
+}
+
+/* О нас */
+.about-section {
+  padding: 100px 20px;
+}
+.about-title {
+  font-size: 36px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+.about-boxes {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.about-box {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 16px;
+  max-width: 400px;
+  flex: 1;
+  min-width: 280px;
+}
+
+/* Проекты */
+.projects-section {
+  padding: 100px 20px;
+}
+.projects-title {
+  font-size: 32px;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.project-carousel {
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.project-carousel::-webkit-scrollbar {
+  display: none;
+}
+.project-track {
+  display: flex;
+  gap: 16px;
+}
+.project-track img {
+  width: 280px;
+  height: auto;
+  border-radius: 12px;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+.project-track img:hover {
+  transform: scale(1.05);
+}
+
+/* Статистика */
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 60px 20px;
+  background-color: #333;
+  text-align: center;
+}
+.counter {
+  font-size: 24px;
+}
+
+/* Коллаж */
+.collage {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 10px;
+  padding: 60px 20px;
+}
+.collage img {
+  width: 100%;
+  border-radius: 10px;
+  transition: transform 0.3s ease;
+}
+.collage img:hover {
+  transform: scale(1.05);
+}
+
+/* Контакты */
+.contact {
+  padding: 80px 20px;
+  text-align: center;
+}
+.contact h2 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+.contact p {
+  margin: 8px 0;
+}
+
+/* Анимации */
+.fade {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+.fade.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.typing::after {
+  content: '|';
+  animation: blink 1s step-end infinite;
+}
+@keyframes blink {
+  0%, 100% { opacity: 0; }
+  50% { opacity: 1; }
+}
+
+/* Адаптив */
+@media (max-width: 768px) {
+  .about-boxes {
+    flex-direction: column;
+  }
+  .project-track img {
+    width: 220px;
+  }
+  .collage {
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+  .stats {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
