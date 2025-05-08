@@ -1,47 +1,92 @@
-// Плавное появление элементов при скролле
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-    }
-  });
-}, { threshold: 0.1 });
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IMHOTEP STUDIO</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preload" href="fonts/MagistralC-Bold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <div class="overlay"></div>
 
-document.querySelectorAll('.fade').forEach(el => observer.observe(el));
+  <header>
+    <div class="header-links">
+      <a href="#about">О нас</a>
+      <a href="#projects">Проекты</a>
+      <a href="#contact">Контакты</a>
+    </div>
+    <div class="logo-container fade">
+      <img src="logo.png" alt="Logo" class="logo" />
+    </div>
+  </header>
 
-// Счётчики
-function animateCounter(id, target, duration = 2000) {
-  const el = document.getElementById(id);
-  let start = 0;
-  const step = Math.ceil(duration / target);
+  <main>
+    <section class="hero fade">
+      <h1 class="title typing">IMHOTEP STUDIO</h1>
+      <p class="subtitle typing">Архитектурно-дизайнерская студия</p>
+      <a href="#projects" class="btn">Смотреть проекты</a>
+    </section>
 
-  const counter = setInterval(() => {
-    start++;
-    el.textContent = start;
-    if (start >= target) clearInterval(counter);
-  }, step);
-}
+    <section id="about" class="about-section fade">
+      <h2 class="about-title typing">О студии</h2>
+      <div class="about-boxes">
+        <div class="about-box fade">
+          IMHOTEP — имя архитектора, признанного богом. И мы продолжаем эту линию. Наша команда объединяет опыт и эстетику, следит за мировыми тенденциями, но остаётся верной своей философии — минимализму, смыслу и точности.
+        </div>
+        <div class="about-box fade">
+          Каждый проект — это штучная работа, в которой нет случайных решений. Мы ценим идею, глубину и форму. Познакомьтесь с нами ближе — <a href="https://instagram.com/imhotep_studiokg" target="_blank">@imhotep_studiokg</a>
+        </div>
+      </div>
+    </section>
 
-// Сброс счётчиков каждый раз при скролле
-const stats = document.getElementById('stats');
-let statsVisible = false;
+    <section id="projects" class="projects-section fade">
+      <h2 class="projects-title">Наши проекты</h2>
+      <div class="project-gallery">
+        <a href="project1.html"><img src="luchi/1.jpg" alt="Проект 1"></a>
+        <a href="project2.html"><img src="meshchera/1.jpg" alt="Проект 2"></a>
+        <a href="project3.html"><img src="oktava/1.jpg" alt="Проект 3"></a>
+        <a href="project4.html"><img src="piskunova/1.jpg" alt="Проект 4"></a>
+        <a href="project5.html"><img src="spa/1.jpg" alt="Проект 5"></a>
+        <a href="project6.html"><img src="tihiy/1.jpg" alt="Проект 6"></a>
+      </div>
+    </section>
 
-const statObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      if (!statsVisible) {
-        animateCounter('years', 6);
-        animateCounter('projects', 155);
-        animateCounter('guarantee', 100);
-        statsVisible = true;
-      }
-    } else {
-      statsVisible = false;
-      document.getElementById('years').textContent = '0';
-      document.getElementById('projects').textContent = '0';
-      document.getElementById('guarantee').textContent = '0';
-    }
-  });
-}, { threshold: 0.5 });
+    <section class="collage fade">
+      <img src="collage/collage-full.jpg" alt="Коллаж" />
+    </section>
 
-statObserver.observe(stats);
+    <section class="stats fade" id="stats">
+      <div class="counter"><span id="years">0</span> лет опыта</div>
+      <div class="counter"><span id="projects">0</span> проектов</div>
+      <div class="counter"><span id="guarantee">0</span>% гарантия</div>
+    </section>
+
+    <section class="contact fade" id="contact">
+      <h2>Связаться с нами</h2>
+      <p>Телефон: <a href="tel:+996700123456">+996 700 123 456</a></p>
+      <p>Email: <a href="mailto:studio@imhotep.kg">studio@imhotep.kg</a></p>
+      <p>Instagram: <a href="https://instagram.com/imhotep_studiokg" target="_blank">@imhotep_studiokg</a></p>
+      <div class="messengers">
+        <a href="https://wa.me/996700123456" target="_blank">WhatsApp</a>
+        <a href="https://t.me/username" target="_blank">Telegram</a>
+      </div>
+    </section>
+
+    <section class="form fade">
+      <h2>Оставьте заявку</h2>
+      <p>и мы свяжемся с вами</p>
+      <form action="mailto:imhotep.studio.design@gmail.com" method="post" enctype="text/plain">
+        <input type="text" name="name" placeholder="Имя" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <input type="tel" name="phone" placeholder="Телефон" required>
+        <textarea name="message" placeholder="Сообщение"></textarea>
+        <button type="submit">Отправить</button>
+      </form>
+    </section>
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
