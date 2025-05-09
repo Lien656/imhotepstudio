@@ -1,3 +1,6 @@
+from pathlib import Path
+
+corrected_style_css = """
 * {
   margin: 0;
   padding: 0;
@@ -43,21 +46,6 @@ header {
   height: auto;
 }
 
-.header-links {
-  display: flex;
-  gap: 40px;
-}
-
-.header-links a {
-  font-size: 18px;
-  font-weight: 400;
-  transition: color 0.3s;
-}
-
-.header-links a:hover {
-  color: #ccae68;
-}
-
 /* Прелоадер */
 .preloader {
   position: fixed;
@@ -71,29 +59,38 @@ header {
   transition: opacity 1.5s ease;
 }
 
-.preloader-logo {
-  width: 220px;
-  height: auto;
-  transition: all 2s ease;
-}
-
-.logo-hide {
-  opacity: 0;
-  transform: scale(0.8);
-}
-
-.logo-mini {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  width: 80px;
-  opacity: 0.6;
-  transition: all 1.5s ease;
-}
-
-.preloader-hide {
+.preloader.fade-out {
   opacity: 0;
   pointer-events: none;
+}
+
+.logo {
+  width: 300px;
+  height: auto;
+  transition: all 1.2s ease;
+}
+
+.logo.move-left {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 120px;
+  opacity: 0.6;
+}
+
+.header-links {
+  display: flex;
+  gap: 40px;
+}
+
+.header-links a {
+  font-size: 18px;
+  font-weight: 400;
+  transition: color 0.3s;
+}
+
+.header-links a:hover {
+  color: #ccae68;
 }
 
 /* Главный экран */
@@ -255,3 +252,6 @@ form button {
     gap: 20px;
   }
 }
+"""
+
+Path("/mnt/data/style.css").write_text(corrected_style_css.strip(), encoding="utf-8")
