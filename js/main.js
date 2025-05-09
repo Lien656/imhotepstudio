@@ -1,41 +1,25 @@
+main_js = """
 document.addEventListener("DOMContentLoaded", () => {
-  // fade-in анимация при скролле
-  const fadeElements = document.querySelectorAll(".fade");
-  const fadeObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add("visible");
-      }
-    });
-  }, { threshold: 0.1 });
+  const preloader = document.getElementById("preloader");
+  const logo = document.querySelector(".logo-container");
 
-  fadeElements.forEach(el => fadeObserver.observe(el));
+  // Прелоадер
+  window.onload = () => {
+    preloader.style.opacity = "0";
+    setTimeout(() => {
+      preloader.style.display = "none";
+      logo.classList.add("logo-fixed");
+    }, 1000);
+  };
 
-  // печатание текста
-  function typeText(element, speed = 50) {
-    const text = element.textContent;
-    element.textContent = "";
-    let index = 0;
-    function type() {
-      if (index < text.length) {
-        element.textContent += text.charAt(index);
-        index++;
-        setTimeout(type, speed);
-      }
-    }
-    type();
-  }
-
-  document.querySelectorAll(".typing").forEach(el => typeText(el));
-
-  // анимация счётчиков
+  // Счётчики
   const counters = [
     { id: "years", target: 6 },
     { id: "projects", target: 155 },
     { id: "guarantee", target: 100 }
   ];
 
-  const observer = new IntersectionObserver((entries, obs) => {
+  const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         counters.forEach(counter => {
@@ -52,16 +36,16 @@ document.addEventListener("DOMContentLoaded", () => {
             }
           }, 40);
         });
-        obs.disconnect();
       }
     });
   }, { threshold: 0.5 });
 
-  observer.observe(document.getElementById("stats"));
+  const stats = document.getElementById("stats");
+  if (stats) observer.observe(stats);
 
-  // плавный скролл
+  // Плавный скролл
   document.querySelectorAll('a[href^="#"]').forEach(link => {
-    link.addEventListener("click", function(e) {
+    link.addEventListener("click", function (e) {
       e.preventDefault();
       const target = document.querySelector(this.getAttribute("href"));
       if (target) {
@@ -70,3 +54,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+"""
+
+Path("/mnt/data/main.js").write_text(main_js, encoding="utf-8")
+"Файл main.js обновлён. Готов к загрузке index.html."
