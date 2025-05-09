@@ -1,16 +1,34 @@
+from pathlib import Path
+
 main_js = """
 document.addEventListener("DOMContentLoaded", () => {
-  const preloader = document.getElementById("preloader");
+  // Прелоадер и логотип
+  const preloader = document.querySelector(".preloader");
   const logo = document.querySelector(".logo-container");
 
-  // Прелоадер
-  window.onload = () => {
-    preloader.style.opacity = "0";
+  window.addEventListener("load", () => {
     setTimeout(() => {
-      preloader.style.display = "none";
-      logo.classList.add("logo-fixed");
+      preloader.style.opacity = "0";
+      setTimeout(() => {
+        preloader.style.display = "none";
+        if (logo) logo.classList.add("visible");
+      }, 2000);
     }, 1000);
-  };
+  });
+
+  // Плавное появление блоков
+  const faders = document.querySelectorAll(".fade");
+  const appearOptions = { threshold: 0.2 };
+
+  const appearOnScroll = new IntersectionObserver(function (entries) {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      entry.target.classList.add("visible");
+      appearOnScroll.unobserve(entry.target);
+    });
+  }, appearOptions);
+
+  faders.forEach(fader => appearOnScroll.observe(fader));
 
   // Счётчики
   const counters = [
@@ -19,31 +37,30 @@ document.addEventListener("DOMContentLoaded", () => {
     { id: "guarantee", target: 100 }
   ];
 
-  const observer = new IntersectionObserver((entries) => {
+  const counterObserver = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         counters.forEach(counter => {
           const el = document.getElementById(counter.id);
           let count = 0;
-          const step = Math.ceil(counter.target / 50);
+          const step = Math.ceil(counter.target / 60);
           const interval = setInterval(() => {
             if (count < counter.target) {
               count += step;
-              if (count > counter.target) count = counter.target;
-              el.textContent = count;
+              el.textContent = Math.min(count, counter.target);
             } else {
               clearInterval(interval);
             }
-          }, 40);
+          }, 30);
         });
       }
     });
-  }, { threshold: 0.5 });
+  }, { threshold: 0.6 });
 
-  const stats = document.getElementById("stats");
-  if (stats) observer.observe(stats);
+  const statsSection = document.getElementById("stats");
+  if (statsSection) counterObserver.observe(statsSection);
 
-  // Плавный скролл
+  // Плавный якорный скролл
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener("click", function (e) {
       e.preventDefault();
@@ -56,5 +73,4 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 """
 
-Path("/mnt/data/main.js").write_text(main_js, encoding="utf-8")
-"Файл main.js обновлён. Готов к загрузке index.html."
+Path("/mnt/data/main.js").write_text(main_js.strip(), encoding="utf-8")
