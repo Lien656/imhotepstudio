@@ -1,16 +1,25 @@
+from pathlib import Path
+
+full_main_js_with_autoscroll = """
 document.addEventListener("DOMContentLoaded", () => {
   const preloader = document.querySelector(".preloader");
   const logo = document.querySelector(".logo");
+  const siteContent = document.querySelector("main");
+  const header = document.querySelector("header");
 
-  // Показываем прелоадер и делаем логотип по центру
+  siteContent.style.display = "none";
+  header.style.display = "none";
+
   window.addEventListener("load", () => {
     setTimeout(() => {
       preloader.classList.add("fade-out");
       logo.classList.add("move-left");
-    }, 1000); // задержка чтобы была видна анимация
+      siteContent.style.display = "block";
+      header.style.display = "flex";
+    }, 1000);
   });
 
-  // Счётчики
+  // Анимация счётчиков
   const counters = [
     { id: "years", target: 6 },
     { id: "projects", target: 155 },
@@ -39,4 +48,35 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { threshold: 0.5 });
 
   observer.observe(document.getElementById("stats"));
+
+  // Плавный якорный скролл
+  document.querySelectorAll('a[href^="#"]').forEach(link => {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute("href"));
+      if (target) {
+        target.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  });
+
+  // Автопрокрутка карусели
+  const carousel = document.querySelector(".project-carousel");
+  let scrollPosition = 0;
+  let scrollSpeed = 1;
+
+  function autoScroll() {
+    if (carousel) {
+      scrollPosition += scrollSpeed;
+      if (scrollPosition >= carousel.scrollWidth - carousel.clientWidth) {
+        scrollPosition = 0;
+      }
+      carousel.scrollTo({ left: scrollPosition, behavior: "smooth" });
+    }
+  }
+
+  setInterval(autoScroll, 40);
 });
+"""
+
+Path("/mnt/data/main.js").write_text(full_main_js_with_autoscroll.strip(), encoding="utf-8")
