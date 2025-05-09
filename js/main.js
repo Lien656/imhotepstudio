@@ -1,26 +1,17 @@
-from pathlib import Path
-
-main_js_code = '''
 document.addEventListener("DOMContentLoaded", () => {
-  // Анимация появления элементов при скролле
+  // fade-in анимация при скролле
   const fadeElements = document.querySelectorAll(".fade");
-  const options = {
-    threshold: 0.1
-  };
-
-  const fadeInOnScroll = new IntersectionObserver((entries, observer) => {
+  const fadeObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add("visible");
       }
     });
-  }, options);
+  }, { threshold: 0.1 });
 
-  fadeElements.forEach(el => {
-    fadeInOnScroll.observe(el);
-  });
+  fadeElements.forEach(el => fadeObserver.observe(el));
 
-  // Анимация печати текста
+  // печатание текста
   function typeText(element, speed = 50) {
     const text = element.textContent;
     element.textContent = "";
@@ -37,37 +28,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
   document.querySelectorAll(".typing").forEach(el => typeText(el));
 
-  // Счётчики
-  const counters = {
-    years: 6,
-    projects: 155,
-    guarantee: 100
-  };
+  // анимация счётчиков
+  const counters = [
+    { id: "years", target: 6 },
+    { id: "projects", target: 155 },
+    { id: "guarantee", target: 100 }
+  ];
 
-  const observer = new IntersectionObserver((entries, observer) => {
+  const observer = new IntersectionObserver((entries, obs) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
-        Object.entries(counters).forEach(([id, target]) => {
-          const el = document.getElementById(id);
+        counters.forEach(counter => {
+          const el = document.getElementById(counter.id);
           let count = 0;
-          const step = Math.ceil(target / 50);
+          const step = Math.ceil(counter.target / 50);
           const interval = setInterval(() => {
-            if (count < target) {
+            if (count < counter.target) {
               count += step;
-              if (count > target) count = target;
+              if (count > counter.target) count = counter.target;
               el.textContent = count;
             } else {
               clearInterval(interval);
             }
-          }, 50);
+          }, 40);
         });
+        obs.disconnect();
       }
     });
   }, { threshold: 0.5 });
 
   observer.observe(document.getElementById("stats"));
 
-  // Плавный скролл по якорям
+  // плавный скролл
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener("click", function(e) {
       e.preventDefault();
@@ -78,9 +70,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-'''
-
-# Сохраняем в main.js
-output_path = Path("/mnt/data/main.js")
-output_path.write_text(main_js_code.strip(), encoding="utf-8")
-output_path
