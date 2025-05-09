@@ -1,23 +1,13 @@
-@font-face {
-  font-family: 'MagistralC';
-  src: url('../fonts/MagistralC-Bold.woff2') format('woff2');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
+from pathlib import Path
 
-* {
+updated_style_css = """
+body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-body {
   font-family: 'MagistralC', sans-serif;
   background-color: #2D2D2D;
   color: #F4EDE5;
   overflow-x: hidden;
-  scroll-behavior: smooth;
 }
 
 a {
@@ -28,255 +18,184 @@ a {
 header {
   position: fixed;
   top: 0;
+  left: 0;
   width: 100%;
-  padding: 20px;
-  background-color: transparent;
+  padding: 20px 40px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   z-index: 1000;
 }
 
 .header-links {
-  position: absolute;
-  top: 20px;
-  right: 30px;
   display: flex;
-  gap: 25px;
+  gap: 30px;
   font-size: 14px;
 }
 
 .logo-container {
-  text-align: center;
-  width: 100%;
+  position: absolute;
+  right: 40px;
+  top: 20px;
 }
 
 .logo {
-  height: 60px;
-  animation: fadeInDown 1.2s ease;
+  width: 40px;
+  height: auto;
 }
 
 main {
   padding-top: 120px;
-  display: flex;
-  flex-direction: column;
-  gap: 100px;
 }
 
 .hero {
+  height: 100vh;
+  background-image: url('../background.jpg');
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   text-align: center;
-  padding: 80px 20px 40px;
 }
 
 .title {
-  font-size: 48px;
-  margin-bottom: 20px;
+  font-size: 3rem;
+  margin: 0;
 }
 
 .subtitle {
-  font-size: 20px;
-  margin-bottom: 40px;
+  font-size: 1.5rem;
+  margin: 10px 0 20px;
 }
 
 .btn {
-  display: inline-block;
-  padding: 12px 30px;
   background-color: #F4EDE5;
   color: #2D2D2D;
+  padding: 10px 20px;
+  font-weight: bold;
   border: none;
+  border-radius: 5px;
   cursor: pointer;
-  font-family: 'MagistralC', sans-serif;
-  transition: background-color 0.3s ease;
-}
-
-.btn:hover {
-  background-color: #ddd1c3;
 }
 
 .about-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 0 20px;
+  padding: 100px 20px;
+  text-align: center;
 }
 
 .about-title {
-  font-size: 32px;
+  font-size: 2rem;
   margin-bottom: 40px;
-  text-align: center;
 }
 
 .about-boxes {
   display: flex;
-  flex-wrap: wrap;
-  gap: 30px;
-  max-width: 1000px;
-  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 800px;
+  margin: auto;
 }
 
 .about-box {
-  background-color: rgba(244, 237, 229, 0.1);
+  background-color: rgba(244, 237, 229, 0.15);
   padding: 20px;
-  border-radius: 12px;
-  width: 400px;
+  border-radius: 10px;
   font-size: 16px;
   line-height: 1.6;
 }
 
 .projects-section {
-  padding: 0 20px;
+  padding: 100px 20px;
+  text-align: center;
 }
 
 .projects-title {
-  font-size: 32px;
-  text-align: center;
+  font-size: 2rem;
   margin-bottom: 40px;
 }
 
 .project-gallery {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
   justify-content: center;
+  gap: 20px;
 }
 
 .project-gallery img {
-  width: 240px;
+  width: 200px;
+  height: auto;
   border-radius: 12px;
   transition: transform 0.3s ease;
 }
 
 .project-gallery img:hover {
-  transform: scale(1.03);
-}
-
-.collage {
-  display: flex;
-  justify-content: center;
+  transform: scale(1.05);
 }
 
 .collage img {
-  max-width: 95%;
-  border-radius: 16px;
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-top: 60px;
 }
 
 .stats {
+  padding: 60px 20px;
   text-align: center;
-  font-size: 24px;
-  display: flex;
-  justify-content: center;
-  gap: 60px;
+  font-size: 1.2rem;
 }
 
-.counter span {
-  font-size: 40px;
-  display: block;
+.counter {
+  margin: 20px 0;
 }
 
 .contact {
+  padding: 60px 20px;
   text-align: center;
-  line-height: 1.6;
-}
-
-.contact a {
-  color: #F4EDE5;
-  text-decoration: underline;
 }
 
 .messengers {
-  margin-top: 10px;
+  margin-top: 20px;
   display: flex;
-  justify-content: center;
   gap: 20px;
+  justify-content: center;
 }
 
 .form {
-  max-width: 600px;
-  margin: 0 auto;
-  padding: 40px 20px;
+  padding: 60px 20px;
   text-align: center;
 }
 
-form input,
-form textarea {
-  width: 100%;
-  margin-bottom: 15px;
-  padding: 12px;
+form {
+  max-width: 600px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+input, textarea {
+  padding: 10px;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+}
+
+button {
+  padding: 10px;
   border: none;
   border-radius: 8px;
-  font-family: 'MagistralC', sans-serif;
-}
-
-form button {
-  padding: 12px 24px;
-  border: none;
   background-color: #F4EDE5;
   color: #2D2D2D;
-  font-family: 'MagistralC', sans-serif;
+  font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 }
 
-form button:hover {
-  background-color: #e3d7cd;
+button:hover {
+  background-color: #e4dbd3;
 }
+"""
 
-.fade {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: all 0.8s ease;
-}
-
-.fade.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.typing {
-  overflow: hidden;
-  white-space: nowrap;
-  border-right: 2px solid #F4EDE5;
-  animation: typing 2s steps(20, end), blink 0.7s infinite;
-}
-
-@keyframes typing {
-  from { width: 0 }
-  to { width: 100% }
-}
-
-@keyframes blink {
-  50% { border-color: transparent }
-}
-
-@keyframes fadeInDown {
-  from {
-    opacity: 0;
-    transform: translateY(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@media (max-width: 768px) {
-  .about-boxes {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .stats {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .project-gallery img {
-    width: 90%;
-  }
-
-  .header-links {
-    flex-direction: column;
-    gap: 10px;
-    top: 10px;
-    right: 15px;
-  }
-}
+Path("/mnt/data/style.css").write_text(updated_style_css, encoding="utf-8")
