@@ -1,44 +1,37 @@
-// Анимация появления блоков с классом .fade
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('show');
+document.addEventListener("DOMContentLoaded", function () {
+  const form = document.querySelector("#contact-form");
+
+  if (!form) return;
+
+  form.addEventListener("submit", async function (e) {
+    e.preventDefault();
+
+    const formData = {
+      name: form.querySelector('input[name="name"]').value,
+      email: form.querySelector('input[name="email"]').value,
+      phone: form.querySelector('input[name="phone"]').value,
+      message: form.querySelector('textarea[name="message"]').value,
+    };
+
+    try {
+      const response = await fetch("https://imhotep-backend.onrender.com/submit", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const result = await response.json();
+
+      if (response.ok) {
+        alert(result.message);
+        form.reset();
+      } else {
+        alert("Произошла ошибка при отправке. Попробуйте ещё раз.");
+      }
+    } catch (error) {
+      alert("Не удалось связаться с сервером. Проверьте соединение.");
     }
   });
-}, { threshold: 0.1 });
-
-document.querySelectorAll('.fade').forEach(el => observer.observe(el));
-
-// Анимация счётчиков при появлении блока
-function animateCounter(id, target, duration = 2000) {
-  const el = document.getElementById(id);
-  let start = 0;
-  const step = Math.ceil(duration / target);
-  const counter = setInterval(() => {
-    start++;
-    el.textContent = start;
-    if (start >= target) clearInterval(counter);
-  }, step);
-}
-
-const stats = document.getElementById('stats');
-let statsVisible = false;
-
-const statObserver = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting && !statsVisible) {
-      animateCounter('years', 6);
-      animateCounter('projects', 155);
-      animateCounter('guarantee', 100);
-      statsVisible = true;
-    }
-    if (!entry.isIntersecting && statsVisible) {
-      document.getElementById('years').textContent = '0';
-      document.getElementById('projects').textContent = '0';
-      document.getElementById('guarantee').textContent = '0';
-      statsVisible = false;
-    }
-  });
-}, { threshold: 0.5 });
-
-statObserver.observe(stats);
+});
