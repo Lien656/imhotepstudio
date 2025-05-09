@@ -1,22 +1,26 @@
 from pathlib import Path
 
-main_js = """
+final_main_js = """
 document.addEventListener("DOMContentLoaded", () => {
-  // Прелоадер и логотип
   const preloader = document.querySelector(".preloader");
-  const logo = document.querySelector(".logo-container");
+  const logo = document.querySelector(".preloader-logo");
+  const siteContent = document.querySelector("main");
+  const header = document.querySelector("header");
+
+  siteContent.style.display = "none";
+  header.style.display = "none";
 
   window.addEventListener("load", () => {
+    logo.classList.add("logo-hide");
+
     setTimeout(() => {
-      preloader.style.opacity = "0";
-      setTimeout(() => {
-        preloader.style.display = "none";
-        if (logo) logo.classList.add("visible");
-      }, 2000);
-    }, 1000);
+      preloader.classList.add("preloader-hide");
+      logo.classList.add("logo-mini");
+      siteContent.style.display = "block";
+      header.style.display = "flex";
+    }, 2000);
   });
 
-  // Плавное появление блоков
   const faders = document.querySelectorAll(".fade");
   const appearOptions = { threshold: 0.2 };
 
@@ -30,7 +34,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   faders.forEach(fader => appearOnScroll.observe(fader));
 
-  // Счётчики
   const counters = [
     { id: "years", target: 6 },
     { id: "projects", target: 155 },
@@ -60,7 +63,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const statsSection = document.getElementById("stats");
   if (statsSection) counterObserver.observe(statsSection);
 
-  // Плавный якорный скролл
   document.querySelectorAll('a[href^="#"]').forEach(link => {
     link.addEventListener("click", function (e) {
       e.preventDefault();
@@ -73,4 +75,4 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 """
 
-Path("/mnt/data/main.js").write_text(main_js.strip(), encoding="utf-8")
+Path("/mnt/data/main.js").write_text(final_main_js.strip(), encoding="utf-8")
