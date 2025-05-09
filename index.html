@@ -1,7 +1,4 @@
-from pathlib import Path
-
-# Повторная генерация index.html после сброса окружения
-updated_index_html = '''<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
@@ -63,9 +60,9 @@ updated_index_html = '''<!DOCTYPE html>
     </section>
 
     <section class="stats fade-in" id="stats">
-      <div class="counter"><span id="years">0</span> лет опыта</div>
-      <div class="counter"><span id="projects">0</span> проектов</div>
-      <div class="counter"><span id="guarantee">0</span>% гарантия</div>
+      <div class="counter"><span id="years" style="color: #ccae68;">6</span> лет опыта</div>
+      <div class="counter"><span id="projects" style="color: #ccae68;">155</span> проектов</div>
+      <div class="counter"><span id="guarantee" style="color: #ccae68;">100</span>% гарантия</div>
     </section>
 
     <section class="contact fade-in" id="contact">
@@ -95,6 +92,3 @@ updated_index_html = '''<!DOCTYPE html>
   <script src="js/main.js"></script>
 </body>
 </html>
-'''
-
-Path("/mnt/data/index.html").write_text(updated_index_html, encoding="utf-8")
