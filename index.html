@@ -9,16 +9,17 @@
   <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
+
   <!-- Прелоадер -->
-  <div id="preloader">
+  <div class="preloader">
     <div class="logo-wrapper">
-      <img src="logo.png" alt="Logo" class="logo-loader">
+      <img src="logo.png" alt="Logo" class="preloader-logo" />
     </div>
   </div>
 
   <header>
-    <div class="logo-container">
-      <img src="logo.png" alt="Logo" class="logo-fixed">
+    <div class="logo-fixed">
+      <img src="logo.png" alt="Logo" class="logo-top">
     </div>
     <div class="header-links">
       <a href="#about">О нас</a>
@@ -29,7 +30,7 @@
 
   <main>
     <section class="hero fade">
-      <h1 class="title typing gold">IMHOTEP STUDIO</h1>
+      <h1 class="title typing">IMHOTEP STUDIO</h1>
       <p class="subtitle typing">Архитектурно-дизайнерская студия</p>
       <a href="#projects" class="btn">Смотреть проекты</a>
     </section>
@@ -38,7 +39,7 @@
       <h2 class="about-title typing">О студии</h2>
       <div class="about-boxes">
         <div class="about-box fade">
-          IMHOTEP — имя архитектора, признанного богом. И мы продолжаем эту линию. Наша команда объединяет опыт и эстетику, следит за мировыми тенденциями, но остаётся верной своей философии — минимализму, смыслу и точности.
+          <strong>IMHOTEP</strong> — имя архитектора, признанного богом. И мы продолжаем эту линию. Наша команда объединяет опыт и эстетику, следит за мировыми тенденциями, но остаётся верной своей философии — минимализму, смыслу и точности.
         </div>
         <div class="about-box fade">
           Каждый проект — это штучная работа, в которой нет случайных решений. Мы ценим идею, глубину и форму. Познакомьтесь с нами ближе — 
@@ -49,9 +50,14 @@
 
     <section id="projects" class="projects-section fade">
       <h2 class="projects-title">Наши проекты</h2>
-      <div class="carousel-container">
-        <div class="carousel" id="carousel">
-          <!-- Автоматически добавятся изображения через JS -->
+      <div class="carousel">
+        <div class="carousel-track">
+          <img src="luchi/1.jpg" alt="Проект 1" />
+          <img src="meshchera/1.jpg" alt="Проект 2" />
+          <img src="oktava/1.jpg" alt="Проект 3" />
+          <img src="piskunova/1.jpg" alt="Проект 4" />
+          <img src="spa/1.jpg" alt="Проект 5" />
+          <img src="tihiy/1.jpg" alt="Проект 6" />
         </div>
       </div>
     </section>
@@ -80,7 +86,7 @@
     <section class="form fade">
       <h2>Оставьте заявку</h2>
       <p>и мы свяжемся с вами</p>
-      <form action="mailto:imhotep.studio.design@gmail.com" method="post" enctype="text/plain">
+      <form id="contact-form">
         <input type="text" name="name" placeholder="Имя" required>
         <input type="email" name="email" placeholder="Email" required>
         <input type="tel" name="phone" placeholder="Телефон" required>
