@@ -1,72 +1,76 @@
-document.addEventListener("DOMContentLoaded", () => {
-  /* ---------- PRELOADER ---------- */
-  const preloader = document.querySelector(".preloader");
-  const logo      = document.querySelector(".preloader-logo");
-
-  window.addEventListener("load", () => {
-    setTimeout(() => {
-      logo.classList.add("logo-mini");
-      preloader.classList.add("preloader-hide");
-    }, 1500);
+document.addEventListener("DOMContentLoaded", ()=>{
+  /* ---------- 0. PRELOADER ---------- */
+  window.addEventListener("load",()=>{
+    const pre   = document.querySelector(".preloader");
+    const fixed = document.querySelector(".logo-fixed");
+    setTimeout(()=>{
+      fixed.classList.add("shrink");   // показываем маленький логотип
+      pre.classList.add("hide");       // убираем тёмный экран
+    },1700);
   });
 
-  /* ---------- COUNTERS ---------- */
-  const counters = [
-    { id: "years",     target: 6   },
-    { id: "projects",  target: 155 },
-    { id: "guarantee", target: 100 }
-  ];
-
-  const counterObserver = new IntersectionObserver((entries, obs) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-
-      counters.forEach(c => {
-        const el   = document.getElementById(c.id);
-        let cur    = 0;
-        const step = Math.ceil(c.target / 50);
-        const tick = () => {
-          cur += step;
-          if (cur >= c.target) { cur = c.target; }
-          el.textContent = cur;
-          if (cur < c.target) requestAnimationFrame(tick);
-        };
-        tick();
-      });
-
-      obs.unobserve(entry.target);          // запускать каждый раз при прокрутке вниз
-      setTimeout(() => obs.observe(entry.target), 1000);
-    });
-  }, { threshold: .5 });
-
-  counterObserver.observe(document.getElementById("stats"));
-
-  /* ---------- FADE-IN ---------- */
-  const fadeObserver = new IntersectionObserver((entries) => {
-    entries.forEach(e => e.isIntersecting && e.target.classList.add("visible"));
+  /* ---------- 1. FADE ON SCROLL ------ */
+  const fadeIO = new IntersectionObserver(es=>{
+    es.forEach(e=>e.isIntersecting && e.target.classList.add("show"));
   },{threshold:.2});
-  document.querySelectorAll(".fade").forEach(el => fadeObserver.observe(el));
+  document.querySelectorAll(".fade").forEach(el=>fadeIO.observe(el));
 
-  /* ---------- PROJECT CARDS ---------- */
+  /* ---------- 2. COUNTERS ------------ */
+  const statIO = new IntersectionObserver(es=>{
+    es.forEach(e=>{
+      if(!e.isIntersecting) return;
+      e.target.querySelectorAll(".num").forEach(runCounter);
+    });
+  },{threshold:.6});
+  statIO.observe(document.getElementById("stats"));
+
+  function runCounter(el){
+    const target = +el.dataset.num;
+    let cur = 0, step = Math.max(1,Math.ceil(target/60));
+    const tick = ()=>{ cur+=step; el.textContent = cur>=target?target:cur; if(cur<target) requestAnimationFrame(tick);}
+    tick();
+  }
+
+  /* ---------- 3. PROJECTS ------------ */
   const projects = [
-    { slug:"luchi",     title:"Квартира в ЖК «Лучи»" },
-    { slug:"meshchera", title:"ЖК «Мещера»"         },
-    { slug:"oktava",    title:"ЖК «Октава»"         },
-    { slug:"piskunova", title:"Дом на Пискунова"    },
-    { slug:"spa",       title:"Современный дом SPA" },
-    { slug:"tihiy",     title:"Квартира «Тихий уголок»"}
+    {slug:"luchi",     name:"Квартира в ЖК «Лучи»"},
+    {slug:"spa",       name:"Современный дом SPA"},
+    {slug:"oktava",    name:"ЖК «Октава»"},
+    {slug:"meshchera", name:"ЖК «Мещера»"},
+    {slug:"piskunova", name:"Дом на Пискунова"},
+    {slug:"tihiy",     name:"Квартира «Тихий уголок»"}
   ];
+  const wrap = document.querySelector(".projects-wrap");
 
-  const track = document.querySelector(".project-track");
-
-  projects.forEach(p => {
-    const card = document.createElement("a");
-    card.href  = `${p.slug}/index.html`;   // внутри каждой папки свой index.html
-    card.className = "project-card";
-    card.innerHTML = `
-      <h3>${p.title}</h3>
-      <img src="${p.slug}/1.png" alt="${p.title}">
-    `;
-    track.appendChild(card);
+  projects.forEach(p=>{
+    const section = document.createElement("div");
+    section.className="project fade";
+    section.innerHTML = `<h3>${p.name}</h3><div class="gallery autoMove"></div>`;
+    const gal = section.querySelector(".gallery");
+    for(let i=1;i<=8;i++){
+      const src = `${p.slug}/${i}.jpg`;
+      const img = new Image();
+      img.src = src; img.alt = p.name; img.loading="lazy";
+      img.onerror=()=>img.remove();
+      gal.appendChild(img);
+    }
+    // Дублируем изображения, чтобы авто-скролл был бесконечным
+    gal.innerHTML += gal.innerHTML;
+    wrap.appendChild(section);
+    fadeIO.observe(section);
   });
+
+  /* ---------- 4. COLLAGE ------------- */
+  const col = document.querySelector(".collage-col");
+  fetch("collage/")   // не все хосты отдают листинг; потому вручную:
+    .then(()=>{for(let i=1;i<=11;i++){ addCollage(i); }});
+
+  function addCollage(n){
+    const img = new Image();
+    img.src = `collage/${n}.jpg`;
+    img.loading="lazy";
+    img.onerror=()=>img.remove();
+    col.appendChild(img);
+    fadeIO.observe(img);
+  }
 });
