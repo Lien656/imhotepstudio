@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const preloader = document.querySelector(".preloader");
   const logo = document.querySelector(".preloader-logo");
 
-  // Анимация логотипа и скрытие прелоадера
   setTimeout(() => {
     logo.style.transition = "all 1s ease";
     logo.style.transform = "scale(1.1)";
@@ -12,7 +11,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1000);
   }, 1800);
 
-  // Плавное появление элементов
   const fadeElements = document.querySelectorAll(".fade");
   const fadeIO = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -24,7 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { threshold: 0.3 });
   fadeElements.forEach(el => fadeIO.observe(el));
 
-  // Счётчики
   const stats = document.querySelector("#stats");
   const nums = stats.querySelectorAll(".num");
   let animated = false;
@@ -48,7 +45,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { threshold: 0.5 });
   statsIO.observe(stats);
 
-  // Галереи проектов
   const projects = [
     { name: "Квартира в ЖК «Лучи»", slug: "luchi" },
     { name: "ЖК «Мещера»", slug: "meshchera" },
@@ -74,8 +70,8 @@ document.addEventListener("DOMContentLoaded", () => {
     for (let i = 1; i <= 6; i++) {
       const img = new Image();
       img.src = `${project.slug}/${i}.jpg`;
-      img.onerror = () => img.remove();
       img.loading = "lazy";
+      img.onerror = () => img.remove();
       gallery.appendChild(img);
     }
 
@@ -84,7 +80,7 @@ document.addEventListener("DOMContentLoaded", () => {
     fadeIO.observe(block);
 
     let scrollInterval;
-    const startAutoScroll = () => {
+    const startScroll = () => {
       scrollInterval = setInterval(() => {
         gallery.scrollLeft += 1;
         if (gallery.scrollLeft + gallery.clientWidth >= gallery.scrollWidth) {
@@ -94,11 +90,10 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     gallery.addEventListener("mouseenter", () => clearInterval(scrollInterval));
-    gallery.addEventListener("mouseleave", startAutoScroll);
-    startAutoScroll();
+    gallery.addEventListener("mouseleave", startScroll);
+    startScroll();
   });
 
-  // Коллаж
   const col = document.querySelector(".collage-col");
   const hero = new Image();
   hero.src = "collage/collage-full.jpg";
