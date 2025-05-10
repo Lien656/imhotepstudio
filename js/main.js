@@ -2,17 +2,17 @@ document.addEventListener("DOMContentLoaded", () => {
   const preloader = document.querySelector(".preloader");
   const logo = document.querySelector(".preloader-logo");
 
-  // исчезновение прелоадера и логотипа
+  // Анимация логотипа и скрытие прелоадера
   setTimeout(() => {
     logo.style.transition = "all 1s ease";
-    logo.style.transform = "scale(0.7) translate(-200px, -200px)";
+    logo.style.transform = "scale(1.1)";
     logo.style.opacity = "0";
     setTimeout(() => {
       preloader.classList.add("hide");
     }, 1000);
   }, 1800);
 
-  // появление fade-блоков
+  // Плавное появление элементов
   const fadeElements = document.querySelectorAll(".fade");
   const fadeIO = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -24,11 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { threshold: 0.3 });
   fadeElements.forEach(el => fadeIO.observe(el));
 
-  // счётчики
+  // Счётчики
   const stats = document.querySelector("#stats");
   const nums = stats.querySelectorAll(".num");
   let animated = false;
-
   const statsIO = new IntersectionObserver((entries) => {
     if (entries[0].isIntersecting && !animated) {
       nums.forEach(el => {
@@ -49,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { threshold: 0.5 });
   statsIO.observe(stats);
 
-  // галереи проектов
+  // Галереи проектов
   const projects = [
     { name: "Квартира в ЖК «Лучи»", slug: "luchi" },
     { name: "ЖК «Мещера»", slug: "meshchera" },
@@ -76,6 +75,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const img = new Image();
       img.src = `${project.slug}/${i}.jpg`;
       img.onerror = () => img.remove();
+      img.loading = "lazy";
       gallery.appendChild(img);
     }
 
@@ -83,26 +83,22 @@ document.addEventListener("DOMContentLoaded", () => {
     wrap.appendChild(block);
     fadeIO.observe(block);
 
-    // автопрокрутка
-    let autoScroll = setInterval(() => {
-      gallery.scrollLeft += 1;
-      if (gallery.scrollLeft + gallery.clientWidth >= gallery.scrollWidth) {
-        gallery.scrollLeft = 0;
-      }
-    }, 30);
-
-    gallery.addEventListener("mouseenter", () => clearInterval(autoScroll));
-    gallery.addEventListener("mouseleave", () => {
-      autoScroll = setInterval(() => {
+    let scrollInterval;
+    const startAutoScroll = () => {
+      scrollInterval = setInterval(() => {
         gallery.scrollLeft += 1;
         if (gallery.scrollLeft + gallery.clientWidth >= gallery.scrollWidth) {
           gallery.scrollLeft = 0;
         }
       }, 30);
-    });
+    };
+
+    gallery.addEventListener("mouseenter", () => clearInterval(scrollInterval));
+    gallery.addEventListener("mouseleave", startAutoScroll);
+    startAutoScroll();
   });
 
-  // коллаж
+  // Коллаж
   const col = document.querySelector(".collage-col");
   const hero = new Image();
   hero.src = "collage/collage-full.jpg";
