@@ -4,8 +4,15 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>IMHOTEP STUDIO</title>
+
+  <!-- СТИЛИ -->
   <link rel="stylesheet" href="css/style.css" />
-  <link rel="preload" href="fonts/MagistralC-Bold.woff2" as="font" type="font/woff2" crossorigin />
+
+  <!-- ШРИФТ (в имени ФАЙЛА пробел, не тире!) -->
+  <link rel="preload"
+        href="fonts/MagistralC Bold.woff2"
+        as="font" type="font/woff2" crossorigin />
+
   <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
@@ -15,10 +22,13 @@
     <img src="logo.png" alt="Logo" class="preloader-logo" />
   </div>
 
+  <!-- Логотип, который будет «обитать» в центре шапки -->
+  <div class="logo-container">
+    <img src="logo.png" alt="Logo" />
+  </div>
+
+  <!-- Шапка -->
   <header>
-    <div class="logo-container">
-      <img src="logo.png" alt="Logo" />
-    </div>
     <div class="header-links">
       <a href="#about">О нас</a>
       <a href="#projects">Проекты</a>
@@ -27,39 +37,50 @@
   </header>
 
   <main>
+    <!-- HERO -->
     <section class="hero fade">
       <h1 class="title typing">IMHOTEP STUDIO</h1>
       <p class="subtitle typing">Архитектурно-дизайнерская студия</p>
       <a href="#projects" class="btn">Смотреть проекты</a>
     </section>
 
+    <!-- О НАС -->
     <section id="about" class="about-section fade">
       <h2 class="about-title typing">О студии</h2>
       <div class="about-boxes">
         <div class="about-box fade">
-          IMHOTEP — имя архитектора, признанного богом. И мы продолжаем эту линию. Наша команда объединяет опыт и эстетику, следит за мировыми тенденциями, но остаётся верной своей философии — минимализму, смыслу и точности.
+          IMHOTEP — имя архитектора, признанного богом. Мы продолжаем эту линию.
+          Наша команда объединяет опыт и эстетику, остаётся верной философии
+          минимализма, смысла и точности.
         </div>
         <div class="about-box fade">
-          Каждый проект — это штучная работа, в которой нет случайных решений. Мы ценим идею, глубину и форму. Познакомьтесь с нами ближе — 
+          Каждый проект — штучная работа без случайных решений. Ценим идею,
+          глубину и форму. Ближе — 
           <a href="https://instagram.com/imhotep_studiokg" target="_blank">@imhotep_studiokg</a>
         </div>
       </div>
     </section>
 
+    <!-- ПРОЕКТЫ -->
     <section id="projects" class="projects-section fade">
-      <!-- Здесь ты вставишь блоки проектов с горизонтальной прокруткой -->
+      <h2 class="project-title">Наши проекты</h2>
+      <!-- Горизонтальная лента JS добавит автоматически -->
+      <div class="project-track"></div>
     </section>
 
+    <!-- КОЛЛАЖ -->
     <section class="collage fade">
       <img src="collage/collage-full.jpg" alt="Коллаж" />
     </section>
 
- <section class="stats fade" id="stats">
-  <div class="counter"><span id="years">0</span> лет опыта</div>
-  <div class="counter"><span id="projects">0</span> проектов</div>
-  <div class="counter"><span id="guarantee">0</span>% гарантия</div>
-</section>
+    <!-- СТАТИСТИКА -->
+    <section class="stats fade" id="stats">
+      <div class="counter"><span id="years">0</span> лет опыта</div>
+      <div class="counter"><span id="projects">0</span> проектов</div>
+      <div class="counter"><span id="guarantee">0</span>% гарантия</div>
+    </section>
 
+    <!-- КОНТАКТЫ -->
     <section class="contact fade" id="contact">
       <h2>Связаться с нами</h2>
       <p>Телефон: <a href="tel:+996700123456">+996 700 123 456</a></p>
@@ -71,6 +92,7 @@
       </div>
     </section>
 
+    <!-- ФОРМА -->
     <section class="form fade">
       <h2>Оставьте заявку</h2>
       <p>и мы свяжемся с вами</p>
@@ -84,58 +106,7 @@
     </section>
   </main>
 
-  <!-- 🔥 Встроенный JS для прелоадера и fade -->
-  <script>
-    window.addEventListener("load", () => {
-      const preloader = document.querySelector(".preloader");
-      const logo = document.querySelector(".preloader-logo");
-      setTimeout(() => {
-        logo.classList.add("logo-mini");
-        preloader.classList.add("preloader-hide");
-      }, 1500);
-
-      // Счётчики
-      const counters = [
-        { id: "years", target: 6 },
-        { id: "projects", target: 155 },
-        { id: "guarantee", target: 100 }
-      ];
-
-      const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            counters.forEach(counter => {
-              const el = document.getElementById(counter.id);
-              let count = 0;
-              const step = Math.ceil(counter.target / 50);
-              const interval = setInterval(() => {
-                count += step;
-                if (count >= counter.target) {
-                  count = counter.target;
-                  clearInterval(interval);
-                }
-                el.textContent = count;
-              }, 40);
-            });
-            obs.disconnect();
-          }
-        });
-      }, { threshold: 0.5 });
-
-      observer.observe(document.getElementById("stats"));
-
-      // fade
-      const faders = document.querySelectorAll(".fade");
-      const fadeObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          }
-        });
-      }, { threshold: 0.2 });
-
-      faders.forEach(el => fadeObserver.observe(el));
-    });
-  </script>
+  <!-- Скрипты -->
+  <script src="js/main.js"></script>
 </body>
 </html>
