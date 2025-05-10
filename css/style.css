@@ -40,7 +40,9 @@ img {
 
 .preloader-logo {
   width: 200px;
-  transition: all 1s ease;
+  opacity: 0;
+  transform: scale(0.9);
+  animation: logoIn 1.3s ease forwards;
 }
 
 .logo-mini {
@@ -52,6 +54,8 @@ img {
 .preloader-hide {
   opacity: 0;
   pointer-events: none;
+  visibility: hidden;
+  z-index: -1;
 }
 
 /* Шапка */
@@ -255,6 +259,13 @@ button:hover {
   100% { transform: translateX(-50%); }
 }
 
+@keyframes logoIn {
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
 .fade {
   opacity: 0;
   transform: translateY(30px);
@@ -264,10 +275,4 @@ button:hover {
 .fade.visible {
   opacity: 1;
   transform: translateY(0);
-}
-.preloader-hide {
-  opacity: 0;
-  pointer-events: none;
-  visibility: hidden;
-  z-index: -1;
 }
