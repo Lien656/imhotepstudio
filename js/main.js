@@ -75,33 +75,42 @@ document.addEventListener("DOMContentLoaded", () => {
       const img = new Image();
       img.src = `${project.slug}/${i}.jpg`;
       img.loading = "lazy";
-      img.onerror = () => img.remove();   // удаляем «битые» картинки
+      img.onerror = () => img.remove();
       gallery.appendChild(img);
     }
 
     block.appendChild(gallery);
     wrap.appendChild(block);
 
-    fadeIO.observe(block);       // подключаем fade к самому проекту
+    fadeIO.observe(block);
 
-    /* автопрокрутка */
-    let scrollInterval;
-    const startScroll = () => {
-      scrollInterval = setInterval(() => {
-        gallery.scrollLeft += 1;
-        if (gallery.scrollLeft + gallery.clientWidth >= gallery.scrollWidth) {
-          gallery.scrollLeft = 0;
-        }
-      }, 30);
+    /* --- автопрокрутка & управление колесом --- */
+    let index = 0, timer;
+    const slide = () => {
+      index = (index + 1) % gallery.children.length;
+      gallery.scrollTo({
+        left: index * gallery.clientWidth,
+        behavior: 'smooth'
+      });
     };
-    gallery.addEventListener("mouseenter", () => clearInterval(scrollInterval));
-    gallery.addEventListener("mouseleave", startScroll);
-    startScroll();
+    const start = () => { timer = setInterval(slide, 4000); };
+    const stop  = () => clearInterval(timer);
+
+    gallery.addEventListener('mouseenter', stop);
+    gallery.addEventListener('mouseleave', start);
+    start();
+
+    /* вертикальное колесо → горизонтальный скролл */
+    gallery.addEventListener('wheel', e => {
+      if (e.deltaY !== 0) {
+        e.preventDefault();
+        gallery.scrollLeft += e.deltaY;
+      }
+    }, { passive: false });
   });
 
-  /* --- КЛЮЧЕВОЕ ДОБАВЛЕНИЕ --- */
   /* после генерации контента «включаем» секцию проектов */
-  document.querySelector("#projects").classList.add("show");
+  document.querySelector('#projects').classList.add('show');
 
   /* ---------- Коллаж ---------- */
   const col   = document.querySelector(".collage-col");
