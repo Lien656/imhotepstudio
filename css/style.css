@@ -1,3 +1,4 @@
+
 /* ---------------- Шрифт и базовые переменные ---------------- */
 @font-face{
   font-family:"MagistralC";
@@ -18,8 +19,8 @@ html,body{scroll-behavior:smooth}
 /* ---------------- Фон ---------------- */
 body{
   font-family:"MagistralC",sans-serif;
-  background:var(--bg) url("../background.jpg") center/cover no-repeat;
-  background-attachment:fixed;
+  background:var(--bg) url("../background.jpg") center top/cover no-repeat;
+  background-attachment:scroll;
   color:var(--text);
   overflow-x:hidden;
 }
@@ -96,13 +97,6 @@ button:hover{filter:brightness(1.15)}
 
 /* ---------------- Адаптив ---------------- */
 @media (max-width:768px){
-  /* фон не растягивается и не мылится на мобильных */
-  body{
-    background-attachment:scroll;
-    background-size:contain;
-    background-position:center top;
-  }
-
   .stats{flex-direction:column;gap:40px}
   .gallery img{height:55vh}
   .collage{column-count:2}
