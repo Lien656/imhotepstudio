@@ -38,7 +38,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   observer.observe(document.getElementById("stats"));
 
-  // Появление блоков
   const faders = document.querySelectorAll(".fade");
   const fadeObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
