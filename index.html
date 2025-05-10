@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>IMHOTEP STUDIO</title>
 
+  <!-- стили -->
   <link rel="stylesheet" href="css/style.css" />
 
+  <!-- шрифт -->
   <link rel="preload"
         href="fonts/MagistralC Bold.woff2"
         as="font" type="font/woff2" crossorigin />
@@ -20,7 +22,7 @@
     <img src="logo.png" alt="logo" class="preloader-logo">
   </div>
 
-  <!-- якорное меню -->
+  <!-- верхнее меню -->
   <header>
     <nav>
       <a href="#about">О студии</a>
@@ -43,7 +45,8 @@
 
       <div class="about-box">
         IMHOTEP — имя архитектора, признанного богом. Мы продолжаем эту линию.
-        Команда объединяет опыт и эстетику, остаётся верной минимализму, смыслу и точности.
+        Команда объединяет опыт и эстетику, остаётся верной минимализму,
+        смыслу и точности.
       </div>
 
       <div class="about-box">
@@ -65,12 +68,12 @@
     <!-- проекты -->
     <section id="projects" class="projects fade">
       <h2 class="sec-title">Наши проекты</h2>
-      <div class="projects-wrap"><!-- заполняет JS --></div>
+      <div class="projects-wrap"><!-- добавит JS --></div>
     </section>
 
     <!-- коллаж -->
     <section class="collage fade">
-      <div class="collage-col"><!-- заполняет JS --></div>
+      <div class="collage-col"><!-- добавит JS --></div>
     </section>
 
     <!-- заявка -->
@@ -78,7 +81,8 @@
       <h2 class="sec-title">Оставьте заявку</h2>
       <p  class="sec-sub">и мы свяжемся с вами</p>
 
-      <form id="contact-form" action="https://formspree.io/f/your-code" method="POST">
+      <!-- !!! замените YOUR_HASH на реальный hash из Formspree -->
+      <form id="contact-form" action="https://formspree.io/f/YOUR_HASH" method="POST">
         <input  type="text"  name="name"     placeholder="Имя"      required>
         <input  type="email" name="email"    placeholder="Email"    required>
         <input  type="tel"   name="phone"    placeholder="Телефон"  required>
