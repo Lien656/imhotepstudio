@@ -84,21 +84,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
     fadeIO.observe(block);
 
-    /* --- автопрокрутка & управление колесом --- */
+    /* ---------- автоплей, запускаем только когда лента видна ---------- */
     let index = 0, timer;
+
     const slide = () => {
       index = (index + 1) % gallery.children.length;
-      gallery.scrollTo({
-        left: index * gallery.clientWidth,
-        behavior: 'smooth'
-      });
+      gallery.scrollTo({ left: index * gallery.clientWidth, behavior: 'smooth' });
     };
     const start = () => { timer = setInterval(slide, 4000); };
     const stop  = () => clearInterval(timer);
 
+    /* наблюдаем сам gallery */
+    const galleryIO = new IntersectionObserver(ent => {
+      if (ent[0].isIntersecting) start(); else stop();
+    }, { threshold: 0.5 });
+    galleryIO.observe(gallery);
+
     gallery.addEventListener('mouseenter', stop);
     gallery.addEventListener('mouseleave', start);
-    start();
 
     /* вертикальное колесо → горизонтальный скролл */
     gallery.addEventListener('wheel', e => {
