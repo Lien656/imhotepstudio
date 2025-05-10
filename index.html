@@ -8,7 +8,7 @@
   <!-- СТИЛИ -->
   <link rel="stylesheet" href="css/style.css" />
 
-  <!-- ШРИФТ (в имени ФАЙЛА пробел, не тире!) -->
+  <!-- ШРИФТ (имя с ПРОБЕЛОМ!) -->
   <link rel="preload"
         href="fonts/MagistralC Bold.woff2"
         as="font" type="font/woff2" crossorigin />
@@ -17,96 +17,97 @@
 </head>
 <body>
 
-  <!-- Прелоадер -->
+  <!-- 🌀 Прелоадер -->
   <div class="preloader">
-    <img src="logo.png" alt="Logo" class="preloader-logo" />
+    <img src="logo.png" alt="IMHOTEP logo" class="preloader-logo">
   </div>
 
-  <!-- Логотип, который будет «обитать» в центре шапки -->
-  <div class="logo-container">
-    <img src="logo.png" alt="Logo" />
-  </div>
+  <!-- фикс-лого (после прелоадера сядет влево-верх) -->
+  <div class="logo-fixed"><img src="logo.png" alt="logo fixed"></div>
 
-  <!-- Шапка -->
+  <!-- 🔗 Якорный header -->
   <header>
-    <div class="header-links">
-      <a href="#about">О нас</a>
+    <nav>
+      <a href="#about">О студии</a>
       <a href="#projects">Проекты</a>
       <a href="#contact">Контакты</a>
-    </div>
+    </nav>
   </header>
 
   <main>
-    <!-- HERO -->
+    <!-- 🌄 Hero -->
     <section class="hero fade">
-      <h1 class="title typing">IMHOTEP STUDIO</h1>
-      <p class="subtitle typing">Архитектурно-дизайнерская студия</p>
+      <h1 class="hero-title typing">IMHOTEP STUDIO</h1>
+      <p  class="hero-sub typing">Архитектурно-дизайнерская студия</p>
       <a href="#projects" class="btn">Смотреть проекты</a>
     </section>
 
-    <!-- О НАС -->
-    <section id="about" class="about-section fade">
-      <h2 class="about-title typing">О студии</h2>
-      <div class="about-boxes">
-        <div class="about-box fade">
-          IMHOTEP — имя архитектора, признанного богом. Мы продолжаем эту линию.
-          Наша команда объединяет опыт и эстетику, остаётся верной философии
-          минимализма, смысла и точности.
-        </div>
-        <div class="about-box fade">
-          Каждый проект — штучная работа без случайных решений. Ценим идею,
-          глубину и форму. Ближе — 
-          <a href="https://instagram.com/imhotep_studiokg" target="_blank">@imhotep_studiokg</a>
-        </div>
+    <!-- 🧾 О студии -->
+    <section id="about" class="about fade">
+      <h2 class="sec-title">О студии</h2>
+
+      <div class="about-box">
+        IMHOTEP — имя архитектора, признанного богом. Мы продолжаем эту линию.
+        Наша команда объединяет опыт и эстетику, остаётся верной философии минимализма,
+        смысла и точности.
       </div>
+
+      <div class="about-box">
+        Каждый проект — штучная работа без случайных решений.
+        Ценим идею, глубину и форму. Ближе —
+        <a href="https://instagram.com/imhotep_studiokg" target="_blank">@imhotep_studiokg</a>
+      </div>
+
+      <img src="qr.png" alt="QR Instagram" class="qr">
     </section>
 
-    <!-- ПРОЕКТЫ -->
-    <section id="projects" class="projects-section fade">
-      <h2 class="project-title">Наши проекты</h2>
-      <!-- Горизонтальная лента JS добавит автоматически -->
-      <div class="project-track"></div>
+    <!-- 📊 Счётчики -->
+    <section id="stats" class="stats fade">
+      <div class="stat"><span class="num" data-num="155">0</span><span>проектов</span></div>
+      <div class="stat"><span class="num" data-num="6">0</span><span>лет работы</span></div>
+      <div class="stat"><span class="num" data-num="100">0</span><span>% гарантия</span></div>
     </section>
 
-    <!-- КОЛЛАЖ -->
+    <!-- 🖼 Наши проекты -->
+    <section id="projects" class="projects fade">
+      <h2 class="sec-title">Наши проекты</h2>
+      <div class="projects-wrap"><!-- JS подставит карточки --></div>
+    </section>
+
+    <!-- 🧩 Коллаж -->
     <section class="collage fade">
-      <img src="collage/collage-full.jpg" alt="Коллаж" />
+      <!-- все .jpg в папке /collage/ выводим динамически -->
+      <div class="collage-col"><!-- JS заполняет --></div>
     </section>
 
-    <!-- СТАТИСТИКА -->
-    <section class="stats fade" id="stats">
-      <div class="counter"><span id="years">0</span> лет опыта</div>
-      <div class="counter"><span id="projects">0</span> проектов</div>
-      <div class="counter"><span id="guarantee">0</span>% гарантия</div>
-    </section>
+    <!-- ✉️ Форма заявки -->
+    <section class="form-block fade">
+      <h2 class="sec-title">Оставьте заявку</h2>
+      <p class="sec-sub">и мы свяжемся с вами</p>
 
-    <!-- КОНТАКТЫ -->
-    <section class="contact fade" id="contact">
-      <h2>Связаться с нами</h2>
-      <p>Телефон: <a href="tel:+996700123456">+996 700 123 456</a></p>
-      <p>Email: <a href="mailto:imhotep.studio.design@gmail.com">imhotep.studio.design@gmail.com</a></p>
-      <p>Instagram: <a href="https://instagram.com/imhotep_studiokg" target="_blank">@imhotep_studiokg</a></p>
-      <div class="messengers">
-        <a href="https://wa.me/996700123456" target="_blank">WhatsApp</a>
-        <a href="https://t.me/imhotepstudio" target="_blank">Telegram</a>
-      </div>
-    </section>
-
-    <!-- ФОРМА -->
-    <section class="form fade">
-      <h2>Оставьте заявку</h2>
-      <p>и мы свяжемся с вами</p>
-      <form id="contact-form">
-        <input type="text" name="name" placeholder="Имя" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <input type="tel" name="phone" placeholder="Телефон" required>
-        <textarea name="message" placeholder="Сообщение" required></textarea>
+      <form id="contact-form" action="https://formspree.io/f/your-code" method="POST">
+        <input  type="text"     name="name"     placeholder="Имя"      required>
+        <input  type="email"    name="email"    placeholder="Email"    required>
+        <input  type="tel"      name="phone"    placeholder="Телефон"  required>
+        <textarea name="message" placeholder="Сообщение"               required></textarea>
         <button type="submit">Отправить</button>
       </form>
     </section>
+
+    <!-- 📞 Контакты -->
+    <section id="contact" class="contact fade">
+      <div class="contact-box">
+        <p>Телефон: <a href="tel:+996700123456">+996 700 123 456</a></p>
+        <p>Email: <a href="mailto:imhotep.studio.design@gmail.com">imhotep.studio.design@gmail.com</a></p>
+        <p>Instagram: <a href="https://instagram.com/imhotep_studiokg" target="_blank">@imhotep_studiokg</a></p>
+        <p class="messengers">
+          <a href="https://wa.me/996700123456" target="_blank">WhatsApp</a>
+          <a href="https://t.me/imhotepstudio" target="_blank">Telegram</a>
+        </p>
+      </div>
+    </section>
   </main>
 
-  <!-- Скрипты -->
   <script src="js/main.js"></script>
 </body>
 </html>
