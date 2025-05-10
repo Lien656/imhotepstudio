@@ -1,113 +1,109 @@
 document.addEventListener("DOMContentLoaded", () => {
-  /* ─ 1. прелоадер ───────────────────────────────────────── */
-  window.addEventListener("load", () => {
-    const pre = document.querySelector(".preloader");
-    setTimeout(() => pre.classList.add("hide"), 1000);
-    pre.addEventListener("transitionend", () => pre.remove());
-  });
+  const preloader = document.querySelector(".preloader");
+  const logo = document.querySelector(".preloader-logo");
 
-  /* ─ 2. плавное появление элементов ─────────────────────── */
-  const fadeIO = new IntersectionObserver(
-    (e) => e.forEach((i) => i.isIntersecting && i.target.classList.add("show")),
-    { threshold: 0.2 }
-  );
-  document.querySelectorAll(".fade").forEach((el) => fadeIO.observe(el));
+  // исчезновение прелоадера и логотипа
+  setTimeout(() => {
+    logo.style.transition = "all 1s ease";
+    logo.style.transform = "scale(0.7) translate(-200px, -200px)";
+    logo.style.opacity = "0";
+    setTimeout(() => {
+      preloader.classList.add("hide");
+    }, 1000);
+  }, 1800);
 
-  /* ─ 3. счётчики ─────────────────────────────────────────── */
-  const statIO = new IntersectionObserver(
-    (e) => {
-      e.forEach((i) => {
-        if (!i.isIntersecting) return;
-        i.target.querySelectorAll(".num").forEach((el) => animate(el));
+  // появление fade-блоков
+  const fadeElements = document.querySelectorAll(".fade");
+  const fadeIO = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+        fadeIO.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  fadeElements.forEach(el => fadeIO.observe(el));
+
+  // счётчики
+  const stats = document.querySelector("#stats");
+  const nums = stats.querySelectorAll(".num");
+  let animated = false;
+
+  const statsIO = new IntersectionObserver((entries) => {
+    if (entries[0].isIntersecting && !animated) {
+      nums.forEach(el => {
+        const target = +el.dataset.num;
+        let count = 0;
+        const step = Math.ceil(target / 40);
+        const interval = setInterval(() => {
+          count += step;
+          el.textContent = count > target ? target : count;
+          if (count >= target) clearInterval(interval);
+        }, 40);
       });
-    },
-    { threshold: 0.6 }
-  );
-  statIO.observe(document.getElementById("stats"));
+      animated = true;
+    } else if (!entries[0].isIntersecting) {
+      animated = false;
+      nums.forEach(el => el.textContent = "0");
+    }
+  }, { threshold: 0.5 });
+  statsIO.observe(stats);
 
-  function animate(el) {
-    const end = +el.dataset.num;
-    let cur = 0,
-      step = Math.max(1, Math.ceil(end / 60));
-    (function tick() {
-      cur += step;
-      el.textContent = cur >= end ? end : cur;
-      if (cur < end) requestAnimationFrame(tick);
-    })();
-  }
-
-  /* ─ 4. проекты ──────────────────────────────────────────── */
+  // галереи проектов
   const projects = [
-    { slug: "luchi", name: "Квартира в ЖК «Лучи»" },
-    { slug: "spa", name: "Современный дом SPA" },
-    { slug: "oktava", name: "ЖК «Октава»" },
-    { slug: "meshchera", name: "ЖК «Мещера»" },
-    { slug: "piskunova", name: "Дом на Пискунова" },
-    { slug: "tihiy", name: "Квартира «Тихий уголок»" },
+    { name: "Квартира в ЖК «Лучи»", slug: "luchi" },
+    { name: "ЖК «Мещера»", slug: "meshchera" },
+    { name: "ЖК «Октава»", slug: "oktava" },
+    { name: "ЖК «Дом на Пискунова»", slug: "piskunova" },
+    { name: "Современный дом с зоной SPA", slug: "spa" },
+    { name: "Квартира в ЖК «Тихий уголок»", slug: "tihiy" }
   ];
+
   const wrap = document.querySelector(".projects-wrap");
 
-  projects.forEach((p) => {
-    const sec = document.createElement("div");
-    sec.className = "project fade";
-    sec.innerHTML = `<h3>${p.name}</h3><div class="gallery"></div>`;
-    const g = sec.querySelector(".gallery");
+  projects.forEach(project => {
+    const block = document.createElement("div");
+    block.className = "project fade";
 
-    /* грузим 1-8.jpg (если файла нет, quietly skip) */
-    for (let i = 1; i <= 8; i++) {
+    const title = document.createElement("h3");
+    title.textContent = project.name;
+    block.appendChild(title);
+
+    const gallery = document.createElement("div");
+    gallery.className = "gallery";
+    gallery.addEventListener("mouseenter", () => clearInterval(autoScroll));
+    gallery.addEventListener("mouseleave", () => startScroll(gallery));
+
+    for (let i = 1; i <= 7; i++) {
       const img = new Image();
-      img.src = `${p.slug}/${i}.jpg`;
-      img.alt = p.name;
-      img.loading = "lazy";
+      img.src = `${project.slug}/${i}.jpg`;
       img.onerror = () => img.remove();
-      g.appendChild(img);
+      gallery.appendChild(img);
     }
 
-    /* авто-скролл + drag/wheel */
-    let auto = startAuto();
-    function startAuto() {
-      return setInterval(() => (g.scrollLeft += 1), 20); // ~50 px/с
-    }
-    let down = false,
-      startX,
-      startScroll;
-    g.addEventListener("pointerdown", (e) => {
-      down = true;
-      startX = e.pageX;
-      startScroll = g.scrollLeft;
-      clearInterval(auto);
-      g.setPointerCapture(e.pointerId);
-    });
-    g.addEventListener("pointermove", (e) => {
-      if (!down) return;
-      g.scrollLeft = startScroll - (e.pageX - startX);
-    });
-    ["pointerup", "wheel"].forEach((ev) =>
-      g.addEventListener(ev, () => {
-        down = false;
-        clearInterval(auto);
-        auto = startAuto();
-      })
-    );
-
-    wrap.appendChild(sec);
-    fadeIO.observe(sec);
+    block.appendChild(gallery);
+    wrap.appendChild(block);
+    fadeIO.observe(block);
+    startScroll(gallery);
   });
 
-  /* ─ 5. коллаж ───────────────────────────────────────────── */
-  const col = document.querySelector(".collage-col");
+  function startScroll(container) {
+    let scrollSpeed = 1;
+    let autoScroll = setInterval(() => {
+      container.scrollLeft += scrollSpeed;
+      if (container.scrollLeft + container.clientWidth >= container.scrollWidth) {
+        container.scrollLeft = 0;
+      }
+    }, 30);
+    container.dataset.scroll = autoScroll;
+  }
 
-  /* сначала пробуем collage-full.jpg */
+  // коллаж
+  const col = document.querySelector(".collage-col");
   const hero = new Image();
   hero.src = "collage/collage-full.jpg";
-  hero.loading = "lazy";
-  hero.onload = () => {
-    hero.style.borderRadius = "12px";
-    col.appendChild(hero);
-    fadeIO.observe(hero);
-  };
+  hero.onload = () => col.appendChild(hero);
   hero.onerror = () => {
-    /* если его нет, берём 1-11.jpg */
     for (let i = 1; i <= 11; i++) {
       const img = new Image();
       img.src = `collage/${i}.jpg`;
@@ -116,5 +112,5 @@ document.addEventListener("DOMContentLoaded", () => {
       col.appendChild(img);
       fadeIO.observe(img);
     }
-  }
+  };
 });
