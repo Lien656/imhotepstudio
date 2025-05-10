@@ -18,9 +18,8 @@ html,body{scroll-behavior:smooth}
 /* ---------------- Фон ---------------- */
 body{
   font-family:"MagistralC",sans-serif;
-  /* ↓ убрал fixed, вынес отдельным свойством */
-  background:var(--bg) url("../background.jpg") center/cover no-repeat; /* ← изменено */
-  background-attachment:fixed;                                            /* ← добавлено */
+  background:var(--bg) url("../background.jpg") center/cover no-repeat;
+  background-attachment:fixed;
   color:var(--text);
   overflow-x:hidden;
 }
@@ -96,8 +95,14 @@ button:hover{filter:brightness(1.15)}
 .fade.show{opacity:1;transform:none}
 
 /* ---------------- Адаптив ---------------- */
-@media(max-width:768px){
-  body{background-attachment:scroll;}       /* ← добавлено */
+@media (max-width:768px){
+  /* фон не растягивается и не мылится на мобильных */
+  body{
+    background-attachment:scroll;
+    background-size:contain;
+    background-position:center top;
+  }
+
   .stats{flex-direction:column;gap:40px}
   .gallery img{height:55vh}
   .collage{column-count:2}
