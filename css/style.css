@@ -265,3 +265,9 @@ button:hover {
   opacity: 1;
   transform: translateY(0);
 }
+.preloader-hide {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  z-index: -1;
+}
