@@ -1,79 +1,73 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded",()=>{
 
-  /* ─ 1. прелоадер ─────────────────────── */
-  window.addEventListener("load", () => {
-    setTimeout(() => {
-      document.querySelector(".preloader").classList.add("hide");
-    }, 1100);                     // 1.1 сек и сразу сайт
+  /* 1. прелоадер */
+  window.addEventListener("load",()=>{
+    const pre=document.querySelector(".preloader");
+    setTimeout(()=>{pre.classList.add("hide")},1100);
+    pre.addEventListener("transitionend",()=>pre.remove());
   });
 
-  /* ─ 2. fade-on-scroll ────────────────── */
-  const fIO = new IntersectionObserver(e =>
-    e.forEach(i => i.isIntersecting && i.target.classList.add("show")),
-    {threshold:.2});
-  document.querySelectorAll(".fade").forEach(el => fIO.observe(el));
+  /* 2. fade */
+  const fadeIO=new IntersectionObserver(e=>e.forEach(i=>i.isIntersecting&&i.target.classList.add("show")),{threshold:.2});
+  document.querySelectorAll(".fade").forEach(el=>fadeIO.observe(el));
 
-  /* ─ 3. counters ──────────────────────── */
-  const sIO = new IntersectionObserver(e=>{
+  /* 3. counters */
+  const statIO=new IntersectionObserver(e=>{
     e.forEach(i=>{
       if(!i.isIntersecting) return;
-      i.target.querySelectorAll(".num").forEach(run);
+      i.target.querySelectorAll(".num").forEach(el=>{
+        const end=+el.dataset.num;let cur=0,step=Math.max(1,Math.ceil(end/60));
+        (function t(){cur+=step;el.textContent=cur>=end?end:cur;if(cur<end)requestAnimationFrame(t)})();});
     });
   },{threshold:.6});
-  sIO.observe(document.getElementById("stats"));
+  statIO.observe(document.getElementById("stats"));
 
-  function run(el){
-    const end=+el.dataset.num; let cur=0,step=Math.max(1,Math.ceil(end/60));
-    (function tick(){ cur+=step; el.textContent=cur>=end?end:cur;
-      if(cur<end) requestAnimationFrame(tick);
-    })();
-  }
-
-  /* ─ 4. проекты ───────────────────────── */
-  const data = [
-    {slug:"luchi",     name:"Квартира в ЖК «Лучи»"},
-    {slug:"spa",       name:"Современный дом SPA"},
-    {slug:"oktava",    name:"ЖК «Октава»"},
-    {slug:"meshchera", name:"ЖК «Мещера»"},
-    {slug:"piskunova", name:"Дом на Пискунова"},
-    {slug:"tihiy",     name:"Квартира «Тихий уголок»"}
+  /* 4. проекты */
+  const projects=[
+    {slug:"luchi",name:"Квартира в ЖК «Лучи»"},
+    {slug:"spa",name:"Современный дом SPA"},
+    {slug:"oktava",name:"ЖК «Октава»"},
+    {slug:"meshchera",name:"ЖК «Мещера»"},
+    {slug:"piskunova",name:"Дом на Пискунова"},
+    {slug:"tihiy",name:"Квартира «Тихий уголок»"}
   ];
-  const wrap = document.querySelector(".projects-wrap");
+  const wrap=document.querySelector(".projects-wrap");
 
-  data.forEach(p=>{
-    const sec = document.createElement("div");
+  projects.forEach(p=>{
+    const sec=document.createElement("div");
     sec.className="project fade";
     sec.innerHTML=`<h3>${p.name}</h3><div class="gallery"></div>`;
-    const g = sec.querySelector(".gallery");
+    const g=sec.querySelector(".gallery");
 
-    // загружаем 1-8.jpg
     for(let i=1;i<=8;i++){
       const img=new Image();
-      img.src=`${p.slug}/${i}.jpg`; img.alt=p.name; img.loading="lazy";
+      img.src=`${p.slug}/${i}.jpg`;img.alt=p.name;img.loading="lazy";
       img.onerror=()=>img.remove();
       g.appendChild(img);
     }
-    // дублируем для бесконечной ленты
-    g.innerHTML += g.innerHTML;
 
-    // автоскролл + стоп при ручном свайпе
-    const timer=setInterval(()=>{g.scrollLeft+=1},20);
-    g.addEventListener("pointerdown", ()=>clearInterval(timer), {once:true});
+    /* авто + drag */
+    let auto=setInterval(()=>{g.scrollLeft+=1},20);
+    let down=false,startX,scroll;
+    g.addEventListener("pointerdown",e=>{
+      down=true;startX=e.pageX;scroll=g.scrollLeft;clearInterval(auto);
+      g.setPointerCapture(e.pointerId);
+    });
+    g.addEventListener("pointermove",e=>{
+      if(!down)return;
+      g.scrollLeft=scroll-(e.pageX-startX);
+    });
+    g.addEventListener("pointerup",()=>{down=false});
 
     wrap.appendChild(sec);
-    fIO.observe(sec);
+    fadeIO.observe(sec);
   });
 
-  /* ─ 5. коллаж ────────────────────────── */
+  /* 5. коллаж */
   const col=document.querySelector(".collage-col");
-  for(let i=1;i<=11;i++){ add(i); }
-
-  function add(n){
+  for(let i=1;i<=11;i++){
     const img=new Image();
-    img.src=`collage/${n}.jpg`; img.loading="lazy";
-    img.onerror=()=>img.remove();
-    col.appendChild(img);
-    fIO.observe(img);
+    img.src=`collage/${i}.jpg`;img.loading="lazy";img.onerror=()=>img.remove();
+    col.appendChild(img);fadeIO.observe(img);
   }
-
 });
