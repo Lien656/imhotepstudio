@@ -1,53 +1,159 @@
+/* Сброс */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'MagistralC', sans-serif;
+  background: url('../background.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #F4EDE5;
+  overflow-x: hidden;
+}
+
+a {
+  color: #F4EDE5;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
 /* Прелоадер */
 .preloader {
   position: fixed;
-  width: 100vw;
-  height: 100vh;
-  background: #2D2D2D;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #2D2D2D;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 9999;
-  transition: opacity 1.5s ease;
+  transition: opacity 1s ease;
 }
 
 .preloader-logo {
-  width: 35vw; /* логотип теперь не на весь экран */
-  max-width: 300px;
-  height: auto;
-  transition: all 2s ease;
+  width: 200px;
+  transition: all 1s ease;
 }
 
-/* Когда логотип уходит влево */
-.logo.move-left {
-  position: fixed;
-  top: 20px;
-  left: 30px;
+.logo-mini {
   width: 80px;
   opacity: 0.6;
-  transition: all 1.5s ease;
+  transform: translateY(-100px);
 }
 
-.preloader.fade-out {
+.preloader-hide {
   opacity: 0;
   pointer-events: none;
 }
+
+/* Шапка */
+header {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  display: flex;
+  gap: 30px;
+  z-index: 10;
+}
+
+.header-links a {
+  font-size: 1rem;
+  transition: color 0.3s ease;
+}
+
+.header-links a:hover {
+  color: #FFD700;
+}
+
+/* Лого по центру (внутри прелоадера и потом в шапке) */
+.logo-container {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+/* Главный блок */
+.hero {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  gap: 20px;
+}
+
+.title {
+  font-size: 3rem;
+  letter-spacing: 3px;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  opacity: 0.8;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: 1px solid #F4EDE5;
+  border-radius: 30px;
+  font-size: 1rem;
+  margin-top: 20px;
+  transition: background 0.3s ease;
+}
+
+.btn:hover {
+  background: #F4EDE5;
+  color: #2D2D2D;
+}
+
+/* Секции */
+section {
+  padding: 100px 20px;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.about-title, .project-title, .contact h2, .form h2 {
+  font-size: 2rem;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.about-boxes {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.about-box {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 20px;
+  border-radius: 20px;
+  line-height: 1.6;
+}
+
+/* Проекты */
 .project-block {
   margin: 100px 0;
   padding: 0 20px;
   animation: fadeIn 1.5s ease;
 }
 
-.project-title {
-  font-size: 2rem;
-  margin-bottom: 20px;
-  color: #F4EDE5;
-  animation: fadeInUp 1s ease;
-}
-
 .project-gallery {
   overflow-x: auto;
-  overflow-y: hidden;
   white-space: nowrap;
   padding-bottom: 10px;
   -webkit-overflow-scrolling: touch;
@@ -69,6 +175,70 @@
   transform: scale(1.05);
 }
 
+/* Коллаж */
+.collage img {
+  border-radius: 20px;
+  width: 100%;
+}
+
+/* Статистика */
+.stats {
+  display: flex;
+  justify-content: space-around;
+  font-size: 1.5rem;
+  margin-top: 60px;
+}
+
+.counter span {
+  font-size: 2.5rem;
+  font-weight: bold;
+  display: block;
+}
+
+/* Контакты */
+.contact a {
+  color: #F4EDE5;
+  text-decoration: underline;
+}
+
+.messengers a {
+  margin-right: 15px;
+  font-weight: bold;
+}
+
+/* Форма */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+input, textarea {
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid #F4EDE5;
+  border-radius: 10px;
+  color: #F4EDE5;
+  font-family: 'MagistralC', sans-serif;
+}
+
+button {
+  background: transparent;
+  color: #F4EDE5;
+  border: 1px solid #F4EDE5;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+button:hover {
+  background: #F4EDE5;
+  color: #2D2D2D;
+}
+
 /* Анимации */
 @keyframes fadeInUp {
   from { opacity: 0; transform: translateY(30px); }
@@ -83,4 +253,15 @@
 @keyframes scrollX {
   0% { transform: translateX(0); }
   100% { transform: translateX(-50%); }
+}
+
+.fade {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.fade.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
