@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const preloader = document.querySelector(".preloader");
   const logo = document.querySelector(".preloader-logo");
 
-  // исчезновение прелоадера и логотипа
+  // Прелоадер исчезает
   setTimeout(() => {
     logo.style.transition = "all 1s ease";
     logo.style.transform = "scale(0.7) translate(-200px, -200px)";
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }, 1000);
   }, 1800);
 
-  // появление fade-блоков
+  // Плавное появление fade-блоков
   const fadeElements = document.querySelectorAll(".fade");
   const fadeIO = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { threshold: 0.3 });
   fadeElements.forEach(el => fadeIO.observe(el));
 
-  // счётчики
+  // Счётчики
   const stats = document.querySelector("#stats");
   const nums = stats.querySelectorAll(".num");
   let animated = false;
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }, { threshold: 0.5 });
   statsIO.observe(stats);
 
-  // галереи проектов
+  // Проекты
   const projects = [
     { name: "Квартира в ЖК «Лучи»", slug: "luchi" },
     { name: "ЖК «Мещера»", slug: "meshchera" },
@@ -71,10 +71,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const gallery = document.createElement("div");
     gallery.className = "gallery";
-    gallery.addEventListener("mouseenter", () => clearInterval(autoScroll));
+
+    // Сброс прокрутки при наведении
+    gallery.addEventListener("mouseenter", () => {
+      const intervalId = gallery.dataset.scroll;
+      if (intervalId) clearInterval(intervalId);
+    });
+
     gallery.addEventListener("mouseleave", () => startScroll(gallery));
 
-    for (let i = 1; i <= 7; i++) {
+    // Только до 6 изображений
+    for (let i = 1; i <= 6; i++) {
       const img = new Image();
       img.src = `${project.slug}/${i}.jpg`;
       img.onerror = () => img.remove();
@@ -84,21 +91,23 @@ document.addEventListener("DOMContentLoaded", () => {
     block.appendChild(gallery);
     wrap.appendChild(block);
     fadeIO.observe(block);
+
     startScroll(gallery);
   });
 
+  // Автопрокрутка галереи
   function startScroll(container) {
-    let scrollSpeed = 1;
-    let autoScroll = setInterval(() => {
-      container.scrollLeft += scrollSpeed;
+    const speed = 1;
+    const interval = setInterval(() => {
+      container.scrollLeft += speed;
       if (container.scrollLeft + container.clientWidth >= container.scrollWidth) {
         container.scrollLeft = 0;
       }
     }, 30);
-    container.dataset.scroll = autoScroll;
+    container.dataset.scroll = interval;
   }
 
-  // коллаж
+  // Коллаж
   const col = document.querySelector(".collage-col");
   const hero = new Image();
   hero.src = "collage/collage-full.jpg";
