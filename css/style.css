@@ -17,11 +17,31 @@ html,body{scroll-behavior:smooth}
 
 /* ---------------- Фон ---------------- */
 body{
+  position:relative;                   /* чтобы псевдо-элемент ушёл под контент */
   font-family:"MagistralC",sans-serif;
-  background:var(--bg) url("../background.jpg") center top/cover no-repeat;
-  background-attachment:scroll;
+  background:var(--bg);                /* чистый фон, без картинки */
   color:var(--text);
   overflow-x:hidden;
+}
+
+/* подложка с фоновой картинкой */
+body::before{
+  content:"";
+  position:fixed;
+  inset:0;
+  background:url("../background.jpg") center/contain no-repeat;
+  background-attachment:fixed;
+  z-index:-1;                          /* уводим под всё */
+  opacity:0.12;                        /* «картинку почти не видно» */
+  pointer-events:none;                 /* отключаем клики */
+}
+
+/* мобильная адаптация */
+@media (max-width:768px){
+  body::before{
+    background-size:cover;             /* заполняем весь экран */
+    background-position:center top;
+  }
 }
 
 a{color:var(--text)}
