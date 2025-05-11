@@ -17,31 +17,23 @@ html,body{scroll-behavior:smooth}
 
 /* ---------------- Фон ---------------- */
 body{
-  position:relative;                   /* чтобы псевдо-элемент ушёл под контент */
+  position:relative;                   /* псевдо-элемент уходит под контент */
   font-family:"MagistralC",sans-serif;
-  background:var(--bg);                /* чистый фон, без картинки */
+  background:var(--bg);                /* базовый цвет */
   color:var(--text);
   overflow-x:hidden;
 }
 
-/* подложка с фоновой картинкой */
+/* картинка-подложка */
 body::before{
   content:"";
   position:fixed;
   inset:0;
-  background:url("../background.jpg") center/contain no-repeat;
+  background:url("../background.jpg") center/cover no-repeat; /* во-всю площадь */
   background-attachment:fixed;
-  z-index:-1;                          /* уводим под всё */
-  opacity:0.12;                        /* «картинку почти не видно» */
-  pointer-events:none;                 /* отключаем клики */
-}
-
-/* мобильная адаптация */
-@media (max-width:768px){
-  body::before{
-    background-size:cover;             /* заполняем весь экран */
-    background-position:center top;
-  }
+  z-index:-1;
+  opacity:0.28;                        /* регулируйте от 0 до 1 */
+  pointer-events:none;
 }
 
 a{color:var(--text)}
