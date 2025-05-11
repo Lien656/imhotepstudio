@@ -17,22 +17,25 @@ html,body{scroll-behavior:smooth}
 
 /* ---------------- Фон ---------------- */
 body{
-  position:relative;                   /* псевдо-элемент уходит под контент */
+  position:relative;
   font-family:"MagistralC",sans-serif;
-  background:var(--bg);                /* базовый цвет */
+  background:var(--bg);
   color:var(--text);
   overflow-x:hidden;
 }
 
-/* картинка-подложка */
+/* картинка-подложка — с отступом от шапки */
 body::before{
   content:"";
   position:fixed;
-  inset:0;
-  background:url("../background.jpg") center/cover no-repeat; /* ПК — cover */
+  top:120px;            /* ← отступ от верхней панели */
+  left:0;
+  right:0;
+  bottom:0;
+  background:url("../background.jpg") center/cover no-repeat;
   background-attachment:fixed;
   z-index:-1;
-  opacity:0.28;                        /* регулируйте от 0 до 1 */
+  opacity:0.28;
   pointer-events:none;
 }
 
@@ -108,10 +111,12 @@ button:hover{filter:brightness(1.15)}
 
 /* ---------------- Адаптив ---------------- */
 @media (max-width:768px){
-  /* фикс фона для мобильных */
   body::before{
-    background-size:contain;         /* не растягиваем, показываем целиком */
+    top:100px; /* ← отступ на мобилке */
+    background-size:contain;
     background-position:center top;
+    background-repeat:no-repeat;
+    opacity:0.35;
   }
 
   .stats{flex-direction:column;gap:40px}
