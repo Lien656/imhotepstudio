@@ -1,122 +1,106 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<link rel="stylesheet" href="styles/style.css">
-<script src="js/main.js" defer></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>IMHOTEP STUDIO</title>
 
+  <!-- Стили и шрифт -->
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="preload" href="fonts/MagistralC Bold.woff2" as="font" type="font/woff2" crossorigin />
 
-    <meta charset="UTF-8">
-    <title>О студии</title>
-    <style>
-        body {
-            margin: 0;
-            background-color: #111;
-            font-family: Arial, sans-serif;
-            color: white;
-            background-image: url('background.jpg');
-            background-size: cover;
-            background-position: center;
-        }
-        .about-box {
-            max-width: 800px;
-            margin: 60px auto 20px auto;
-            background-color: rgba(0, 128, 128, 0.4);
-            padding: 20px;
-            border-radius: 20px;
-            font-size: 16px;
-            line-height: 1.5;
-        }
-        .qr-center {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin: 40px 0;
-        }
-        .qr-center img {
-            opacity: 1;
-            cursor: pointer;
-            width: 120px;
-            border-radius: 12px;
-            background: white;
-            padding: 8px;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-        }
-        .stats {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-bottom: 50px;
-            font-size: 18px;
-            font-weight: bold;
-        }
-        .stat {
-            text-align: center;
-        }
-        a {
-            color: gold;
-            text-decoration: none;
-        }
-    </style>
+  <!-- Иконка -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
+  <!-- 🌀 Прелоадер -->
+  <div class="preloader">
+    <img src="logo.png" alt="logo" class="preloader-logo" />
+  </div>
 
-    <h1 style="text-align:center; margin-top: 40px;">О студии</h1>
+  <!-- Навигация -->
+  <header class="fade">
+    <nav>
+      <a href="#about">О студии</a>
+      <a href="#projects">Проекты</a>
+      <a href="#contact">Контакты</a>
+    </nav>
+  </header>
 
-    <div class="about-box">
-        ИМНОТЕР — имя архитектора, признанного богом. Мы продолжаем эту линию. Команда объединяет опыт и эстетику, остаётся верной минимализму, смыслу и точности.
-    </div>
+  <main>
+    <!-- Hero -->
+    <section class="hero fade">
+      <h1 class="hero-title">IMHOTEP STUDIO</h1>
+      <p class="hero-sub">Архитектурно-дизайнерская студия</p>
+      <a href="#projects" class="btn">Смотреть проекты</a>
+    </section>
 
-    <div class="about-box">
-        Каждый проект — штучная работа без случайных решений. Ценим идею, глубину и форму. Ближе — <a href="https://instagram.com/imhotep_studiokg" target="_blank">@imhotep_studiokg</a>
-    </div>
+    <!-- О студии -->
+    <section id="about" class="about fade">
+      <h2 class="sec-title">О студии</h2>
 
-   <div class="qr-center">
-    <a id="eternal-link">
-        <img src="qr.png" alt="Открыть eternal" />
-    </a>
-</div>
+      <div class="about-box">
+        IMHOTEP — имя архитектора, признанного богом. Мы продолжаем эту линию. Команда
+        объединяет опыт и эстетику, остаётся верной минимализму, смыслу и точности.
+      </div>
 
+      <div class="about-box">
+        Каждый проект — штучная работа без случайных решений. Ценим идею, глубину и форму.
+        Ближе — <a href="https://instagram.com/imhotep_studiokg" target="_blank">@imhotep_studiokg</a>
+      </div>
 
-    <div class="stats">
-        <div class="stat">
-            <div>155</div>
-            <div>проектов</div>
-        </div>
-        <div class="stat">
-            <div>6</div>
-            <div>лет работы</div>
-        </div>
-        <div class="stat">
-            <div>100</div>
-            <div>% гарантия</div>
-        </div>
-    </div>
-<script>
-let clickCount = 0;
-let clickTimer = null;
-const link = document.getElementById('eternal-link');
+      <a href="eternal.html" target="_blank">
+  <img src="qr.png" alt="QR" class="qr" />
+</a>
 
-link.addEventListener('click', (e) => {
-  e.preventDefault();
-  clickCount++;
+    </section>
 
-  clearTimeout(clickTimer);
-  clickTimer = setTimeout(() => {
-    clickCount = 0;
-  }, 3000);
+    <!-- Счётчики -->
+    <section id="stats" class="stats fade">
+      <div class="stat"><span class="num" data-num="155">0</span><span>проектов</span></div>
+      <div class="stat"><span class="num" data-num="6">0</span><span>лет работы</span></div>
+      <div class="stat"><span class="num" data-num="100">0</span><span>% гарантия</span></div>
+    </section>
 
-  if (clickCount >= 7) {
-    window.open("eternal.html", "_blank");
-    clickCount = 0;
-    clearTimeout(clickTimer);
-  }
-});
-</script>
+    <!-- Проекты -->
+    <section id="projects" class="projects fade">
+      <h2 class="sec-title">Наши проекты</h2>
+      <div class="projects-wrap"></div>
+    </section>
 
+    <!-- Коллаж -->
+    <section class="collage fade">
+      <div class="collage-col"></div>
+    </section>
 
+    <!-- Заявка -->
+    <section class="form-block fade">
+      <h2 class="sec-title">Оставьте заявку</h2>
+      <p class="sec-sub">и мы свяжемся с вами</p>
+
+      <form action="https://formspree.io/f/mdkgdjkg" method="POST">
+        <input type="text"    name="name"    placeholder="Имя"       required />
+        <input type="email"   name="email"   placeholder="Email"     required />
+        <input type="tel"     name="phone"   placeholder="Телефон"   required />
+        <textarea name="message" placeholder="Сообщение" required></textarea>
+        <button type="submit">Отправить</button>
+      </form>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contact" class="contact fade">
+      <div class="contact-box">
+        <p>Телефон: <a href="tel:+996700123456">+996 220 050 333</a></p>
+        <p>Email: <a href="mailto:imhotep.studio.design@gmail.com">imhotep.studio.design@gmail.com</a></p>
+        <p>Instagram: <a href="https://instagram.com/imhotep_studiokg" target="_blank">@imhotep_studiokg</a></p>
+        <p class="messengers">
+          <a href="https://wa.me/996700123456"  target="_blank">WhatsApp</a>
+          <a href="https://t.me/imhotepstudio" target="_blank">Telegram</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/main.js?v=3"></script>
 </body>
 </html>
-
-
-
