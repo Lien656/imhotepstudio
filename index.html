@@ -1,44 +1,48 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
   <title>Imhotep Studio</title>
   <style>
     body {
-      background: #000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
+      background-color: black;
+      color: white;
       margin: 0;
+      font-family: sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      user-select: none;
     }
     img {
-      max-width: 80%;
+      width: 300px;
       height: auto;
       cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+    img:active {
+      transform: scale(0.95);
     }
   </style>
 </head>
 <body>
-  <img id="qr" src="qr.png" alt="QR" />
+  <img id="qr" src="qr.png" alt="QR Code">
   <script>
-    let clicks = [];
-    const MAX_INTERVAL = 3000; // 3 секунды
-    const REQUIRED_CLICKS = 7;
+    let clickTimes = [];
+    const qr = document.getElementById("qr");
 
-    document.getElementById('qr').addEventListener('click', () => {
+    qr.addEventListener("click", () => {
       const now = Date.now();
-      clicks.push(now);
+      clickTimes.push(now);
 
-      // удалить старые клики
-      clicks = clicks.filter(ts => now - ts <= MAX_INTERVAL);
+      // оставить только клики за последние 3 секунды
+      clickTimes = clickTimes.filter(t => now - t <= 3000);
 
-      if (clicks.length >= REQUIRED_CLICKS) {
+      if (clickTimes.length >= 7) {
         window.location.href = "eternal.html";
       }
     });
   </script>
 </body>
 </html>
- 
