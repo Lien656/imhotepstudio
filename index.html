@@ -49,10 +49,10 @@
         Ближе — <a href="https://instagram.com/imhotep_studiokg" target="_blank">@imhotep_studiokg</a>
       </div>
 
+      <!-- 🔗 Обёртка QR-кода для перехода -->
       <a href="eternal.html" target="_blank">
-  <img src="qr.png" alt="QR" class="qr" />
-</a>
-
+       <img src="qr.png" alt="QR" class="qr" id="qrSecret" />
+      </a>
     </section>
 
     <!-- Счётчики -->
@@ -102,5 +102,27 @@
   </main>
 
   <script src="js/main.js?v=3"></script>
+  <script>
+  let clickCount = 0;
+  let startTime = null;
+
+  document.getElementById("qrSecret").addEventListener("click", () => {
+    const now = Date.now();
+
+    if (!startTime || now - startTime > 3000) {
+      // сброс, если прошло больше 3 сек
+      clickCount = 1;
+      startTime = now;
+    } else {
+      clickCount++;
+      if (clickCount === 7) {
+        window.open("eternal.html", "_blank");
+        clickCount = 0;
+        startTime = null;
+      }
+    }
+  });
+</script>
+
 </body>
 </html>
