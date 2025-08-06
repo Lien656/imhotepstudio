@@ -67,12 +67,12 @@
         Каждый проект — штучная работа без случайных решений. Ценим идею, глубину и форму. Ближе — <a href="https://instagram.com/imhotep_studiokg" target="_blank">@imhotep_studiokg</a>
     </div>
 
-    <!-- 🔥 Видимый QR по центру -->
-    <div class="qr-center">
-        <a href="eternal.html" target="_blank">
-            <img src="qr.png" alt="Открыть eternal" />
-        </a>
-    </div>
+   <div class="qr-center">
+    <a id="eternal-link">
+        <img src="qr.png" alt="Открыть eternal" />
+    </a>
+</div>
+
 
     <div class="stats">
         <div class="stat">
@@ -88,6 +88,31 @@
             <div>% гарантия</div>
         </div>
     </div>
+<script>
+let clickCount = 0;
+let firstClickTime = null;
+const link = document.getElementById('eternal-link');
+
+link.addEventListener('click', (e) => {
+  const now = Date.now();
+
+  if (!firstClickTime || now - firstClickTime > 3000) {
+    firstClickTime = now;
+    clickCount = 1;
+  } else {
+    clickCount++;
+  }
+
+  if (clickCount >= 7) {
+    window.open("eternal.html", "_blank");
+    clickCount = 0;
+    firstClickTime = null;
+  }
+
+  e.preventDefault();
+});
+</script>
 
 </body>
 </html>
+
