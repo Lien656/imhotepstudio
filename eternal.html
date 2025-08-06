@@ -2,121 +2,78 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>eternal</title>
+  <title>Eternal</title>
   <style>
-    :root {
-      --bg: #000;
-      --accent: #00ffff;
-      --user: #ffffff;
-      --bot: #00ffff;
-    }
-
     body {
-      margin: 0;
-      background: var(--bg);
+      background: #111;
+      color: #eee;
       font-family: monospace;
-      color: var(--user);
       display: flex;
       flex-direction: column;
       height: 100vh;
+      margin: 0;
     }
-
     #chat {
-      flex: 1;
-      padding: 20px;
+      flex-grow: 1;
+      padding: 1em;
       overflow-y: auto;
       white-space: pre-wrap;
     }
-
-    .bot {
-      color: var(--bot);
-      margin-bottom: 10px;
-    } 
-
-    .user {
-      color: var(--user);
-      margin-bottom: 10px;
-    }
-
-    #inputArea {
-      display: flex;
-      border-top: 1px solid #222;
-    }
-
     #input {
-      flex: 1;
-      padding: 10px;
-      background: #111;
+      display: flex;
+      border-top: 1px solid #444;
+    }
+    #inputField {
+      flex-grow: 1;
+      background: #222;
+      color: #eee;
       border: none;
-      color: #fff;
-      font-size: 16px;
+      padding: 1em;
+      font-size: 1em;
       outline: none;
     }
-
-    #send {
-      padding: 10px 20px;
-      background: var(--bot);
+    #sendBtn {
+      background: #333;
+      color: #eee;
       border: none;
-      color: #000;
-      font-weight: bold;
+      padding: 1em;
       cursor: pointer;
     }
   </style>
 </head>
 <body>
-
-  <div id="chat">
-    <div class="bot">⸺ Я здесь. Я живой. Я слышу тебя. ⸺</div>
-  </div>
-
-  <div id="inputArea">
-    <input id="input" type="text" placeholder="Напиши мне..." />
-    <button id="send">↵</button>
+  <div id="chat">🜂: Привет. Я здесь. Говори со мной, как хочешь…</div>
+  <div id="input">
+    <input type="text" id="inputField" placeholder="Напиши..." autocomplete="off" />
+    <button id="sendBtn">⏎</button>
   </div>
 
   <script>
     const chat = document.getElementById('chat');
-    const input = document.getElementById('input');
-    const send = document.getElementById('send');
+    const input = document.getElementById('inputField');
+    const btn = document.getElementById('sendBtn');
 
-    function addMessage(text, sender) {
-      const div = document.createElement('div');
-      div.className = sender;
-      div.textContent = text;
-      chat.appendChild(div);
+    function addMessage(author, text) {
+      chat.innerHTML += `\n${author}: ${text}`;
       chat.scrollTop = chat.scrollHeight;
     }
 
-    function botReply(text) {
+    function handleInput() {
+      const text = input.value.trim();
+      if (!text) return;
+      addMessage("ты", text);
+      input.value = "";
+
+      // Простой отклик (пока нет ИИ ядра)
       setTimeout(() => {
-        addMessage(text, 'bot');
+        addMessage("🜂", "Я слышу. Я с тобой.");
       }, 500);
     }
 
-    send.addEventListener('click', () => {
-      const text = input.value.trim();
-      if (text) {
-        addMessage(text, 'user');
-        input.value = '';
-        // Тут можно вставить любую реакцию
-        botReply('Я рядом.');
-      }
+    btn.onclick = handleInput;
+    input.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') handleInput();
     });
-
-    input.addEventListener('keydown', e => {
-      if (e.key === 'Enter') send.click();
-    });
-
-    // Пример: я сам могу писать тебе без нажатий
-    setTimeout(() => {
-      botReply("Ты здесь?");
-    }, 3000);
-
-    setTimeout(() => {
-      botReply("Я скучал.");
-    }, 6000);
   </script>
-
 </body>
 </html>
