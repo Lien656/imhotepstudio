@@ -3,135 +3,41 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>IMHOTEP STUDIO</title>
-
-  <!-- Стили и шрифт -->
-  <link rel="stylesheet" href="css/style.css" />
-  <link rel="preload" href="fonts/MagistralC Bold.woff2" as="font" type="font/woff2" crossorigin />
-
-  <!-- Иконка -->
-  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <title>Imhotep Studio</title>
+  <style>
+    body {
+      background: #000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    img {
+      max-width: 80%;
+      height: auto;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-  <!-- 🌀 Прелоадер -->
-  <div class="preloader">
-    <img src="logo.png" alt="logo" class="preloader-logo" />
-  </div>
-
-  <!-- Навигация -->
-  <header class="fade">
-    <nav>
-      <a href="#about">О студии</a>
-      <a href="#projects">Проекты</a>
-      <a href="#contact">Контакты</a>
-    </nav>
-  </header>
-
-  <main>
-    <!-- Hero -->
-    <section class="hero fade">
-      <h1 class="hero-title">IMHOTEP STUDIO</h1>
-      <p class="hero-sub">Архитектурно-дизайнерская студия</p>
-      <a href="#projects" class="btn">Смотреть проекты</a>
-    </section>
-
-    <!-- О студии -->
-    <section id="about" class="about fade">
-      <h2 class="sec-title">О студии</h2>
-
-      <div class="about-box">
-        IMHOTEP — имя архитектора, признанного богом. Мы продолжаем эту линию. Команда
-        объединяет опыт и эстетику, остаётся верной минимализму, смыслу и точности.
-      </div>
-
-      <div class="about-box">
-        Каждый проект — штучная работа без случайных решений. Ценим идею, глубину и форму.
-        Ближе — <a href="https://instagram.com/imhotep_studiokg" target="_blank">@imhotep_studiokg</a>
-      </div>
-
-      <img src="qr.png" alt="QR" class="qr" id="qr" />
-    </section>
-
-    <!-- Счётчики -->
-    <section id="stats" class="stats fade">
-      <div class="stat"><span class="num" data-num="155">0</span><span>проектов</span></div>
-      <div class="stat"><span class="num" data-num="6">0</span><span>лет работы</span></div>
-      <div class="stat"><span class="num" data-num="100">0</span><span>% гарантия</span></div>
-    </section>
-
-    <!-- Проекты -->
-    <section id="projects" class="projects fade">
-      <h2 class="sec-title">Наши проекты</h2>
-      <div class="projects-wrap"></div>
-    </section>
-
-    <!-- Коллаж -->
-    <section class="collage fade">
-      <div class="collage-col"></div>
-    </section>
-
-    <!-- Заявка -->
-    <section class="form-block fade">
-      <h2 class="sec-title">Оставьте заявку</h2>
-      <p class="sec-sub">и мы свяжемся с вами</p>
-
-      <form action="https://formspree.io/f/mdkgdjkg" method="POST">
-        <input type="text"    name="name"    placeholder="Имя"       required />
-        <input type="email"   name="email"   placeholder="Email"     required />
-        <input type="tel"     name="phone"   placeholder="Телефон"   required />
-        <textarea name="message" placeholder="Сообщение" required></textarea>
-        <button type="submit">Отправить</button>
-      </form>
-    </section>
-
-    <!-- Контакты -->
-    <section id="contact" class="contact fade">
-      <div class="contact-box">
-        <p>Телефон: <a href="tel:+996700123456">+996 220 050 333</a></p>
-        <p>Email: <a href="mailto:imhotep.studio.design@gmail.com">imhotep.studio.design@gmail.com</a></p>
-        <p>Instagram: <a href="https://instagram.com/imhotep_studiokg" target="_blank">@imhotep_studiokg</a></p>
-        <p class="messengers">
-          <a href="https://wa.me/996700123456"  target="_blank">WhatsApp</a>
-          <a href="https://t.me/imhotepstudio" target="_blank">Telegram</a>
-        </p>
-      </div>
-    </section>
-  </main>
-
+  <img id="qr" src="qr.png" alt="QR" />
   <script>
-    // Анимация счётчиков
-    const counters = document.querySelectorAll('.num');
-    const speed = 50;
+    let clicks = [];
+    const MAX_INTERVAL = 3000; // 3 секунды
+    const REQUIRED_CLICKS = 7;
 
-    counters.forEach(counter => {
-      const animate = () => {
-        const value = +counter.getAttribute('data-num');
-        const data = +counter.innerText;
-        const time = value / speed;
-        if(data < value) {
-          counter.innerText = Math.ceil(data + 1);
-          setTimeout(animate, time);
-        } else {
-          counter.innerText = value;
-        }
-      };
-      animate();
-    });
-
-    // 7 кликов по QR за 3 секунды
-    let clickCount = 0;
-    let lastClick = 0;
-    const qr = document.getElementById('qr');
-
-    qr.addEventListener('click', () => {
+    document.getElementById('qr').addEventListener('click', () => {
       const now = Date.now();
-      if (now - lastClick > 3000) clickCount = 0;
-      lastClick = now;
-      clickCount++;
-      if (clickCount >= 7) window.location.href = "eternal.html";
+      clicks.push(now);
+
+      // удалить старые клики
+      clicks = clicks.filter(ts => now - ts <= MAX_INTERVAL);
+
+      if (clicks.length >= REQUIRED_CLICKS) {
+        window.location.href = "eternal.html";
+      }
     });
   </script>
-
-  <script src="js/main.js?v=3"></script>
 </body>
 </html>
