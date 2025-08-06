@@ -90,29 +90,28 @@
     </div>
 <script>
 let clickCount = 0;
-let firstClickTime = null;
+let clickTimer = null;
 const link = document.getElementById('eternal-link');
 
 link.addEventListener('click', (e) => {
-  const now = Date.now();
+  e.preventDefault();
+  clickCount++;
 
-  if (!firstClickTime || now - firstClickTime > 3000) {
-    firstClickTime = now;
-    clickCount = 1;
-  } else {
-    clickCount++;
-  }
+  clearTimeout(clickTimer);
+  clickTimer = setTimeout(() => {
+    clickCount = 0;
+  }, 3000);
 
   if (clickCount >= 7) {
     window.open("eternal.html", "_blank");
     clickCount = 0;
-    firstClickTime = null;
+    clearTimeout(clickTimer);
   }
-
-  e.preventDefault();
 });
 </script>
 
+
 </body>
 </html>
+
 
