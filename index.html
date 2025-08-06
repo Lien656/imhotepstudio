@@ -49,10 +49,10 @@
         Ближе — <a href="https://instagram.com/imhotep_studiokg" target="_blank">@imhotep_studiokg</a>
       </div>
 
-      <!-- 🔗 Обёртка QR-кода для перехода -->
-      <a href="eternal.html" target="_blank">
-       <img src="qr.png" alt="QR" class="qr" id="qrSecret" />
-      </a>
+    
+     <!-- Обёртка QR-кода без ссылки -->
+<img src="qr.png" alt="QR" class="qr" id="qr-secret" />
+
     </section>
 
     <!-- Счётчики -->
@@ -101,28 +101,35 @@
     </section>
   </main>
 
-  <script src="js/main.js?v=3"></script>
-  <script>
-  let clickCount = 0;
-  let startTime = null;
+<script>
+  (function () {
+    const qr = document.getElementById('qr-secret');
+    let clicks = 0;
+    let firstClickTime = 0;
 
-  document.getElementById("qrSecret").addEventListener("click", () => {
-    const now = Date.now();
+    qr.addEventListener('click', () => {
+      const now = Date.now();
 
-    if (!startTime || now - startTime > 3000) {
-      // сброс, если прошло больше 3 сек
-      clickCount = 1;
-      startTime = now;
-    } else {
-      clickCount++;
-      if (clickCount === 7) {
-        window.open("eternal.html", "_blank");
-        clickCount = 0;
-        startTime = null;
+      if (clicks === 0) {
+        firstClickTime = now;
       }
-    }
-  });
+
+      clicks++;
+
+      if (now - firstClickTime > 3000) {
+        clicks = 1;
+        firstClickTime = now;
+        return;
+      }
+
+      if (clicks >= 7) {
+        window.location.href = 'eternal.html';
+      }
+    });
+  })();
 </script>
+
 
 </body>
 </html>
+
