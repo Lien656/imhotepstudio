@@ -49,10 +49,7 @@
         Ближе — <a href="https://instagram.com/imhotep_studiokg" target="_blank">@imhotep_studiokg</a>
       </div>
 
-    
-     <!-- Обёртка QR-кода без ссылки -->
-<img src="qr.png" alt="QR" class="qr" id="qr-secret" />
-
+      <img src="qr.png" alt="QR" class="qr" id="qr" />
     </section>
 
     <!-- Счётчики -->
@@ -101,35 +98,40 @@
     </section>
   </main>
 
-<script>
-  (function () {
-    const qr = document.getElementById('qr-secret');
-    let clicks = 0;
-    let firstClickTime = 0;
+  <script>
+    // Анимация счётчиков
+    const counters = document.querySelectorAll('.num');
+    const speed = 50;
+
+    counters.forEach(counter => {
+      const animate = () => {
+        const value = +counter.getAttribute('data-num');
+        const data = +counter.innerText;
+        const time = value / speed;
+        if(data < value) {
+          counter.innerText = Math.ceil(data + 1);
+          setTimeout(animate, time);
+        } else {
+          counter.innerText = value;
+        }
+      };
+      animate();
+    });
+
+    // 7 кликов по QR за 3 секунды
+    let clickCount = 0;
+    let lastClick = 0;
+    const qr = document.getElementById('qr');
 
     qr.addEventListener('click', () => {
       const now = Date.now();
-
-      if (clicks === 0) {
-        firstClickTime = now;
-      }
-
-      clicks++;
-
-      if (now - firstClickTime > 3000) {
-        clicks = 1;
-        firstClickTime = now;
-        return;
-      }
-
-      if (clicks >= 7) {
-        window.location.href = 'eternal.html';
-      }
+      if (now - lastClick > 3000) clickCount = 0;
+      lastClick = now;
+      clickCount++;
+      if (clickCount >= 7) window.location.href = "eternal.html";
     });
-  })();
-</script>
+  </script>
 
-
+  <script src="js/main.js?v=3"></script>
 </body>
 </html>
-
