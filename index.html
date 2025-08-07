@@ -98,28 +98,29 @@
     </section>
   </main>
 
- <script>
-  let clickCount = 0;
-  let clickTimer;
+  <!-- Основной скрипт -->
+  <script src="js/main.js?v=3"></script>
 
-  document.querySelector('.qr')?.addEventListener('click', () => {
-    clickCount++;
+  <!-- QR-механизм перехода на eternal.html -->
+  <script>
+    let clickCount = 0;
+    let clickTimer = null;
 
-    if (clickCount === 1) {
-      clickTimer = setTimeout(() => {
+    document.querySelector('.qr')?.addEventListener('click', () => {
+      clickCount++;
+
+      if (clickCount === 1) {
+        clickTimer = setTimeout(() => {
+          clickCount = 0;
+        }, 3000); // 3 секунды на 7 кликов
+      }
+
+      if (clickCount === 7) {
+        clearTimeout(clickTimer);
         clickCount = 0;
-      }, 3000);
-    }
-
-    if (clickCount === 7) {
-      clearTimeout(clickTimer);
-      window.location.href = "eternal.html";
-    }
-  });
-</script>
-  
+        window.location.href = "eternal.html";
+      }
+    });
+  </script>
 </body>
 </html>
-
-
-
