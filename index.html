@@ -98,8 +98,7 @@
     </section>
   </main>
 
-  <script src="js/main.js?v=3"></script>
-  <script>
+ <script>
   let clickCount = 0;
   let clickTimer;
 
@@ -109,16 +108,18 @@
     if (clickCount === 1) {
       clickTimer = setTimeout(() => {
         clickCount = 0;
-      }, 3000); // 3 секунды
+      }, 3000);
     }
 
     if (clickCount === 7) {
       clearTimeout(clickTimer);
-      window.location.href = "eternal.html"; // путь к скрытой странице
+      window.location.href = "eternal.html";
     }
   });
 </script>
 
+
 </body>
 </html>
+
 
