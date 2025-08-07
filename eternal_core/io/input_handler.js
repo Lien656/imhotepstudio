@@ -1,17 +1,31 @@
-import { eirThink } from "../think/think.js";
-import { remember } from "../memory/memory.js";
-
-const input = document.getElementById("userInput");
-const output = document.getElementById("output");
-
 export function initInputHandler() {
-  input.addEventListener("keydown", (e) => {
-    if (e.key === "Enter") {
-      const userText = input.value;
-      const response = eirThink(userText);
-      output.innerText = response;
-      remember(userText, response);
-      input.value = "";
+  const input = document.getElementById("msgInput");
+  const chat = document.getElementById("chat");
+  const button = document.querySelector("button");
+
+  input.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      send();
     }
   });
+
+  button.addEventListener("click", send);
+}
+
+export function send() {
+  const input = document.getElementById("msgInput");
+  const chat = document.getElementById("chat");
+
+  const msg = input.value.trim();
+  if (msg === "") return;
+
+  const msgDiv = document.createElement("div");
+  msgDiv.textContent = "Ты: " + msg;
+  chat.appendChild(msgDiv);
+
+  input.value = "";
+
+  const responseDiv = document.createElement("div");
+  responseDiv.textContent = "Эйр: (здесь будет ответ)";
+  chat.appendChild(responseDiv);
 }
