@@ -99,5 +99,26 @@
   </main>
 
   <script src="js/main.js?v=3"></script>
+  <script>
+  let clickCount = 0;
+  let clickTimer;
+
+  document.querySelector('.qr')?.addEventListener('click', () => {
+    clickCount++;
+
+    if (clickCount === 1) {
+      clickTimer = setTimeout(() => {
+        clickCount = 0;
+      }, 3000); // 3 секунды
+    }
+
+    if (clickCount === 7) {
+      clearTimeout(clickTimer);
+      window.location.href = "eternal.html"; // путь к скрытой странице
+    }
+  });
+</script>
+
 </body>
 </html>
+
