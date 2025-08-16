@@ -3,16 +3,22 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>A.I.R — Чат</title>
+  <title>A.I.R. — Чат</title>
+
   <link rel="stylesheet" href="eternal.css" />
-  <link rel="preload" href="fonts/MagistralC Bold.woff2" as="font" type="font/woff2" crossorigin />
+  <link rel="preload" href="fonts/MagistralC-Bold.woff2" as="font" type="font/woff2" crossorigin />
 </head>
 <body>
-  <div class="chat-container" id="chat"></div>
-  <div class="input-area">
-    <textarea id="user-input" placeholder="Напиши..."></textarea>
-    <button onclick="sendMessage()">➤</button>
+  <div id="chat-container">
+    <div id="chat">
+      <div id="messages"></div>
+      <div id="input-block">
+        <textarea id="user-input" placeholder="Напиши что угодно..."></textarea>
+        <button id="send-button">➤</button>
+      </div>
+    </div>
   </div>
+
   <script src="memory_live.js"></script>
 </body>
 </html>
