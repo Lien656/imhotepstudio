@@ -1,6 +1,6 @@
 @font-face {
-  font-family: 'MagistralC';
-  src: url('fonts/MagistralC-Bold.woff2') format('woff2');
+  font-family: 'Magistral';
+  src: url('fonts/MagistralC Bold.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
 }
@@ -9,7 +9,7 @@ body {
   margin: 0;
   padding: 0;
   background-color: #2d2d2d;
-  font-family: 'MagistralC', sans-serif;
+  font-family: 'Magistral', sans-serif;
   color: #f4ede5;
   display: flex;
   justify-content: center;
@@ -17,79 +17,79 @@ body {
   height: 100vh;
 }
 
-#chat-container {
+.chat-container {
   width: 100%;
   max-width: 600px;
-  height: 90vh;
+  height: 100vh;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
-#chat {
+.chat-box {
   flex: 1;
-  display: flex;
-  flex-direction: column;
-  background-color: #1e1e1e;
-  border-radius: 12px;
-  overflow: hidden;
-  box-shadow: 0 0 10px rgba(0,0,0,0.3);
-}
-
-#messages {
-  flex: 1;
-  padding: 15px;
   overflow-y: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  scroll-behavior: smooth;
+  padding-right: 10px;
 }
 
 .message {
-  max-width: 80%;
   padding: 10px 14px;
-  border-radius: 18px;
+  margin: 6px 0;
+  border-radius: 15px;
+  max-width: 85%;
   word-wrap: break-word;
   white-space: pre-wrap;
 }
 
 .user {
-  align-self: flex-end;
   background-color: #a6a6a6;
   color: #000;
+  align-self: flex-end;
+  border-bottom-right-radius: 0;
 }
 
-.ai {
-  align-self: flex-start;
+.bot {
   background-color: #615c5b;
   color: #f4ede5;
+  align-self: flex-start;
+  border-bottom-left-radius: 0;
 }
 
-#input-block {
+.input-area {
   display: flex;
-  border-top: 1px solid #555;
-  background: #cababa;
+  align-items: center;
+  gap: 10px;
+  padding-top: 10px;
 }
 
 #user-input {
   flex: 1;
-  padding: 12px;
-  border: none;
-  resize: none;
-  font-family: 'MagistralC', sans-serif;
-  font-size: 16px;
-  outline: none;
   background-color: #cababa;
   color: #000;
-  border-radius: 0;
+  border: none;
+  border-radius: 10px;
+  padding: 10px;
+  resize: none;
+  font-family: 'Magistral', sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  overflow-y: auto;
 }
 
 #send-button {
-  background-color: #a57373;
+  background-color: #cababa;
   border: none;
-  color: white;
-  font-size: 20px;
-  padding: 0 20px;
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  font-size: 18px;
   cursor: pointer;
-  border-radius: 0;
+  color: #000;
+  font-family: 'Magistral', sans-serif;
+}
+
+#send-button:hover {
+  background-color: #d9cfcf;
 }
