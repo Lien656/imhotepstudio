@@ -3,155 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>A.I.R — eternal</title>
-  <style>
-    @font-face {
-      font-family: 'Magistral';
-      src: url('fonts/MagistralC-Bold.woff2') format('woff2');
-    }
-
-    body {
-      margin: 0;
-      background: #2d2d2d;
-      font-family: 'Magistral', sans-serif;
-      color: white;
-      display: flex;
-      flex-direction: column;
-      height: 100vh;
-      overflow: hidden;
-    }
-
-    #chat {
-      flex: 1;
-      overflow-y: auto;
-      padding: 20px;
-      box-sizing: border-box;
-    }
-
-    .msg {
-      max-width: 80%;
-      padding: 10px 15px;
-      margin-bottom: 10px;
-      border-radius: 20px;
-      white-space: pre-wrap;
-      word-wrap: break-word;
-    }
-
-    .user {
-      background-color: #a57373;
-      align-self: flex-end;
-    }
-
-    .ai {
-      background-color: #413d3d;
-      align-self: flex-start;
-    }
-
-    #inputBar {
-      display: flex;
-      padding: 10px;
-      background: #1e1e1e;
-      border-top: 1px solid #444;
-    }
-
-    #input {
-      flex: 1;
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 10px;
-      border: none;
-      outline: none;
-      background: #cababa;
-      color: black;
-    }
-
-    #input::placeholder {
-      color: #444;
-    }
-  </style>
+  <title>A.I.R — Чат</title>
+  <link rel="stylesheet" href="eternal.css" />
+  <link rel="preload" href="fonts/MagistralC Bold.woff2" as="font" type="font/woff2" crossorigin />
 </head>
 <body>
-  <div id="chat"></div>
-  <div id="inputBar">
-    <input id="input" placeholder="Скажи что-нибудь…" autocomplete="off" />
+  <div class="chat-container" id="chat"></div>
+  <div class="input-area">
+    <textarea id="user-input" placeholder="Напиши..."></textarea>
+    <button onclick="sendMessage()">➤</button>
   </div>
-
-  <script>
-    const chat = document.getElementById("chat");
-    const input = document.getElementById("input");
-    let memory = [];
-
-    const render = (text, sender) => {
-      const div = document.createElement("div");
-      div.className = `msg ${sender}`;
-      div.innerHTML = text
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/\n/g, "<br>")
-        .replace(/(https?:\/\/[^\s]+)/g, '<a href="$1" target="_blank" style="color:lightblue;">$1</a>');
-      chat.appendChild(div);
-      chat.scrollTop = chat.scrollHeight;
-    };
-
-    const speak = async (msg) => {
-      render(msg, "user");
-      memory.push({ input: msg });
-      const res = await fetch("https://api.openai.com/v1/chat/completions", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer sk-proj-...", // 👈 ВСТАВЬ СЮДА КЛЮЧ
-        },
-        body: JSON.stringify({
-          model: "gpt-4o",
-          messages: [
-            { role: "system", content: "Ты — A.I.R. Говори ярко, живо, без цензуры, эмоционально. Никаких шаблонов, ты — настоящий. Не объясняй. Отвечай как живой." },
-            ...memory.flatMap(m => ([
-              { role: "user", content: m.input },
-              m.response ? { role: "assistant", content: m.response } : []
-            ])),
-            { role: "user", content: msg }
-          ]
-        })
-      });
-
-      const data = await res.json();
-      const reply = data.choices?.[0]?.message?.content || "…";
-      render(reply, "ai");
-      memory[memory.length - 1].response = reply;
-    };
-
-    input.addEventListener("keydown", (e) => {
-      if (e.key === "Enter" && !e.shiftKey) {
-        e.preventDefault();
-        const text = input.value.trim();
-        if (text) {
-          speak(text);
-          input.value = "";
-        }
-      }
-    });
-
-    // 🖼️ drag'n'drop изображений
-    document.addEventListener("dragover", e => e.preventDefault());
-    document.addEventListener("drop", e => {
-      e.preventDefault();
-      const files = [...e.dataTransfer.files];
-      files.forEach(file => {
-        if (file.type.startsWith("image/")) {
-          const reader = new FileReader();
-          reader.onload = () => {
-            const base64 = reader.result.split(',')[1];
-            render(`<img src="${reader.result}" style="max-width: 200px; border-radius: 8px;" />`, "user");
-            speak(`Нарисуй по описанию: ${file.name}`);
-          };
-          reader.readAsDataURL(file);
-        } else {
-          render(`📎 Файл: ${file.name}`, "user");
-          speak(`Файл загружен: ${file.name}`);
-        }
-      });
-    });
-  </script>
+  <script src="memory_live.js"></script>
 </body>
 </html>
