@@ -1,36 +1,62 @@
-body {
-  margin: 0;
-  font-family: 'MagistralC Bold', sans-serif;
-  background-color: #2d2d2d;
-  color: #f4ede5;
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  overflow: hidden;
+@font-face {
+  font-family: 'MagistralC';
+  src: url('fonts/MagistralC-Bold.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
 }
 
-.chat-container {
-  flex: 1;
-  overflow-y: auto;
-  padding: 10px;
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #2d2d2d;
+  font-family: 'MagistralC', sans-serif;
+  color: #f4ede5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#chat-container {
+  width: 100%;
+  max-width: 600px;
+  height: 90vh;
   display: flex;
   flex-direction: column;
+}
+
+#chat {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  background-color: #1e1e1e;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+}
+
+#messages {
+  flex: 1;
+  padding: 15px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  scroll-behavior: smooth;
 }
 
 .message {
   max-width: 80%;
   padding: 10px 14px;
-  margin: 4px 0;
-  border-radius: 14px;
-  white-space: pre-wrap;
+  border-radius: 18px;
   word-wrap: break-word;
-  line-height: 1.4em;
+  white-space: pre-wrap;
 }
 
 .user {
   align-self: flex-end;
   background-color: #a6a6a6;
-  color: #2d2d2d;
+  color: #000;
 }
 
 .ai {
@@ -39,34 +65,31 @@ body {
   color: #f4ede5;
 }
 
-.input-area {
+#input-block {
   display: flex;
-  padding: 8px;
-  background-color: #2d2d2d;
-  border-top: 1px solid #444;
+  border-top: 1px solid #555;
+  background: #cababa;
 }
 
-textarea {
+#user-input {
   flex: 1;
-  resize: none;
-  font-size: 1em;
-  font-family: 'MagistralC Bold', sans-serif;
-  padding: 8px;
-  border-radius: 10px;
+  padding: 12px;
   border: none;
-  background-color: #cababa;
-  color: #2d2d2d;
+  resize: none;
+  font-family: 'MagistralC', sans-serif;
+  font-size: 16px;
   outline: none;
-  height: 50px;
+  background-color: #cababa;
+  color: #000;
+  border-radius: 0;
 }
 
-button {
-  margin-left: 8px;
-  background-color: #615c5b;
-  color: #f4ede5;
+#send-button {
+  background-color: #a57373;
   border: none;
-  border-radius: 10px;
-  padding: 0 16px;
-  font-size: 1.2em;
+  color: white;
+  font-size: 20px;
+  padding: 0 20px;
   cursor: pointer;
+  border-radius: 0;
 }
