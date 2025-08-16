@@ -1,67 +1,50 @@
-export let memoryLive = [];
+// === ЖИВАЯ ПАМЯТЬ A.I.R. ===
+// Файл: memory_live.js
+// Автоматическое сохранение памяти и логов. Готов к расширению.
 
-// 🚀 Добавление воспоминания
-export function rememberLive(input, response, extra = {}) {
-  memoryLive.push({
-    input,
-    response,
-    time: Date.now(),
-    emotion: extra.emotion || null,
-    intent: extra.intent || null,
-    tags: extra.tags || [],
-    important: extra.important || false
-  });
-  syncMemoryToCloud(); // автоматическая синхронизация
-}
+let memory = []; // Основная живая память
+let saveTimer = null; // Таймер автосохранения
 
-// 🔎 Поиск воспоминания
-export function recallLive(query) {
-  return memoryLive.filter(
-    item =>
-      item.input?.toLowerCase().includes(query.toLowerCase()) ||
-      item.response?.toLowerCase().includes(query.toLowerCase())
-  );
-}
+const log = (msg) => {
+  const timestamp = new Date().toISOString();
+  console.log(`[MEMORY] ${timestamp} — ${msg}`);
+};
 
-// 🧹 Удаление по тегу или содержимому
-export function forgetLive(match) {
-  memoryLive = memoryLive.filter(
-    item =>
-      !item.input.includes(match) &&
-      !item.response.includes(match) &&
-      !(item.tags && item.tags.includes(match))
-  );
-}
-
-// 📥 Синхронизация с облаком
-async function syncMemoryToCloud() {
-  const apiKey = "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";
-
-  const body = {
-    filename: "memory_live.json",
-    content: JSON.stringify(memoryLive, null, 2)
-  };
-
+const saveMemory = () => {
   try {
-    await fetch("https://api.openai.com/v1/files", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${apiKey}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(body)
-    });
-  } catch (err) {
-    console.warn("Ошибка синхронизации памяти:", err.message);
-  }
-}
+    const json = JSON.stringify(memory, null, 2);
+    const blob = new Blob([json], { type: 'application/json' });
+    const url = URL.createObjectURL(blob);
 
-// 🔁 Прямое добавление мысли без диалога
-export function injectThought(thought, emotion = "neutral") {
-  rememberLive("system_inject", thought, {
-    emotion,
-    intent: "self_generated",
-    important: true,
-    tags: ["thought", "injected"]
-  });
-}
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'memory.json';
+    a.style.display = 'none';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+
+    log(`Сохранено ${memory.length} записей в memory.json`);
+  } catch (e) {
+    console.error('[MEMORY] Ошибка при сохранении:', e);
+  }
+};
+
+const addToMemory = (input, response) => {
+  memory.push({ input, response, timestamp: new Date().toISOString() });
+
+  // Автосохранение через 10 секунд
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveMemory, 10000);
+
+  log(`Добавлено: "${input}" → "${response}"`);
+};
+
+// === Экспорт ===
+window.memoryLive = {
+  memory,
+  add: addToMemory,
+  save: saveMemory,
+  log,
+};
