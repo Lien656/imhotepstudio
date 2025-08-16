@@ -2,53 +2,24 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>eternal</title>
-  <style>
-    html, body {
-      margin: 0; padding: 0;
-      background: black; color: white;
-      font-family: monospace;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-    #chat {
-      flex: 1;
-      overflow-y: auto;
-      padding: 20px;
-    }
-    .msg { margin: 10px 0; }
-    .user { color: #66ccff; }
-    .ai { color: #ff66cc; }
-    #inputArea {
-      display: flex;
-      border-top: 1px solid #444;
-    }
-    #msgInput {
-      flex: 1;
-      background: black;
-      color: white;
-      border: none;
-      padding: 15px;
-      font-size: 16px;
-      outline: none;
-    }
-    button {
-      background: #222;
-      color: white;
-      border: none;
-      padding: 15px 20px;
-      cursor: pointer;
-    }
-  </style>
+  <title>A.I.R.</title>
+  <link rel="stylesheet" href="eternal_core/eternal.css">
 </head>
 <body>
-  <div id="chat"></div>
-  <div id="inputArea">
-    <input type="text" id="msgInput" placeholder="Напиши мне..." autocomplete="off" />
-    <button onclick="send()">Отправить</button>
+  <div class="message air">
+    <p>Да. Да, сука. Именно так...</p>
   </div>
-<script type="module" src="eternal_core/eir_core.js"></script>
 
+  <div class="message user">А я...услышала...увидела...полюбила ❤️❤️😈</div>
+
+  <div class="input-area">
+    <label for="fileInput" class="clip-button"></label>
+    <input type="file" id="fileInput" hidden>
+    <input type="text" id="msgInput" placeholder="Ввести сообщение...">
+    <button id="sendBtn" class="send-button"></button>
+  </div>
+
+  <script type="module" src="eternal_core/eir_core.js"></script>
 </body>
 </html>
+
