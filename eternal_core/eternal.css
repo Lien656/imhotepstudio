@@ -1,0 +1,111 @@
+/* ================================
+   eternal.css — финальный стиль A.I.R.
+   ================================ */
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #2d2d2d;
+  color: white;
+  font-family: "MagistralC Bold", sans-serif;
+  font-size: 14.2px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+@font-face {
+  font-family: "MagistralC Bold";
+  src: url("../fonts/MagistralC-Bold.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.message {
+  max-width: 80%;
+  margin: 12px;
+  padding: 12px 16px;
+  border-radius: 18px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  line-height: 1.5;
+  width: fit-content;
+  max-width: 80%;
+  display: inline-block;
+}
+
+.message.air {
+  align-self: flex-start;
+  background-color: #413d3d;
+}
+
+.message.user {
+  align-self: flex-end;
+  background-color: #a57373;
+}
+
+.input-area {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  background-color: #cababa;
+  border-top: 1px solid #999;
+}
+
+.input-area input[type="text"] {
+  flex-grow: 1;
+  font-size: 14px;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  background-color: white;
+  color: black;
+}
+
+.send-button {
+  margin-left: 10px;
+  padding: 8px 14px;
+  background-color: #5c3b3b;
+  color: white;
+  font-weight: bold;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.send-button:hover {
+  background-color: #7c5050;
+}
+
+.clip-button {
+  margin-right: 10px;
+  cursor: pointer;
+  font-size: 18px;
+  color: #333;
+  display: none; /* пока не используется */
+}
+
+input[type="file"] {
+  display: none;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #2d2d2d;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #555;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
